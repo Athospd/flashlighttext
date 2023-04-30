@@ -21,8 +21,17 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_NumEx();
+RcppExport SEXP _rcpp_module_boot_flashlight_lib_text_decoder_kenlm();
+RcppExport SEXP _rcpp_module_boot_yada();
+RcppExport SEXP _rcpp_module_boot_stdVector();
+
 static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_rcpp_hello_world", (DL_FUNC) &_flashlighttext_rcpp_hello_world, 0},
+    {"_rcpp_module_boot_NumEx", (DL_FUNC) &_rcpp_module_boot_NumEx, 0},
+    {"_rcpp_module_boot_flashlight_lib_text_decoder_kenlm", (DL_FUNC) &_rcpp_module_boot_flashlight_lib_text_decoder_kenlm, 0},
+    {"_rcpp_module_boot_yada", (DL_FUNC) &_rcpp_module_boot_yada, 0},
+    {"_rcpp_module_boot_stdVector", (DL_FUNC) &_rcpp_module_boot_stdVector, 0},
     {NULL, NULL, 0}
 };
 

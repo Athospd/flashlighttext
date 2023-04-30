@@ -1,0 +1,3 @@
+cd src
+sed "s|@CMAKE_FLAGS@|$CMAKE_FLAGS|"  Makevars.in > Makevars
+

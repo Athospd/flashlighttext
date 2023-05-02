@@ -5,161 +5,226 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#include "flashlight/lib/text/dictionary/Dictionary.h"
+#include <Rcpp.h>
+// [[Rcpp::plugins(cpp11)]]
 
-#include <fstream>
-#include <stdexcept>
+#include <flashlight/lib/text/decoder/lm/KenLM.h>
 #include <string>
 
-#include "flashlight/lib/text/String.h"
-#include "flashlight/lib/text/dictionary/Utils.h"
+using namespace Rcpp;
 
-namespace fl {
-namespace lib {
-namespace text {
+#include <flashlight/lib/text/dictionary/Dictionary.h>
+#include <flashlight/lib/text/dictionary/Utils.h>
+using namespace fl::lib::text;
 
-Dictionary::Dictionary(std::istream& stream) {
-  createFromStream(stream);
+namespace {
+
+void Dictionary_addEntry_0(
+    Dictionary& dict,
+    const std::string& entry,
+    int idx) {
+  dict.addEntry(entry, idx);
 }
 
-Dictionary::Dictionary(const std::string& filename) {
-  std::ifstream stream = std::ifstream(filename);
-  if (!stream) {
-    throw std::runtime_error("Dictionary - cannot open file  " + filename);
-  }
-  createFromStream(stream);
+void Dictionary_addEntry_1(Dictionary& dict, const std::string& entry) {
+  dict.addEntry(entry);
 }
 
-Dictionary::Dictionary(const std::vector<std::string>& tkns) {
-  for (const auto& tkn : tkns) {
-    addEntry(tkn);
-  }
-  if (!isContiguous()) {
-    throw std::runtime_error("Invalid dictionary format - not contiguous");
-  }
+} // namespace
+
+// constructors ------------------------------
+// [[Rcpp::export]]
+XPtr<Dictionary> cpp_Dictionary_create_empty() {
+  Dictionary *obj = new Dictionary();
+  XPtr<Dictionary> ptr(obj, true);
+  return ptr;
 }
 
-void Dictionary::createFromStream(std::istream& stream) {
-  if (!stream) {
-    throw std::runtime_error("Unable to open dictionary input stream.");
-  }
-  std::string line;
-  while (std::getline(stream, line)) {
-    if (line.empty()) {
-      continue;
-    }
-    auto tkns = splitOnWhitespace(line, true);
-    auto idx = idx2entry_.size();
-    // All entries on the same line map to the same index
-    for (const auto& tkn : tkns) {
-      addEntry(tkn, idx);
-    }
-  }
-  if (!isContiguous()) {
-    throw std::runtime_error("Invalid dictionary format - not contiguous");
-  }
+// [[Rcpp::export]]
+XPtr<Dictionary> cpp_Dictionary_create_string(const std::string& filename) {
+  Dictionary *obj = new Dictionary(filename);
+  XPtr<Dictionary> ptr(obj, true);
+  return ptr;
 }
 
-void Dictionary::addEntry(const std::string& entry, int idx) {
-  if (entry2idx_.find(entry) != entry2idx_.end()) {
-    throw std::invalid_argument(
-        "Duplicate entry name in dictionary '" + entry + "'");
-  }
-  entry2idx_[entry] = idx;
-  if (idx2entry_.find(idx) == idx2entry_.end()) {
-    idx2entry_[idx] = entry;
-  }
+// [[Rcpp::export]]
+XPtr<Dictionary> cpp_Dictionary_create_vector_string(const std::vector<std::string>& tkns) {
+  Dictionary *obj = new Dictionary(tkns);
+  XPtr<Dictionary> ptr(obj, true);
+  return ptr;
 }
 
-void Dictionary::addEntry(const std::string& entry) {
-  // Check if the entry already exists in the dictionary
-  if (entry2idx_.find(entry) != entry2idx_.end()) {
-    throw std::invalid_argument(
-        "Duplicate entry in dictionary '" + entry + "'");
-  }
-  int idx = idx2entry_.size();
-  // Find first available index.
-  while (idx2entry_.find(idx) != idx2entry_.end()) {
-    ++idx;
-  }
-  addEntry(entry, idx);
+// methods ------------------------------
+// [[Rcpp::export]]
+size_t cpp_Dictionary_entry_size(XPtr<Dictionary> obj) {
+  return obj->entrySize();
 }
 
-std::string Dictionary::getEntry(int idx) const {
-  auto iter = idx2entry_.find(idx);
-  if (iter == idx2entry_.end()) {
-    throw std::invalid_argument(
-        "Unknown index in dictionary '" + std::to_string(idx) + "'");
+// [[Rcpp::export]]
+size_t cpp_Dictionary_index_size(XPtr<Dictionary> obj) {
+  return obj->indexSize();
+}
+
+// [[Rcpp::export]]
+void cpp_Dictionary_add_entry_entry(XPtr<Dictionary> obj, const std::string& entry) {
+  return obj->addEntry(entry);
+}
+
+// [[Rcpp::export]]
+void cpp_Dictionary_add_entry_entry_idx(XPtr<Dictionary> obj, const std::string& entry, int idx) {
+  return obj->addEntry(entry, idx);
+}
+
+// [[Rcpp::export]]
+std::string cpp_Dictionary_get_entry(XPtr<Dictionary> obj, int idx) {
+  return obj->getEntry(idx);
+}
+
+// [[Rcpp::export]]
+int cpp_Dictionary_get_index(XPtr<Dictionary> obj, const std::string& entry) {
+  return obj->getIndex(entry);
+}
+
+// [[Rcpp::export]]
+bool cpp_Dictionary_contains(XPtr<Dictionary> obj, const std::string& entry) {
+  return obj->contains(entry);
+}
+
+// functions ------------------------------
+// [[Rcpp::export]]
+std::vector<int> cpp_Dictionary_pack_replabels(
+  const std::vector<int>& tokens,
+  XPtr<Dictionary> obj,
+  int maxReps
+) {
+  Dictionary dict = *obj;
+  return packReplabels(tokens, dict, maxReps);
+}
+
+// [[Rcpp::export]]
+std::vector<int> cpp_Dictionary_unpack_replabels(
+    const std::vector<int>& tokens,
+    XPtr<Dictionary> obj,
+    int maxReps
+) {
+  Dictionary dict = *obj;
+  return unpackReplabels(tokens, dict, maxReps);
+}
+
+// [[Rcpp::export]]
+void cpp_Dictionary_set_default_index(XPtr<Dictionary> obj, int idx) {
+  obj->setDefaultIndex(idx);
+}
+
+// checks if all the indices are contiguous
+// [[Rcpp::export]]
+bool cpp_Dictionary_is_contiguous(XPtr<Dictionary> obj) {
+  return obj->isContiguous();
+}
+
+// [[Rcpp::export]]
+std::vector<int> cpp_Dictionary_map_entries_to_indices(
+  XPtr<Dictionary> obj, 
+  const std::vector<std::string>& entries
+) {
+  return obj->mapEntriesToIndices(entries);
+}
+
+// [[Rcpp::export]]
+std::vector<std::string> cpp_Dictionary_map_indices_to_entries(
+  XPtr<Dictionary> obj,
+  const std::vector<int>& indices
+) {
+  return obj->mapIndicesToEntries(indices);
+}
+
+// // [[Rcpp::export]]
+// LexiconMap cpp_Dictionary_load_words(const std::string& filename, int maxWords) {
+//   return loadWords(filename, maxWords);
+// }
+
+template <typename T>
+List unordered_map_to_list(std::unordered_map<T, T> umap) {
+  List output;
+  for (auto& item: umap) {
+    output[item.first] = item.second;
   }
-  return iter->second;
+  return output;
 }
 
-void Dictionary::setDefaultIndex(int idx) {
-  defaultIndex_ = idx;
-}
-
-int Dictionary::getIndex(const std::string& entry) const {
-  auto iter = entry2idx_.find(entry);
-  if (iter == entry2idx_.end()) {
-    if (defaultIndex_ < 0) {
-      throw std::invalid_argument(
-          "Unknown entry in dictionary: '" + entry + "'");
-    } else {
-      return defaultIndex_;
-    }
+// [[Rcpp::export]]
+List cpp_load_words(const std::string& filename, int maxWords) {
+  LexiconMap words = loadWords(filename, maxWords);
+  List output;
+  for (auto& word: words) {
+    output[word.first] = word.second;
   }
-  return iter->second;
+  return output;
 }
 
-bool Dictionary::contains(const std::string& entry) const {
-  auto iter = entry2idx_.find(entry);
-  if (iter == entry2idx_.end()) {
-    return false;
+// [[Rcpp::export]]
+XPtr<Dictionary> cpp_create_word_dict(List lexicon) {
+  std::vector<std::string> lexicon_keys = lexicon.names();
+  LexiconMap lexicon_map;
+  for (int i = 0; i < lexicon.size(); i++) {
+    lexicon_map.insert({lexicon_keys[i], lexicon[i]});
+    std::cout << lexicon_keys[i] << ": " << i <<  std::endl;
   }
-  return true;
-}
-
-size_t Dictionary::entrySize() const {
-  return entry2idx_.size();
-}
-
-bool Dictionary::isContiguous() const {
-  for (size_t i = 0; i < indexSize(); ++i) {
-    if (idx2entry_.find(i) == idx2entry_.end()) {
-      return false;
-    }
+  Dictionary dict = createWordDict(lexicon_map);
+  
+  for (int i = 0; i < lexicon.size(); i++) {
+    std::string entry = dict.getEntry(i);
+    int index = dict.getIndex(entry);
+    std::cout << entry << ":" << index << " | ";
   }
-  for (const auto& tknidx : entry2idx_) {
-    if (idx2entry_.find(tknidx.second) == idx2entry_.end()) {
-      return false;
-    }
-  }
-  return true;
+  //std::cout << dict.g << ":" << index << " | ";  
+  Dictionary* out = new Dictionary();
+  out = &dict;
+  XPtr<Dictionary> ptr(out, true);
+  return ptr;
 }
 
-std::vector<int> Dictionary::mapEntriesToIndices(
-    const std::vector<std::string>& entries) const {
-  std::vector<int> indices;
-  indices.reserve(entries.size());
-  for (const auto& tkn : entries) {
-    indices.emplace_back(getIndex(tkn));
-  }
-  return indices;
-}
+// RCPP_EXPOSED_AS(Dictionary);
 
-std::vector<std::string> Dictionary::mapIndicesToEntries(
-    const std::vector<int>& indices) const {
-  std::vector<std::string> entries;
-  entries.reserve(indices.size());
-  for (const auto& idx : indices) {
-    entries.emplace_back(getEntry(idx));
-  }
-  return entries;
-}
+// RCPP_MODULE(flashlight_lib_text_dictionary) {
+  // Rcpp::class_<Dictionary>("Dictionary")
+  // .constructor<std::istream>()
+  
+  // function("create_word_dict", &createWordDict, List::create(_["lexicon"]));
+  // function("load_words", &loadWords, List::create(_["filename"], _["max_words"] = -1));
+// }
 
-size_t Dictionary::indexSize() const {
-  return idx2entry_.size();
-}
-} // namespace text
-} // namespace lib
-} // namespace fl
+// PYBIND11_MODULE(flashlight_lib_text_dictionary, m) {
+//   py::class_<Dictionary>(m, "Dictionary")
+//       .def(py::init<>())
+//       .def(py::init<const std::string&>(), "filename"_a)
+//       .def(py::init<const std::vector<std::string>&>(), "tkns"_a)
+//       .def("entry_size", &Dictionary::entrySize)
+//       .def("index_size", &Dictionary::indexSize)
+//       .def("add_entry", &Dictionary_addEntry_0, "entry"_a, "idx"_a)
+//       .def("add_entry", &Dictionary_addEntry_1, "entry"_a)
+//       .def("get_entry", &Dictionary::getEntry, "idx"_a)
+//       .def("set_default_index", &Dictionary::setDefaultIndex, "idx"_a)
+//       .def("get_index", &Dictionary::getIndex, "entry"_a)
+//       .def("contains", &Dictionary::contains, "entry"_a)
+//       .def("is_contiguous", &Dictionary::isContiguous)
+//       .def(
+//           "map_entries_to_indices",
+//           &Dictionary::mapEntriesToIndices,
+//           "entries"_a)
+//       .def(
+//           "map_indices_to_entries",
+//           &Dictionary::mapIndicesToEntries,
+//           "indices"_a);
+//   m.def("create_word_dict", &createWordDict, "lexicon"_a);
+//   m.def("load_words", &loadWords, "filename"_a, "max_words"_a = -1);
+//   m.def("pack_replabels", &packReplabels, "tokens"_a, "dict"_a, "max_reps"_a);
+//   m.def(
+//       "unpack_replabels", &unpackReplabels, "tokens"_a, "dict"_a, "max_reps"_a);
+// }
+
+/*** R
+# a <- new(flashlighttext::Dictionary, "a.txt")
+# a$index_size()
+*/
+

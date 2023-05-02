@@ -13,56 +13,56 @@ cpp_Dictionary_create_vector_string <- function(tkns) {
     .Call(`_flashlighttext_cpp_Dictionary_create_vector_string`, tkns)
 }
 
-cpp_Dictionary_entry_size <- function(ptr) {
-    .Call(`_flashlighttext_cpp_Dictionary_entry_size`, ptr)
+cpp_Dictionary_entry_size <- function(obj) {
+    .Call(`_flashlighttext_cpp_Dictionary_entry_size`, obj)
 }
 
-cpp_Dictionary_index_size <- function(ptr) {
-    .Call(`_flashlighttext_cpp_Dictionary_index_size`, ptr)
+cpp_Dictionary_index_size <- function(obj) {
+    .Call(`_flashlighttext_cpp_Dictionary_index_size`, obj)
 }
 
-cpp_Dictionary_add_entry_entry <- function(ptr, entry) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry`, ptr, entry))
+cpp_Dictionary_add_entry_entry <- function(obj, entry) {
+    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry`, obj, entry))
 }
 
-cpp_Dictionary_add_entry_entry_idx <- function(ptr, entry, idx) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry_idx`, ptr, entry, idx))
+cpp_Dictionary_add_entry_entry_idx <- function(obj, entry, idx) {
+    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry_idx`, obj, entry, idx))
 }
 
-cpp_Dictionary_get_entry <- function(ptr, idx) {
-    .Call(`_flashlighttext_cpp_Dictionary_get_entry`, ptr, idx)
+cpp_Dictionary_get_entry <- function(obj, idx) {
+    .Call(`_flashlighttext_cpp_Dictionary_get_entry`, obj, idx)
 }
 
-cpp_Dictionary_get_index <- function(ptr, entry) {
-    .Call(`_flashlighttext_cpp_Dictionary_get_index`, ptr, entry)
+cpp_Dictionary_get_index <- function(obj, entry) {
+    .Call(`_flashlighttext_cpp_Dictionary_get_index`, obj, entry)
 }
 
-cpp_Dictionary_contains <- function(ptr, entry) {
-    .Call(`_flashlighttext_cpp_Dictionary_contains`, ptr, entry)
+cpp_Dictionary_contains <- function(obj, entry) {
+    .Call(`_flashlighttext_cpp_Dictionary_contains`, obj, entry)
 }
 
-cpp_Dictionary_pack_replabels <- function(tokens, ptr, maxReps) {
-    .Call(`_flashlighttext_cpp_Dictionary_pack_replabels`, tokens, ptr, maxReps)
+cpp_Dictionary_pack_replabels <- function(tokens, obj, maxReps) {
+    .Call(`_flashlighttext_cpp_Dictionary_pack_replabels`, tokens, obj, maxReps)
 }
 
-cpp_Dictionary_unpack_replabels <- function(tokens, ptr, maxReps) {
-    .Call(`_flashlighttext_cpp_Dictionary_unpack_replabels`, tokens, ptr, maxReps)
+cpp_Dictionary_unpack_replabels <- function(tokens, obj, maxReps) {
+    .Call(`_flashlighttext_cpp_Dictionary_unpack_replabels`, tokens, obj, maxReps)
 }
 
-cpp_Dictionary_set_default_index <- function(ptr, idx) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_set_default_index`, ptr, idx))
+cpp_Dictionary_set_default_index <- function(obj, idx) {
+    invisible(.Call(`_flashlighttext_cpp_Dictionary_set_default_index`, obj, idx))
 }
 
-cpp_Dictionary_is_contiguous <- function(ptr) {
-    .Call(`_flashlighttext_cpp_Dictionary_is_contiguous`, ptr)
+cpp_Dictionary_is_contiguous <- function(obj) {
+    .Call(`_flashlighttext_cpp_Dictionary_is_contiguous`, obj)
 }
 
-cpp_Dictionary_map_entries_to_indices <- function(ptr, entries) {
-    .Call(`_flashlighttext_cpp_Dictionary_map_entries_to_indices`, ptr, entries)
+cpp_Dictionary_map_entries_to_indices <- function(obj, entries) {
+    .Call(`_flashlighttext_cpp_Dictionary_map_entries_to_indices`, obj, entries)
 }
 
-cpp_Dictionary_map_indices_to_entries <- function(ptr, indices) {
-    .Call(`_flashlighttext_cpp_Dictionary_map_indices_to_entries`, ptr, indices)
+cpp_Dictionary_map_indices_to_entries <- function(obj, indices) {
+    .Call(`_flashlighttext_cpp_Dictionary_map_indices_to_entries`, obj, indices)
 }
 
 cpp_load_words <- function(filename, maxWords) {

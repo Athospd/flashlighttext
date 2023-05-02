@@ -1,11 +1,18 @@
 Package: flashlighttext
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
-Version: 1.0
-Date: 2023-04-30
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one or more full sentences.
-License: GPL (>= 2)
-Imports: methods, Rcpp (>= 1.0.10)
+Title: Bindings to the Flashlight Text
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Athos", "Damiani", email = "athos.damiani@gmail.com", role = c("aut", "cre", "cph"))
+    )
+Description: Provides bindings to part of the Flashlight's Text toolkit. The Flashlight Text R package contains beam search decoder and Dictionary components.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: 
+  methods, 
+  Rcpp (>= 1.0.10)
 LinkingTo: Rcpp
+RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

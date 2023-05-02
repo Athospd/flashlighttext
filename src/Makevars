@@ -1,1 +1,3 @@
-PKG_CPPFLAGS = -I../inst/include/ -DRCPP_NO_UNWIND_PROTECT
+PKG_CPPFLAGS = -I../inst/include/ -DRCPP_NO_UNWIND_PROTECT 
+PKG_PATH = D:/R-4.2.2/library/00LOCK-flashlighttext/00new/flashlighttext
+CXX_STD=CXX11

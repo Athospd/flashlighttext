@@ -1,3 +1,6 @@
+
+PKG_PATH="$R_PACKAGE_DIR"
+
 cd src
-sed "s|@CMAKE_FLAGS@|$CMAKE_FLAGS|"  Makevars.in > Makevars
+sed -e "s|@CMAKE_FLAGS@|$CMAKE_FLAGS|" -e "s|@PKG_PATH@|$PKG_PATH|"  Makevars.in > Makevars
 

@@ -30,7 +30,9 @@ double norm2( double x, double y ) {
 
 RCPP_MODULE(flashlight_lib_text_decoder_kenlm) {
   function("norm2", &norm2);
-  // py::class_<KenLM, KenLMPtr, LM>(m, "KenLM")
+  // Rcpp::class_<KenLM>("KenLM")
+  //   .constructor<std::string, Dictionary>();
+    // .method("teste", &norm2);
   //     .def(
   //         py::init<const std::string&, const Dictionary&>(),
   //         "path"_a,

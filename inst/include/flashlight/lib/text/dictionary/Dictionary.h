@@ -18,45 +18,45 @@ namespace text {
 // A simple dictionary class which holds a bidirectional map
 // entry (strings) <--> integer indices. Not thread-safe !
 class Dictionary {
- public:
+public:
   // Creates an empty dictionary
   Dictionary() {}
-
+  
   explicit Dictionary(std::istream& stream);
-
+  
   explicit Dictionary(const std::string& filename);
-
+  
   explicit Dictionary(const std::vector<std::string>& tkns);
-
+  
   size_t entrySize() const;
-
+  
   size_t indexSize() const;
-
+  
   void addEntry(const std::string& entry, int idx);
-
+  
   void addEntry(const std::string& entry);
-
+  
   std::string getEntry(int idx) const;
-
+  
   void setDefaultIndex(int idx);
-
+  
   int getIndex(const std::string& entry) const;
-
+  
   bool contains(const std::string& entry) const;
-
+  
   // checks if all the indices are contiguous
   bool isContiguous() const;
-
+  
   std::vector<int> mapEntriesToIndices(
       const std::vector<std::string>& entries) const;
-
+  
   std::vector<std::string> mapIndicesToEntries(
       const std::vector<int>& indices) const;
-
- private:
+  
+private:
   // Creates a dictionary from an input stream
   void createFromStream(std::istream& stream);
-
+  
   std::unordered_map<std::string, int> entry2idx_;
   std::unordered_map<int, std::string> idx2entry_;
   int defaultIndex_ = -1;

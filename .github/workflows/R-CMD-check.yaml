@@ -44,6 +44,10 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+      
+      - uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: 1.73.0
 
       - uses: r-lib/actions/check-r-package@v2
         with:

@@ -1,6 +1,7 @@
 PKG_CPPFLAGS = -Iflashlighttext/include
 PKG_LIBS = flashlighttext/lib/libflashlight-text.a
 
+all: flashlight $(SHLIB)
 $(SHLIB): flashlight
 
 flashlight:

@@ -1,2 +1,4 @@
 flashlighttext/
 build/
+*.so
+*.o

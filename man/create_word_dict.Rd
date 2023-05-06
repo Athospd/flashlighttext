@@ -9,6 +9,9 @@ create_word_dict(lexicon)
 \arguments{
 \item{lexicon}{a named list of vectors.}
 }
+\value{
+Dictionary
+}
 \description{
 create_word_dict
 }

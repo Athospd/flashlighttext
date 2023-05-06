@@ -11,35 +11,35 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// cpp_Dictionary_create_empty
-XPtr<Dictionary> cpp_Dictionary_create_empty();
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_empty() {
+// cpp_Dictionary_constructor_empty
+XPtr<Dictionary> cpp_Dictionary_constructor_empty();
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_empty() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_empty());
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_empty());
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Dictionary_create_string
-XPtr<Dictionary> cpp_Dictionary_create_string(const std::string& filename);
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_string(SEXP filenameSEXP) {
+// cpp_Dictionary_constructor_string
+XPtr<Dictionary> cpp_Dictionary_constructor_string(const std::string& filename);
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_string(SEXP filenameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_string(filename));
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_string(filename));
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Dictionary_create_vector_string
-XPtr<Dictionary> cpp_Dictionary_create_vector_string(const std::vector<std::string>& tkns);
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_vector_string(SEXP tknsSEXP) {
+// cpp_Dictionary_constructor_vector_string
+XPtr<Dictionary> cpp_Dictionary_constructor_vector_string(const std::vector<std::string>& tkns);
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_vector_string(SEXP tknsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::vector<std::string>& >::type tkns(tknsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_vector_string(tkns));
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_vector_string(tkns));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -209,21 +209,43 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_create_word_dict
-XPtr<Dictionary> cpp_create_word_dict(List lexicon);
-RcppExport SEXP _flashlighttext_cpp_create_word_dict(SEXP lexiconSEXP) {
+XPtr<Dictionary> cpp_create_word_dict(SEXP ptr, List lexicon);
+RcppExport SEXP _flashlighttext_cpp_create_word_dict(SEXP ptrSEXP, SEXP lexiconSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
     Rcpp::traits::input_parameter< List >::type lexicon(lexiconSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_create_word_dict(lexicon));
+    rcpp_result_gen = Rcpp::wrap(cpp_create_word_dict(ptr, lexicon));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_constructor
+void cpp_KenLM_constructor(const std::string& path, SEXP ptr);
+RcppExport SEXP _flashlighttext_cpp_KenLM_constructor(SEXP pathSEXP, SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    cpp_KenLM_constructor(path, ptr);
+    return R_NilValue;
+END_RCPP
+}
+// test
+int test();
+RcppExport SEXP _flashlighttext_test() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(test());
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_flashlighttext_cpp_Dictionary_create_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_empty, 0},
-    {"_flashlighttext_cpp_Dictionary_create_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_string, 1},
-    {"_flashlighttext_cpp_Dictionary_create_vector_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_vector_string, 1},
+    {"_flashlighttext_cpp_Dictionary_constructor_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_empty, 0},
+    {"_flashlighttext_cpp_Dictionary_constructor_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_string, 1},
+    {"_flashlighttext_cpp_Dictionary_constructor_vector_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_vector_string, 1},
     {"_flashlighttext_cpp_Dictionary_entry_size", (DL_FUNC) &_flashlighttext_cpp_Dictionary_entry_size, 1},
     {"_flashlighttext_cpp_Dictionary_index_size", (DL_FUNC) &_flashlighttext_cpp_Dictionary_index_size, 1},
     {"_flashlighttext_cpp_Dictionary_add_entry_entry", (DL_FUNC) &_flashlighttext_cpp_Dictionary_add_entry_entry, 2},
@@ -238,7 +260,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_map_entries_to_indices", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_entries_to_indices, 2},
     {"_flashlighttext_cpp_Dictionary_map_indices_to_entries", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_indices_to_entries, 2},
     {"_flashlighttext_cpp_load_words", (DL_FUNC) &_flashlighttext_cpp_load_words, 2},
-    {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 1},
+    {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
+    {"_flashlighttext_cpp_KenLM_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLM_constructor, 2},
+    {"_flashlighttext_test", (DL_FUNC) &_flashlighttext_test, 0},
     {NULL, NULL, 0}
 };
 

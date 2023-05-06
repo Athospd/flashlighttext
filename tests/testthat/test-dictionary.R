@@ -35,8 +35,7 @@ test_that("Dictionary", {
 test_that("Dictionary from file", {
   expect_error(Dictionary$new("not_a_real_file"))
   dict <- Dictionary$new(
-    system.file("include/flashlight/lib/text/test/dictionary/test.dict", 
-                package = "flashlighttext")
+    system.file("test.dict", package = "flashlighttext")
   )
   expect_equal(dict$entry_size(), 10)
   expect_equal(dict$index_size(), 7)

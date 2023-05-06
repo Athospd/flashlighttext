@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 project(flashlighttext)
 
 include(FetchContent)
 include(ExternalProject)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 SET(LIBRARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/../flashlighttext/)
 SET(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "${LIBRARY_DIR}/lib")
@@ -23,4 +26,5 @@ ExternalProject_Add(flashlighttext-project
     CMAKE_ARGS ${COMMON_CMAKE_ARGS}
 )
 
+  
 add_dependencies(flashlighttext-project kenlm-project)

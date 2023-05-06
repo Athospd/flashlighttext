@@ -1,20 +1,10 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT-style license found in the
- * LICENSE file in the root directory of this source tree.
- */
 
 #include <Rcpp.h>
-// [[Rcpp::plugins(cpp11)]]
-
-#include <flashlight/lib/text/decoder/lm/KenLM.h>
 #include <string>
-
 using namespace Rcpp;
-
 #include <flashlight/lib/text/dictionary/Dictionary.h>
 #include <flashlight/lib/text/dictionary/Utils.h>
+
 using namespace fl::lib::text;
 
 namespace {
@@ -34,21 +24,21 @@ void Dictionary_addEntry_1(Dictionary& dict, const std::string& entry) {
 
 // constructors ------------------------------
 // [[Rcpp::export]]
-XPtr<Dictionary> cpp_Dictionary_create_empty() {
+XPtr<Dictionary> cpp_Dictionary_constructor_empty() {
   Dictionary *obj = new Dictionary();
   XPtr<Dictionary> ptr(obj, true);
   return ptr;
 }
 
 // [[Rcpp::export]]
-XPtr<Dictionary> cpp_Dictionary_create_string(const std::string& filename) {
+XPtr<Dictionary> cpp_Dictionary_constructor_string(const std::string& filename) {
   Dictionary *obj = new Dictionary(filename);
   XPtr<Dictionary> ptr(obj, true);
   return ptr;
 }
 
 // [[Rcpp::export]]
-XPtr<Dictionary> cpp_Dictionary_create_vector_string(const std::vector<std::string>& tkns) {
+XPtr<Dictionary> cpp_Dictionary_constructor_vector_string(const std::vector<std::string>& tkns) {
   Dictionary *obj = new Dictionary(tkns);
   XPtr<Dictionary> ptr(obj, true);
   return ptr;
@@ -93,9 +83,9 @@ bool cpp_Dictionary_contains(XPtr<Dictionary> obj, const std::string& entry) {
 // functions ------------------------------
 // [[Rcpp::export]]
 std::vector<int> cpp_Dictionary_pack_replabels(
-  const std::vector<int>& tokens,
-  XPtr<Dictionary> obj,
-  int maxReps
+    const std::vector<int>& tokens,
+    XPtr<Dictionary> obj,
+    int maxReps
 ) {
   Dictionary dict = *obj;
   return packReplabels(tokens, dict, maxReps);
@@ -124,32 +114,18 @@ bool cpp_Dictionary_is_contiguous(XPtr<Dictionary> obj) {
 
 // [[Rcpp::export]]
 std::vector<int> cpp_Dictionary_map_entries_to_indices(
-  XPtr<Dictionary> obj, 
-  const std::vector<std::string>& entries
+    XPtr<Dictionary> obj, 
+    const std::vector<std::string>& entries
 ) {
   return obj->mapEntriesToIndices(entries);
 }
 
 // [[Rcpp::export]]
 std::vector<std::string> cpp_Dictionary_map_indices_to_entries(
-  XPtr<Dictionary> obj,
-  const std::vector<int>& indices
+    XPtr<Dictionary> obj,
+    const std::vector<int>& indices
 ) {
   return obj->mapIndicesToEntries(indices);
-}
-
-// // [[Rcpp::export]]
-// LexiconMap cpp_Dictionary_load_words(const std::string& filename, int maxWords) {
-//   return loadWords(filename, maxWords);
-// }
-
-template <typename T>
-List unordered_map_to_list(std::unordered_map<T, T> umap) {
-  List output;
-  for (auto& item: umap) {
-    output[item.first] = item.second;
-  }
-  return output;
 }
 
 // [[Rcpp::export]]
@@ -163,68 +139,14 @@ List cpp_load_words(const std::string& filename, int maxWords) {
 }
 
 // [[Rcpp::export]]
-XPtr<Dictionary> cpp_create_word_dict(List lexicon) {
+XPtr<Dictionary> cpp_create_word_dict(SEXP ptr, List lexicon) {
   std::vector<std::string> lexicon_keys = lexicon.names();
   LexiconMap lexicon_map;
   for (int i = 0; i < lexicon.size(); i++) {
     lexicon_map.insert({lexicon_keys[i], lexicon[i]});
-    std::cout << lexicon_keys[i] << ": " << i <<  std::endl;
   }
-  Dictionary dict = createWordDict(lexicon_map);
-  
-  for (int i = 0; i < lexicon.size(); i++) {
-    std::string entry = dict.getEntry(i);
-    int index = dict.getIndex(entry);
-    std::cout << entry << ":" << index << " | ";
-  }
-  //std::cout << dict.g << ":" << index << " | ";  
-  Dictionary* out = new Dictionary();
-  out = &dict;
-  XPtr<Dictionary> ptr(out, true);
-  return ptr;
+  Rcpp::XPtr<Dictionary> obj(ptr);
+  *obj = createWordDict(lexicon_map);
+  Rcpp::XPtr<Dictionary> ptr2(obj);
+  return ptr2;
 }
-
-// RCPP_EXPOSED_AS(Dictionary);
-
-// RCPP_MODULE(flashlight_lib_text_dictionary) {
-  // Rcpp::class_<Dictionary>("Dictionary")
-  // .constructor<std::istream>()
-  
-  // function("create_word_dict", &createWordDict, List::create(_["lexicon"]));
-  // function("load_words", &loadWords, List::create(_["filename"], _["max_words"] = -1));
-// }
-
-// PYBIND11_MODULE(flashlight_lib_text_dictionary, m) {
-//   py::class_<Dictionary>(m, "Dictionary")
-//       .def(py::init<>())
-//       .def(py::init<const std::string&>(), "filename"_a)
-//       .def(py::init<const std::vector<std::string>&>(), "tkns"_a)
-//       .def("entry_size", &Dictionary::entrySize)
-//       .def("index_size", &Dictionary::indexSize)
-//       .def("add_entry", &Dictionary_addEntry_0, "entry"_a, "idx"_a)
-//       .def("add_entry", &Dictionary_addEntry_1, "entry"_a)
-//       .def("get_entry", &Dictionary::getEntry, "idx"_a)
-//       .def("set_default_index", &Dictionary::setDefaultIndex, "idx"_a)
-//       .def("get_index", &Dictionary::getIndex, "entry"_a)
-//       .def("contains", &Dictionary::contains, "entry"_a)
-//       .def("is_contiguous", &Dictionary::isContiguous)
-//       .def(
-//           "map_entries_to_indices",
-//           &Dictionary::mapEntriesToIndices,
-//           "entries"_a)
-//       .def(
-//           "map_indices_to_entries",
-//           &Dictionary::mapIndicesToEntries,
-//           "indices"_a);
-//   m.def("create_word_dict", &createWordDict, "lexicon"_a);
-//   m.def("load_words", &loadWords, "filename"_a, "max_words"_a = -1);
-//   m.def("pack_replabels", &packReplabels, "tokens"_a, "dict"_a, "max_reps"_a);
-//   m.def(
-//       "unpack_replabels", &unpackReplabels, "tokens"_a, "dict"_a, "max_reps"_a);
-// }
-
-/*** R
-# a <- new(flashlighttext::Dictionary, "a.txt")
-# a$index_size()
-*/
-

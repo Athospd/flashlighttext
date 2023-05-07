@@ -243,7 +243,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_KenLM_start
-LMStatePtr cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing);
+XPtr<LMStatePtr> cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing);
 RcppExport SEXP _flashlighttext_cpp_KenLM_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

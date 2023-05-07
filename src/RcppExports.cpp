@@ -221,23 +221,49 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_KenLM_constructor
-void cpp_KenLM_constructor(const std::string& path, SEXP ptr);
+XPtr<KenLM> cpp_KenLM_constructor(const std::string& path, SEXP ptr);
 RcppExport SEXP _flashlighttext_cpp_KenLM_constructor(SEXP pathSEXP, SEXP ptrSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    cpp_KenLM_constructor(path, ptr);
-    return R_NilValue;
-END_RCPP
-}
-// test
-int test();
-RcppExport SEXP _flashlighttext_test() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(test());
+    Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_constructor(path, ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// explore_kenlm
+void explore_kenlm(XPtr<KenLM> obj);
+RcppExport SEXP _flashlighttext_explore_kenlm(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    explore_kenlm(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_KenLM_start
+LMStatePtr cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing);
+RcppExport SEXP _flashlighttext_cpp_KenLM_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< bool >::type startWithNothing(startWithNothingSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_start(obj, startWithNothing));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_score
+List cpp_KenLM_score(XPtr<KenLM> obj, XPtr<LMStatePtr> state, const int usrTokenIdx);
+RcppExport SEXP _flashlighttext_cpp_KenLM_score(SEXP objSEXP, SEXP stateSEXP, SEXP usrTokenIdxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< const int >::type usrTokenIdx(usrTokenIdxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_score(obj, state, usrTokenIdx));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -262,7 +288,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_load_words", (DL_FUNC) &_flashlighttext_cpp_load_words, 2},
     {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
     {"_flashlighttext_cpp_KenLM_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLM_constructor, 2},
-    {"_flashlighttext_test", (DL_FUNC) &_flashlighttext_test, 0},
+    {"_flashlighttext_explore_kenlm", (DL_FUNC) &_flashlighttext_explore_kenlm, 1},
+    {"_flashlighttext_cpp_KenLM_start", (DL_FUNC) &_flashlighttext_cpp_KenLM_start, 2},
+    {"_flashlighttext_cpp_KenLM_score", (DL_FUNC) &_flashlighttext_cpp_KenLM_score, 3},
     {NULL, NULL, 0}
 };
 

@@ -4,7 +4,7 @@
 \alias{load_words}
 \title{load_words}
 \usage{
-load_words(filename, maxWords)
+load_words(filename, maxWords = -1)
 }
 \arguments{
 \item{filename}{a string}

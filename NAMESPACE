@@ -3,6 +3,7 @@
 export("%<-%")
 export("%>%")
 export(Dictionary)
+export(KenLM)
 export(create_word_dict)
 export(load_words)
 export(pack_replabels)

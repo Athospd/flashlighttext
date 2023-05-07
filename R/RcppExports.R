@@ -2,82 +2,90 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 cpp_Dictionary_constructor_empty <- function() {
-    .Call(`_flashlighttext_cpp_Dictionary_constructor_empty`)
+    .Call('_flashlighttext_cpp_Dictionary_constructor_empty', PACKAGE = 'flashlighttext')
 }
 
 cpp_Dictionary_constructor_string <- function(filename) {
-    .Call(`_flashlighttext_cpp_Dictionary_constructor_string`, filename)
+    .Call('_flashlighttext_cpp_Dictionary_constructor_string', PACKAGE = 'flashlighttext', filename)
 }
 
 cpp_Dictionary_constructor_vector_string <- function(tkns) {
-    .Call(`_flashlighttext_cpp_Dictionary_constructor_vector_string`, tkns)
+    .Call('_flashlighttext_cpp_Dictionary_constructor_vector_string', PACKAGE = 'flashlighttext', tkns)
 }
 
 cpp_Dictionary_entry_size <- function(obj) {
-    .Call(`_flashlighttext_cpp_Dictionary_entry_size`, obj)
+    .Call('_flashlighttext_cpp_Dictionary_entry_size', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Dictionary_index_size <- function(obj) {
-    .Call(`_flashlighttext_cpp_Dictionary_index_size`, obj)
+    .Call('_flashlighttext_cpp_Dictionary_index_size', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Dictionary_add_entry_entry <- function(obj, entry) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry`, obj, entry))
+    invisible(.Call('_flashlighttext_cpp_Dictionary_add_entry_entry', PACKAGE = 'flashlighttext', obj, entry))
 }
 
 cpp_Dictionary_add_entry_entry_idx <- function(obj, entry, idx) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_add_entry_entry_idx`, obj, entry, idx))
+    invisible(.Call('_flashlighttext_cpp_Dictionary_add_entry_entry_idx', PACKAGE = 'flashlighttext', obj, entry, idx))
 }
 
 cpp_Dictionary_get_entry <- function(obj, idx) {
-    .Call(`_flashlighttext_cpp_Dictionary_get_entry`, obj, idx)
+    .Call('_flashlighttext_cpp_Dictionary_get_entry', PACKAGE = 'flashlighttext', obj, idx)
 }
 
 cpp_Dictionary_get_index <- function(obj, entry) {
-    .Call(`_flashlighttext_cpp_Dictionary_get_index`, obj, entry)
+    .Call('_flashlighttext_cpp_Dictionary_get_index', PACKAGE = 'flashlighttext', obj, entry)
 }
 
 cpp_Dictionary_contains <- function(obj, entry) {
-    .Call(`_flashlighttext_cpp_Dictionary_contains`, obj, entry)
+    .Call('_flashlighttext_cpp_Dictionary_contains', PACKAGE = 'flashlighttext', obj, entry)
 }
 
 cpp_Dictionary_pack_replabels <- function(tokens, obj, maxReps) {
-    .Call(`_flashlighttext_cpp_Dictionary_pack_replabels`, tokens, obj, maxReps)
+    .Call('_flashlighttext_cpp_Dictionary_pack_replabels', PACKAGE = 'flashlighttext', tokens, obj, maxReps)
 }
 
 cpp_Dictionary_unpack_replabels <- function(tokens, obj, maxReps) {
-    .Call(`_flashlighttext_cpp_Dictionary_unpack_replabels`, tokens, obj, maxReps)
+    .Call('_flashlighttext_cpp_Dictionary_unpack_replabels', PACKAGE = 'flashlighttext', tokens, obj, maxReps)
 }
 
 cpp_Dictionary_set_default_index <- function(obj, idx) {
-    invisible(.Call(`_flashlighttext_cpp_Dictionary_set_default_index`, obj, idx))
+    invisible(.Call('_flashlighttext_cpp_Dictionary_set_default_index', PACKAGE = 'flashlighttext', obj, idx))
 }
 
 cpp_Dictionary_is_contiguous <- function(obj) {
-    .Call(`_flashlighttext_cpp_Dictionary_is_contiguous`, obj)
+    .Call('_flashlighttext_cpp_Dictionary_is_contiguous', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Dictionary_map_entries_to_indices <- function(obj, entries) {
-    .Call(`_flashlighttext_cpp_Dictionary_map_entries_to_indices`, obj, entries)
+    .Call('_flashlighttext_cpp_Dictionary_map_entries_to_indices', PACKAGE = 'flashlighttext', obj, entries)
 }
 
 cpp_Dictionary_map_indices_to_entries <- function(obj, indices) {
-    .Call(`_flashlighttext_cpp_Dictionary_map_indices_to_entries`, obj, indices)
+    .Call('_flashlighttext_cpp_Dictionary_map_indices_to_entries', PACKAGE = 'flashlighttext', obj, indices)
 }
 
 cpp_load_words <- function(filename, maxWords) {
-    .Call(`_flashlighttext_cpp_load_words`, filename, maxWords)
+    .Call('_flashlighttext_cpp_load_words', PACKAGE = 'flashlighttext', filename, maxWords)
 }
 
 cpp_create_word_dict <- function(ptr, lexicon) {
-    .Call(`_flashlighttext_cpp_create_word_dict`, ptr, lexicon)
+    .Call('_flashlighttext_cpp_create_word_dict', PACKAGE = 'flashlighttext', ptr, lexicon)
 }
 
 cpp_KenLM_constructor <- function(path, ptr) {
-    invisible(.Call(`_flashlighttext_cpp_KenLM_constructor`, path, ptr))
+    .Call('_flashlighttext_cpp_KenLM_constructor', PACKAGE = 'flashlighttext', path, ptr)
 }
 
-test <- function() {
-    .Call(`_flashlighttext_test`)
+explore_kenlm <- function(obj) {
+    invisible(.Call('_flashlighttext_explore_kenlm', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_KenLM_start <- function(obj, startWithNothing) {
+    .Call('_flashlighttext_cpp_KenLM_start', PACKAGE = 'flashlighttext', obj, startWithNothing)
+}
+
+cpp_KenLM_score <- function(obj, state, usrTokenIdx) {
+    .Call('_flashlighttext_cpp_KenLM_score', PACKAGE = 'flashlighttext', obj, state, usrTokenIdx)
 }
 

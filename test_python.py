@@ -119,3 +119,29 @@ for i in range(len(sentence)):
 # move lm to the final state, the score returned is for eos
 lm_state, lm_score = lm.finish(lm_state)
 total_score += lm_score
+
+separator_idx = token_dict.get_index("|")
+# get unknown word index
+unk_idx = word_dict.get_index("<unk>")
+# create the trie, specifying how many tokens we have and silence index
+trie = Trie(token_dict.index_size(), separator_idx)
+start_state = lm.start(False)
+for word, spellings in lexicon.items():
+    usr_idx = word_dict.get_index(word)
+    _, score = lm.score(start_state, usr_idx)
+    # print(word + " - " + str(usr_idx) + " - " + str(score))
+    for spelling in spellings:
+        # max_reps should be 1; using 0 here to match DecoderTest bug
+        spelling_idxs = tkn_to_idx(spelling, token_dict, 1)
+        print("   >> " + "".join([str(x) for x in spelling]) + " - " + "".join([str(x) for x in spelling_idxs]))
+        # trie.insert(spelling_idxs, usr_idx, score)
+
+trie.smear(SmearingMode.MAX)
+# check that trie is built in consistency with c++
+trie_score_target = [-1.05971, -2.87742, -2.64553, -3.05081, -1.05971, -3.08968]
+for i in range(len(sentence)):
+  word = sentence[i]
+  # max_reps should be 1; using 0 here to match DecoderTest bug
+  word_tensor = tkn_to_idx([c for c in word], token_dict, 1)
+  node = trie.search(word_tensor)
+  print(node.max_score - trie_score_target[i])

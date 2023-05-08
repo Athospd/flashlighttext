@@ -4,7 +4,8 @@
 using namespace Rcpp;
 #include <flashlight/lib/text/decoder/Trie.h>
 using namespace fl::lib::text;
-  
+
+// Trie ////////////////////////////////////////////////////////////////////
 // constructors ------------------------------
 // [[Rcpp::export]]
 XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx) {
@@ -51,3 +52,25 @@ void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode) {
   SmearingMode smear_mode_ = convert(smear_mode);
   obj->smear(smear_mode_);
 }
+
+
+
+
+// TrieNode ////////////////////////////////////////////////////////////////
+// constructors ------------------------------
+// [[Rcpp::export]]
+XPtr<TrieNode> cpp_TrieNode_constructor(int idx) {
+  TrieNode *obj = new TrieNode(idx);
+  XPtr<TrieNode> ptr(obj, true);
+  return ptr;
+}
+
+// methods ------------------------------
+// [[Rcpp::export]]
+float cpp_TrieNode_maxScore(XPtr<TrieNodePtr> obj) {
+  auto trie_node = new TrieNode(0L);
+  trie_node = obj->get();
+  float max_score = trie_node->maxScore;
+  return max_score;
+}
+

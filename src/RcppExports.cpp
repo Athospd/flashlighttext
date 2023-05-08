@@ -196,15 +196,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_load_words
-List cpp_load_words(const std::string& filename, int maxWords);
-RcppExport SEXP _flashlighttext_cpp_load_words(SEXP filenameSEXP, SEXP maxWordsSEXP) {
+// cpp_load_words2
+List cpp_load_words2(const std::string& filename, int maxWords);
+RcppExport SEXP _flashlighttext_cpp_load_words2(SEXP filenameSEXP, SEXP maxWordsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
     Rcpp::traits::input_parameter< int >::type maxWords(maxWordsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_load_words(filename, maxWords));
+    rcpp_result_gen = Rcpp::wrap(cpp_load_words2(filename, maxWords));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -339,6 +339,28 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// cpp_TrieNode_constructor
+XPtr<TrieNode> cpp_TrieNode_constructor(int idx);
+RcppExport SEXP _flashlighttext_cpp_TrieNode_constructor(SEXP idxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type idx(idxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_TrieNode_constructor(idx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_TrieNode_maxScore
+float cpp_TrieNode_maxScore(XPtr<TrieNodePtr> obj);
+RcppExport SEXP _flashlighttext_cpp_TrieNode_maxScore(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<TrieNodePtr> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_TrieNode_maxScore(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_constructor_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_empty, 0},
@@ -357,7 +379,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_is_contiguous", (DL_FUNC) &_flashlighttext_cpp_Dictionary_is_contiguous, 1},
     {"_flashlighttext_cpp_Dictionary_map_entries_to_indices", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_entries_to_indices, 2},
     {"_flashlighttext_cpp_Dictionary_map_indices_to_entries", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_indices_to_entries, 2},
-    {"_flashlighttext_cpp_load_words", (DL_FUNC) &_flashlighttext_cpp_load_words, 2},
+    {"_flashlighttext_cpp_load_words2", (DL_FUNC) &_flashlighttext_cpp_load_words2, 2},
     {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
     {"_flashlighttext_cpp_KenLM_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLM_constructor, 2},
     {"_flashlighttext_explore_kenlm", (DL_FUNC) &_flashlighttext_explore_kenlm, 1},
@@ -369,6 +391,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Trie_insert", (DL_FUNC) &_flashlighttext_cpp_Trie_insert, 4},
     {"_flashlighttext_cpp_Trie_search", (DL_FUNC) &_flashlighttext_cpp_Trie_search, 2},
     {"_flashlighttext_cpp_Trie_smear", (DL_FUNC) &_flashlighttext_cpp_Trie_smear, 2},
+    {"_flashlighttext_cpp_TrieNode_constructor", (DL_FUNC) &_flashlighttext_cpp_TrieNode_constructor, 1},
+    {"_flashlighttext_cpp_TrieNode_maxScore", (DL_FUNC) &_flashlighttext_cpp_TrieNode_maxScore, 1},
     {NULL, NULL, 0}
 };
 

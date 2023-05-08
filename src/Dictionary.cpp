@@ -1,3 +1,8 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 #include <Rcpp.h>
 #include <string>
@@ -128,13 +133,29 @@ std::vector<std::string> cpp_Dictionary_map_indices_to_entries(
   return obj->mapIndicesToEntries(indices);
 }
 
+typedef std::string Key;
+typedef std::vector<std::vector<std::string>> Value;
+
 // [[Rcpp::export]]
-List cpp_load_words(const std::string& filename, int maxWords) {
+List cpp_load_words2(const std::string& filename, int maxWords) {
   LexiconMap words = loadWords(filename, maxWords);
-  List output(words.size());
-  for (auto& word: words) {
-    output[word.first] = word.second;
-  }
+  
+  auto key_selector = [](auto pair){return pair.first;};
+  auto value_selector = [](auto pair){return pair.second;};
+  
+  // Vectors to hold keys and values
+  std::vector<Key> keys(words.size());
+  std::vector<Value> values(words.size());
+  
+  // This is the crucial bit: Transform words to list of keys (or values)
+  std::transform(words.begin(), words.end(), keys.begin(), key_selector);
+  std::transform(words.begin(), words.end(), values.begin(), value_selector);
+  
+  // further reshaping towards a named list is done on the R side.
+  List output = Rcpp::List::create(
+    Rcpp::Named("Keys") = keys,
+    Rcpp::Named("Values") = values
+  );
   return output;
 }
 

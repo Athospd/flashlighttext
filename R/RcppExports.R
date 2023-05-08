@@ -65,8 +65,8 @@ cpp_Dictionary_map_indices_to_entries <- function(obj, indices) {
     .Call('_flashlighttext_cpp_Dictionary_map_indices_to_entries', PACKAGE = 'flashlighttext', obj, indices)
 }
 
-cpp_load_words <- function(filename, maxWords) {
-    .Call('_flashlighttext_cpp_load_words', PACKAGE = 'flashlighttext', filename, maxWords)
+cpp_load_words2 <- function(filename, maxWords) {
+    .Call('_flashlighttext_cpp_load_words2', PACKAGE = 'flashlighttext', filename, maxWords)
 }
 
 cpp_create_word_dict <- function(ptr, lexicon) {
@@ -111,5 +111,13 @@ cpp_Trie_search <- function(obj, indices) {
 
 cpp_Trie_smear <- function(obj, smear_mode) {
     invisible(.Call('_flashlighttext_cpp_Trie_smear', PACKAGE = 'flashlighttext', obj, smear_mode))
+}
+
+cpp_TrieNode_constructor <- function(idx) {
+    .Call('_flashlighttext_cpp_TrieNode_constructor', PACKAGE = 'flashlighttext', idx)
+}
+
+cpp_TrieNode_maxScore <- function(obj) {
+    .Call('_flashlighttext_cpp_TrieNode_maxScore', PACKAGE = 'flashlighttext', obj)
 }
 

@@ -157,7 +157,10 @@ unpack_replabels <- function(tokens, dict, max_reps) {
 #' @return LexiconMap
 #' @export
 load_words <- function(filename, maxWords = -1) {
-  cpp_load_words(filename, maxWords)
+  key_values <- cpp_load_words2(filename, maxWords)
+  output <- key_values$Values
+  attr(output, "names") <- key_values$Keys
+  return(output)
 }
 
 #' create_word_dict

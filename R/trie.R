@@ -24,13 +24,17 @@ Trie <- R6::R6Class(
     #' @param score a score
     #' @return a TrieNodePtr
     insert = function(indices, label, score) {
-      cpp_Trie_insert(self$ptr, indices, label, score)
+      trie_node <- TrieNode$new(0)
+      trie_node$ptr <- cpp_Trie_insert(self$ptr, indices, label, score)
+      return(trie_node)
     },
     
     #' @param indices a indices
     #' @return a TrieNodePtr
     search = function(indices) {
-      cpp_Trie_search(self$ptr, indices)
+      trie_node <- TrieNode$new(0)
+      trie_node$ptr <- cpp_Trie_search(self$ptr, indices)
+      return(trie_node)
     },
     
     
@@ -44,7 +48,7 @@ Trie <- R6::R6Class(
   active = list(
     
     #' @field 
-    #' ptr has a single parameter new_ptr that accepts a new pointer to a KenLM.
+    #' ptr has a single parameter new_ptr that accepts a new pointer to a Trie.
     #' It returns invisible(NULL)
     ptr = function(new_ptr) {
       if(!missing(new_ptr)) {
@@ -69,8 +73,49 @@ Trie <- R6::R6Class(
 #' @format ## `SmearingModes`
 #' A list with 3 items:
 #' \describe{
-#'   \item{NONE}{Default = 0}
-#'   \item{MAX}{Default = 1}
-#'   \item{LOGADD}{Default = 2}
+#'   \item{NONE}{string "NONE"}
+#'   \item{MAX}{string "MAX"}
+#'   \item{LOGADD}{string "LOGADD"}
 #' }
 "SmearingModes"
+
+
+#' TrieNode
+#' 
+#' @export
+#' @rdname TrieNode
+TrieNode <- R6::R6Class(
+  "TrieNode",
+  public = list(
+    #' @param idx a idx
+    #' @return TrieNode
+    initialize = function(idx = NULL) {
+      private$idx_ <- idx
+      private$ptr_ <- cpp_TrieNode_constructor(idx)
+    },
+    
+    #' @return the node max score
+    max_score = function() {
+      cpp_TrieNode_maxScore(self$ptr)
+    }
+  ),
+  
+  active = list(
+    
+    #' @field 
+    #' ptr has a single parameter new_ptr that accepts a new pointer to a TrieNode.
+    #' It returns invisible(NULL)
+    ptr = function(new_ptr) {
+      if(!missing(new_ptr)) {
+        private$ptr_ <- new_ptr
+      }
+      
+      private$ptr_
+    }
+  ),
+  
+  private = list(
+    ptr_ = NULL,
+    idx_ = NULL
+  )
+)

@@ -5,3 +5,4 @@
 ^flashlighttext\.Rcheck$
 ^flashlighttext.*\.tar\.gz$
 ^flashlighttext.*\.tgz$
+^data-raw$

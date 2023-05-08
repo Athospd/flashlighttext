@@ -89,3 +89,27 @@ cpp_KenLM_score <- function(obj, state, usrTokenIdx) {
     .Call('_flashlighttext_cpp_KenLM_score', PACKAGE = 'flashlighttext', obj, state, usrTokenIdx)
 }
 
+cpp_KenLM_finish <- function(obj, state) {
+    .Call('_flashlighttext_cpp_KenLM_finish', PACKAGE = 'flashlighttext', obj, state)
+}
+
+cpp_Trie_constructor <- function(maxChildren, rootIdx) {
+    .Call('_flashlighttext_cpp_Trie_constructor', PACKAGE = 'flashlighttext', maxChildren, rootIdx)
+}
+
+cpp_Trie_getRoot <- function(obj) {
+    .Call('_flashlighttext_cpp_Trie_getRoot', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_Trie_insert <- function(obj, indices, label, score) {
+    .Call('_flashlighttext_cpp_Trie_insert', PACKAGE = 'flashlighttext', obj, indices, label, score)
+}
+
+cpp_Trie_search <- function(obj, indices) {
+    .Call('_flashlighttext_cpp_Trie_search', PACKAGE = 'flashlighttext', obj, indices)
+}
+
+cpp_Trie_smear <- function(obj, smear_mode) {
+    invisible(.Call('_flashlighttext_cpp_Trie_smear', PACKAGE = 'flashlighttext', obj, smear_mode))
+}
+

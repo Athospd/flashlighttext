@@ -131,7 +131,7 @@ std::vector<std::string> cpp_Dictionary_map_indices_to_entries(
 // [[Rcpp::export]]
 List cpp_load_words(const std::string& filename, int maxWords) {
   LexiconMap words = loadWords(filename, maxWords);
-  List output;
+  List output(words.size());
   for (auto& word: words) {
     output[word.first] = word.second;
   }

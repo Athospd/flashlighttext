@@ -31,8 +31,6 @@ XPtr<LMStatePtr> cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing) {
   return out;
 }
 
-// using LMStatePtr = std::shared_ptr<LMState>;
-
 // [[Rcpp::export]]
 List cpp_KenLM_score(XPtr<KenLM> obj, XPtr<LMStatePtr> state, const int usrTokenIdx) {
   
@@ -43,6 +41,21 @@ List cpp_KenLM_score(XPtr<KenLM> obj, XPtr<LMStatePtr> state, const int usrToken
   List out = Rcpp::List::create(
     Rcpp::Named("state") = XPtr<LMStatePtr>(score_state),
     Rcpp::Named("score") = score.second
+  );
+  
+  return out;
+}
+
+// [[Rcpp::export]]
+List cpp_KenLM_finish(XPtr<KenLM> obj, XPtr<LMStatePtr> state) {
+  
+  std::pair<LMStatePtr, float> finish = obj->finish(*state.get());
+  auto finish_state = new LMStatePtr();
+  *finish_state = finish.first;
+  
+  List out = Rcpp::List::create(
+    Rcpp::Named("state") = XPtr<LMStatePtr>(finish_state),
+    Rcpp::Named("score") = finish.second
   );
   
   return out;

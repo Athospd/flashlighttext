@@ -5,6 +5,9 @@
 KenLM <- R6::R6Class(
   "KenLM",
   public = list(
+    #' @param path a path
+    #' @param usrTknDict a usrTknDict
+    #' @return KenLM
     initialize = function(path = NULL, usrTknDict = NULL) {
       private$path_ <- path
       private$usrTknDict_ <- usrTknDict
@@ -22,6 +25,12 @@ KenLM <- R6::R6Class(
     #' @return list(LMState, numeric)
     score = function(state, usrTokenIdx) {
       cpp_KenLM_score(self$ptr, state, usrTokenIdx)
+    },
+    
+    #' @param state a state
+    #' @return list(LMState, numeric)
+    finish = function(state) {
+      cpp_KenLM_finish(self$ptr, state)
     }
   ),
   
@@ -39,13 +48,13 @@ KenLM <- R6::R6Class(
     },
     
     #' @field
-    #' filename returns a string
+    #' path returns a string
     path = function() {
       private$path_
     },
     
     #' @field
-    #' tokens returns a string vector
+    #' usrTknDict returns a string vector
     usrTknDict = function() {
       private$usrTknDict_
     }

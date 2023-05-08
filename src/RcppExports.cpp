@@ -267,6 +267,78 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_KenLM_finish
+List cpp_KenLM_finish(XPtr<KenLM> obj, XPtr<LMStatePtr> state);
+RcppExport SEXP _flashlighttext_cpp_KenLM_finish(SEXP objSEXP, SEXP stateSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_finish(obj, state));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_constructor
+XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx);
+RcppExport SEXP _flashlighttext_cpp_Trie_constructor(SEXP maxChildrenSEXP, SEXP rootIdxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type maxChildren(maxChildrenSEXP);
+    Rcpp::traits::input_parameter< int >::type rootIdx(rootIdxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_constructor(maxChildren, rootIdx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_getRoot
+XPtr<TrieNode*> cpp_Trie_getRoot(XPtr<Trie> obj);
+RcppExport SEXP _flashlighttext_cpp_Trie_getRoot(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_getRoot(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_insert
+XPtr<TrieNodePtr> cpp_Trie_insert(XPtr<Trie> obj, const std::vector<int>& indices, int label, float score);
+RcppExport SEXP _flashlighttext_cpp_Trie_insert(SEXP objSEXP, SEXP indicesSEXP, SEXP labelSEXP, SEXP scoreSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
+    Rcpp::traits::input_parameter< int >::type label(labelSEXP);
+    Rcpp::traits::input_parameter< float >::type score(scoreSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_insert(obj, indices, label, score));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_search
+XPtr<TrieNodePtr> cpp_Trie_search(XPtr<Trie> obj, const std::vector<int>& indices);
+RcppExport SEXP _flashlighttext_cpp_Trie_search(SEXP objSEXP, SEXP indicesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_search(obj, indices));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_smear
+void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode);
+RcppExport SEXP _flashlighttext_cpp_Trie_smear(SEXP objSEXP, SEXP smear_modeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type smear_mode(smear_modeSEXP);
+    cpp_Trie_smear(obj, smear_mode);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_constructor_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_empty, 0},
@@ -291,6 +363,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_explore_kenlm", (DL_FUNC) &_flashlighttext_explore_kenlm, 1},
     {"_flashlighttext_cpp_KenLM_start", (DL_FUNC) &_flashlighttext_cpp_KenLM_start, 2},
     {"_flashlighttext_cpp_KenLM_score", (DL_FUNC) &_flashlighttext_cpp_KenLM_score, 3},
+    {"_flashlighttext_cpp_KenLM_finish", (DL_FUNC) &_flashlighttext_cpp_KenLM_finish, 2},
+    {"_flashlighttext_cpp_Trie_constructor", (DL_FUNC) &_flashlighttext_cpp_Trie_constructor, 2},
+    {"_flashlighttext_cpp_Trie_getRoot", (DL_FUNC) &_flashlighttext_cpp_Trie_getRoot, 1},
+    {"_flashlighttext_cpp_Trie_insert", (DL_FUNC) &_flashlighttext_cpp_Trie_insert, 4},
+    {"_flashlighttext_cpp_Trie_search", (DL_FUNC) &_flashlighttext_cpp_Trie_search, 2},
+    {"_flashlighttext_cpp_Trie_smear", (DL_FUNC) &_flashlighttext_cpp_Trie_smear, 2},
     {NULL, NULL, 0}
 };
 

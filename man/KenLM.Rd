@@ -8,24 +8,15 @@ KenLM
 
 KenLM
 }
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{filename}}{returns a string}
-
-\item{\code{tokens}}{returns a string vector}
-}
-\if{html}{\out{</div>}}
-}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a KenLM.
 It returns invisible(NULL)}
 
-\item{\code{filename}}{returns a string}
+\item{\code{path}}{returns a string}
 
-\item{\code{tokens}}{returns a string vector}
+\item{\code{usrTknDict}}{returns a string vector}
 }
 \if{html}{\out{</div>}}
 }
@@ -33,6 +24,9 @@ It returns invisible(NULL)}
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-KenLM-new}{\code{KenLM$new()}}
+\item \href{#method-KenLM-start}{\code{KenLM$start()}}
+\item \href{#method-KenLM-score}{\code{KenLM$score()}}
+\item \href{#method-KenLM-finish}{\code{KenLM$finish()}}
 \item \href{#method-KenLM-clone}{\code{KenLM$clone()}}
 }
 }
@@ -44,6 +38,77 @@ It returns invisible(NULL)}
 \if{html}{\out{<div class="r">}}\preformatted{KenLM$new(path = NULL, usrTknDict = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{path}}{a path}
+
+\item{\code{usrTknDict}}{a usrTknDict}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+KenLM
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-KenLM-start"></a>}}
+\if{latex}{\out{\hypertarget{method-KenLM-start}{}}}
+\subsection{Method \code{start()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KenLM$start(startWithNothing)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{startWithNothing}}{a boolean}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+LMState
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-KenLM-score"></a>}}
+\if{latex}{\out{\hypertarget{method-KenLM-score}{}}}
+\subsection{Method \code{score()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KenLM$score(state, usrTokenIdx)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{state}}{a state}
+
+\item{\code{usrTokenIdx}}{a usrTokenIdx}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+list(LMState, numeric)
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-KenLM-finish"></a>}}
+\if{latex}{\out{\hypertarget{method-KenLM-finish}{}}}
+\subsection{Method \code{finish()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{KenLM$finish(state)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{state}}{a state}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+list(LMState, numeric)
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-KenLM-clone"></a>}}

@@ -39,8 +39,7 @@ XPtr<TrieNodePtr> cpp_Trie_search(XPtr<Trie> obj, const std::vector<int>& indice
   return out;
 }
 
-
-SmearingMode convert(const std::string& smear_mode) {
+SmearingMode SmearingMode_convert(const std::string& smear_mode) {
   if(smear_mode == "NONE") return SmearingMode::NONE;
   else if(smear_mode == "MAX") return SmearingMode::MAX;
   else if(smear_mode == "LOGADD") return SmearingMode::LOGADD;
@@ -49,7 +48,7 @@ SmearingMode convert(const std::string& smear_mode) {
 
 // [[Rcpp::export]]
 void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode) {
-  SmearingMode smear_mode_ = convert(smear_mode);
+  SmearingMode smear_mode_ = SmearingMode_convert(smear_mode);
   obj->smear(smear_mode_);
 }
 

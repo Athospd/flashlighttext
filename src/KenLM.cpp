@@ -17,11 +17,6 @@ XPtr<KenLM> cpp_KenLM_constructor(const std::string& path, SEXP ptr) {
   return obj_ptr;
 }
 
-// [[Rcpp::export]]
-void explore_kenlm(XPtr<KenLM> obj) {
-   
-}
-
 // methods ------------------------------
 // [[Rcpp::export]]
 XPtr<LMStatePtr> cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing) {

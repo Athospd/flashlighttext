@@ -21,3 +21,11 @@ NULL
 #' @importFrom zeallot %<-%
 #' @usage c(x, y, z) \%<-\% list(a, b, c)
 NULL
+
+#' Format and interpolate a string
+#' 
+#' See \code{glue::glue} for details.
+#' 
+#' @usage f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
+#' @export
+f <- glue::glue

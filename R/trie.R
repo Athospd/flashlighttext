@@ -16,7 +16,7 @@ Trie <- R6::R6Class(
     
     #' @return the root node pointer
     get_root = function() {
-      cpp_Trie_getRoot(self$ptr)
+      invisible(cpp_Trie_getRoot(self$ptr))
     },
     
     #' @param indices a indices
@@ -26,7 +26,7 @@ Trie <- R6::R6Class(
     insert = function(indices, label, score) {
       trie_node <- TrieNode$new(0)
       trie_node$ptr <- cpp_Trie_insert(self$ptr, indices, label, score)
-      return(trie_node)
+      return(invisible(trie_node))
     },
     
     #' @param indices a indices
@@ -34,7 +34,7 @@ Trie <- R6::R6Class(
     search = function(indices) {
       trie_node <- TrieNode$new(0)
       trie_node$ptr <- cpp_Trie_search(self$ptr, indices)
-      return(trie_node)
+      return(invisible(trie_node))
     },
     
     
@@ -42,21 +42,22 @@ Trie <- R6::R6Class(
     #' @return invisible(NULL)
     smear = function(smearMode) {
       cpp_Trie_smear(self$ptr, smearMode)
+      invisible(self$ptr)
     }
   ),
   
   active = list(
     
-    #' @field 
-    #' ptr has a single parameter new_ptr that accepts a new pointer to a Trie.
-    #' It returns invisible(NULL)
+    #' @field rootIdx the rootIdx.
+    #' @field maxChildren The maximum number of childern for each node. It is
+    #' usually the size of letters or phonmes.
+    #' @field ptr set and get the pointer to a Trie instance.
     ptr = function(new_ptr) {
-      if(!missing(new_ptr)) {
-        private$ptr_ <- new_ptr
-      }
-      
+      if(!missing(new_ptr)) private$ptr_ <- new_ptr
       private$ptr_
-    }
+    },
+    maxChildren = function() private$maxChildren_,
+    rootIdx = function() private$rootIdx_
   ),
   
   private = list(

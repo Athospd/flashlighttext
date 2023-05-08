@@ -3,5 +3,6 @@
 #include <flashlight/lib/text/dictionary/Dictionary.h>
 #include <flashlight/lib/text/decoder/lm/KenLM.h>
 #include <flashlight/lib/text/decoder/Trie.h>
+#include <flashlight/lib/text/decoder/LexiconDecoder.h>
 
 using namespace fl::lib::text;

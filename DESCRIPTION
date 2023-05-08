@@ -11,6 +11,7 @@ Description: Provides bindings to part of the Flashlight's Text toolkit.
     Dictionary components.
 License: MIT + file LICENSE
 Imports: 
+    glue,
     magrittr,
     R6,
     Rcpp (>= 1.0.10),

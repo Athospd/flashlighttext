@@ -86,5 +86,49 @@ test_that("load_words", {
     node <- trie$search(word_tensor)
     expect_equal(node$max_score(), trie_score_target[i], tolerance = 1e-4)
   }
-    
+  
+  # decoder
+  opts <- LexiconDecoderOptions$new(
+    beam_size = 2500,
+    beam_size_token = 25000,
+    beam_threshold = 100.0,
+    lm_weight = 2.0,
+    word_score = 2.0,
+    unk_score = -Inf,
+    sil_score = -1,
+    log_add = FALSE,
+    criterion_type = CriterionTypes$ASG
+  )
+  
+  decoder <- LexiconDecoder$new(
+    options = opts,
+    trie = trie,
+    lm = lm,
+    sil_token_idx = separator_idx,
+    blank_token_idx = -1,
+    unk_token_idx = unk_idx,
+    transitions = transitions,
+    is_token_lm = FALSE
+  )
+  
+  # run decoding
+  results = decoder$decode(emissions$ctypes$data, T, N)
+  
+  print(f("Decoding complete, obtained {length(results)} results"))
+  print("Showing top 5 results:")
+  for(i in seq.int(min(5, length(results)))) {
+    prediction = c()
+    for(idx in results[[i]]$tokens) {
+      if(idx < 0) break
+      prediction$append(token_dict$get_entry(idx))
+    }
+    prediction = paste(prediction, collapse = " ")
+    f("score={results[[i]]$score} emittingModelScore={results[[i]]$emittingModelScore} lmScore={results[[i]]$lmScore} prediction='{prediction}'")
+  }
+      
+  expect_equal(length(results), 16)
+  hyp_score_target <- c(-284.0998, -284.108, -284.119, -284.127, -284.296)
+  for(i in seq.int(min(5, length(results)))) {
+    expect_equal(results[[i]]$score, hyp_score_target[[i]], tolerance = 1e-3) 
+  }
 })

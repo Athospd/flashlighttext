@@ -11,8 +11,12 @@ Trie
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a KenLM.
-It returns invisible(NULL)}
+\item{\code{rootIdx}}{the rootIdx.}
+
+\item{\code{maxChildren}}{The maximum number of childern for each node. It is
+usually the size of letters or phonmes.}
+
+\item{\code{ptr}}{set and get the pointer to a Trie instance.}
 }
 \if{html}{\out{</div>}}
 }

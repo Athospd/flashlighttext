@@ -1,12 +1,13 @@
-#' Decoder
-#' @export
-#' @rdname Decoder
-#'
-#' @examples
-#'
-#' library(flashlighttext)
-#'
-#' decoder <- Decoder$new()
+# Decoder
+# 
+# @export
+# @rdname Decoder
+# 
+# @examples
+# 
+# library(flashlighttext)
+# 
+# decoder <- Decoder$new()
 # Decoder <- R6::R6Class(
 #   "Decoder",
 #   public = list(
@@ -25,29 +26,34 @@
 #     getBestHypothesis = function(lookBack = 0) {},
 #     getAllFinalHypothesis = function() {}
 #   ),
-#   
+# 
 #   active = list(
 #     ptr = function(new_ptr) {
 #       if(!missing(new_ptr)) {
 #         private$ptr_ <- new_ptr
 #       }
-#       
-#       if(is_null_externalptr(private$ptr_)) 
+# 
+#       if(is_null_externalptr(private$ptr_))
 #         private$ptr_ <- cpp_Decoder_create()
-#       
+# 
 #       private$ptr_
-#     },
-#     
-#     filename = function() {
-#       private$filename_
-#     },
-#     
-#     tokens = function() {
-#       private$tokens_
 #     }
 #   ),
-#   
+# 
 #   private = list(
 #     ptr_ = NULL
 #   )
 # )
+
+#' CriterionTypes
+#'
+#' A enum (list) of criterion types.
+#'
+#' @format ## `CriterionTypes`
+#' A list with 3 items:
+#' \describe{
+#'   \item{ASG}{string "ASG"}
+#'   \item{CTC}{string "CTC"}
+#'   \item{S2S}{string "S2S"}
+#' }
+"CriterionTypes"

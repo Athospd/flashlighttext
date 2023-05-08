@@ -8,9 +8,9 @@
 ## `SmearingModes`
 A list with 3 items:
 \describe{
-  \item{NONE}{Default = 0}
-  \item{MAX}{Default = 1}
-  \item{LOGADD}{Default = 2}
+  \item{NONE}{string "NONE"}
+  \item{MAX}{string "MAX"}
+  \item{LOGADD}{string "LOGADD"}
 }
 }
 \usage{

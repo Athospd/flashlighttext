@@ -14,6 +14,18 @@ library(flashlighttext)
 
 dict <- Dictionary$new()
 }
+\section{Active bindings}{
+\if{html}{\out{<div class="r6-active-bindings">}}
+\describe{
+\item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a Dictionary.
+It returns invisible(NULL)}
+
+\item{\code{filename}}{returns a string}
+
+\item{\code{tokens}}{returns a string vector}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
@@ -39,6 +51,18 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$new(filename = NULL, tkns = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{filename}}{path to a file}
+
+\item{\code{tkns}}{tokens}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Dictionary
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-entry_size"></a>}}
@@ -48,6 +72,9 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$entry_size()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+invisible(NULL)
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-index_size"></a>}}
@@ -57,6 +84,9 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$index_size()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+invisible(NULL)
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-add_entry"></a>}}
@@ -66,6 +96,18 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$add_entry(entry, idx = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{entry}}{an entry}
+
+\item{\code{idx}}{an idx}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+invisible(NULL)
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-get_index"></a>}}
@@ -75,6 +117,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$get_index(entry)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{entry}}{an entry}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+the index
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-get_entry"></a>}}
@@ -84,6 +136,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$get_entry(idx)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{idx}}{an index}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+the entry
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-contains"></a>}}
@@ -93,6 +155,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$contains(entry)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{entry}}{an entry}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a boolean
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-map_indices_to_entries"></a>}}
@@ -102,6 +174,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$map_indices_to_entries(indices)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{indices}}{a vector of indices}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a vector
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-map_entries_to_indices"></a>}}
@@ -111,6 +193,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$map_entries_to_indices(entries)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{entries}}{a vector of entries}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+a vector
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-is_contiguous"></a>}}
@@ -120,6 +212,9 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$is_contiguous()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+a boolean
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-set_default_index"></a>}}
@@ -129,6 +224,16 @@ dict <- Dictionary$new()
 \if{html}{\out{<div class="r">}}\preformatted{Dictionary$set_default_index(idx)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{idx}}{one index}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+invisible(NULL)
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-clone"></a>}}

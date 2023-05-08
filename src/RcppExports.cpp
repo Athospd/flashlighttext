@@ -11,35 +11,35 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// cpp_Dictionary_create_empty
-XPtr<Dictionary> cpp_Dictionary_create_empty();
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_empty() {
+// cpp_Dictionary_constructor_empty
+XPtr<Dictionary> cpp_Dictionary_constructor_empty();
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_empty() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_empty());
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_empty());
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Dictionary_create_string
-XPtr<Dictionary> cpp_Dictionary_create_string(const std::string& filename);
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_string(SEXP filenameSEXP) {
+// cpp_Dictionary_constructor_string
+XPtr<Dictionary> cpp_Dictionary_constructor_string(const std::string& filename);
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_string(SEXP filenameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_string(filename));
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_string(filename));
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Dictionary_create_vector_string
-XPtr<Dictionary> cpp_Dictionary_create_vector_string(const std::vector<std::string>& tkns);
-RcppExport SEXP _flashlighttext_cpp_Dictionary_create_vector_string(SEXP tknsSEXP) {
+// cpp_Dictionary_constructor_vector_string
+XPtr<Dictionary> cpp_Dictionary_constructor_vector_string(const std::vector<std::string>& tkns);
+RcppExport SEXP _flashlighttext_cpp_Dictionary_constructor_vector_string(SEXP tknsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::vector<std::string>& >::type tkns(tknsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_create_vector_string(tkns));
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_constructor_vector_string(tkns));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -196,34 +196,489 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_load_words
-List cpp_load_words(const std::string& filename, int maxWords);
-RcppExport SEXP _flashlighttext_cpp_load_words(SEXP filenameSEXP, SEXP maxWordsSEXP) {
+// cpp_load_words2
+List cpp_load_words2(const std::string& filename, int maxWords);
+RcppExport SEXP _flashlighttext_cpp_load_words2(SEXP filenameSEXP, SEXP maxWordsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
     Rcpp::traits::input_parameter< int >::type maxWords(maxWordsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_load_words(filename, maxWords));
+    rcpp_result_gen = Rcpp::wrap(cpp_load_words2(filename, maxWords));
     return rcpp_result_gen;
 END_RCPP
 }
 // cpp_create_word_dict
-XPtr<Dictionary> cpp_create_word_dict(List lexicon);
-RcppExport SEXP _flashlighttext_cpp_create_word_dict(SEXP lexiconSEXP) {
+XPtr<Dictionary> cpp_create_word_dict(SEXP ptr, List lexicon);
+RcppExport SEXP _flashlighttext_cpp_create_word_dict(SEXP ptrSEXP, SEXP lexiconSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
     Rcpp::traits::input_parameter< List >::type lexicon(lexiconSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_create_word_dict(lexicon));
+    rcpp_result_gen = Rcpp::wrap(cpp_create_word_dict(ptr, lexicon));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_constructor
+XPtr<KenLM> cpp_KenLM_constructor(const std::string& path, SEXP ptr);
+RcppExport SEXP _flashlighttext_cpp_KenLM_constructor(SEXP pathSEXP, SEXP ptrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_constructor(path, ptr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_start
+XPtr<LMStatePtr> cpp_KenLM_start(XPtr<KenLM> obj, bool startWithNothing);
+RcppExport SEXP _flashlighttext_cpp_KenLM_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< bool >::type startWithNothing(startWithNothingSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_start(obj, startWithNothing));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_score
+List cpp_KenLM_score(XPtr<KenLM> obj, XPtr<LMStatePtr> state, const int usrTokenIdx);
+RcppExport SEXP _flashlighttext_cpp_KenLM_score(SEXP objSEXP, SEXP stateSEXP, SEXP usrTokenIdxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< const int >::type usrTokenIdx(usrTokenIdxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_score(obj, state, usrTokenIdx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_KenLM_finish
+List cpp_KenLM_finish(XPtr<KenLM> obj, XPtr<LMStatePtr> state);
+RcppExport SEXP _flashlighttext_cpp_KenLM_finish(SEXP objSEXP, SEXP stateSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<KenLM> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_finish(obj, state));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_constructor
+XPtr<LexiconDecoderOptions> cpp_LexiconDecoderOptions_constructor(int& beamSize, int& beamSizeToken, double& beamThreshold, double& lmWeight, double& wordScore, double& unkScore, double& silScore, bool& logAdd, std::string& criterionType);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_constructor(SEXP beamSizeSEXP, SEXP beamSizeTokenSEXP, SEXP beamThresholdSEXP, SEXP lmWeightSEXP, SEXP wordScoreSEXP, SEXP unkScoreSEXP, SEXP silScoreSEXP, SEXP logAddSEXP, SEXP criterionTypeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int& >::type beamSize(beamSizeSEXP);
+    Rcpp::traits::input_parameter< int& >::type beamSizeToken(beamSizeTokenSEXP);
+    Rcpp::traits::input_parameter< double& >::type beamThreshold(beamThresholdSEXP);
+    Rcpp::traits::input_parameter< double& >::type lmWeight(lmWeightSEXP);
+    Rcpp::traits::input_parameter< double& >::type wordScore(wordScoreSEXP);
+    Rcpp::traits::input_parameter< double& >::type unkScore(unkScoreSEXP);
+    Rcpp::traits::input_parameter< double& >::type silScore(silScoreSEXP);
+    Rcpp::traits::input_parameter< bool& >::type logAdd(logAddSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type criterionType(criterionTypeSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_constructor(beamSize, beamSizeToken, beamThreshold, lmWeight, wordScore, unkScore, silScore, logAdd, criterionType));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_beamSize
+void cpp_LexiconDecoderOptions_set_beamSize(XPtr<LexiconDecoderOptions> obj, int value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_beamSize(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_beamSize(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_beamSize
+int cpp_LexiconDecoderOptions_get_beamSize(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_beamSize(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_beamSize(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_beamSizeToken
+void cpp_LexiconDecoderOptions_set_beamSizeToken(XPtr<LexiconDecoderOptions> obj, int value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_beamSizeToken(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_beamSizeToken(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_beamSizeToken
+int cpp_LexiconDecoderOptions_get_beamSizeToken(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_beamSizeToken(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_beamSizeToken(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_beamThreshold
+void cpp_LexiconDecoderOptions_set_beamThreshold(XPtr<LexiconDecoderOptions> obj, double value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_beamThreshold(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< double >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_beamThreshold(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_beamThreshold
+double cpp_LexiconDecoderOptions_get_beamThreshold(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_beamThreshold(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_beamThreshold(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_lmWeight
+void cpp_LexiconDecoderOptions_set_lmWeight(XPtr<LexiconDecoderOptions> obj, double value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_lmWeight(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< double >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_lmWeight(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_lmWeight
+double cpp_LexiconDecoderOptions_get_lmWeight(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_lmWeight(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_lmWeight(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_wordScore
+void cpp_LexiconDecoderOptions_set_wordScore(XPtr<LexiconDecoderOptions> obj, double value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_wordScore(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< double >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_wordScore(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_wordScore
+double cpp_LexiconDecoderOptions_get_wordScore(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_wordScore(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_wordScore(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_unkScore
+void cpp_LexiconDecoderOptions_set_unkScore(XPtr<LexiconDecoderOptions> obj, double value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_unkScore(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< double >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_unkScore(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_unkScore
+double cpp_LexiconDecoderOptions_get_unkScore(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_unkScore(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_unkScore(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_silScore
+void cpp_LexiconDecoderOptions_set_silScore(XPtr<LexiconDecoderOptions> obj, double value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_silScore(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< double >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_silScore(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_silScore
+double cpp_LexiconDecoderOptions_get_silScore(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_silScore(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_silScore(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_logAdd
+void cpp_LexiconDecoderOptions_set_logAdd(XPtr<LexiconDecoderOptions> obj, bool value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_logAdd(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< bool >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_logAdd(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_logAdd
+bool cpp_LexiconDecoderOptions_get_logAdd(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_logAdd(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_logAdd(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_set_CriterionType
+void cpp_LexiconDecoderOptions_set_CriterionType(XPtr<LexiconDecoderOptions> obj, std::string value);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_set_CriterionType(SEXP objSEXP, SEXP valueSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< std::string >::type value(valueSEXP);
+    cpp_LexiconDecoderOptions_set_CriterionType(obj, value);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoderOptions_get_CriterionType
+std::string cpp_LexiconDecoderOptions_get_CriterionType(XPtr<LexiconDecoderOptions> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoderOptions_get_CriterionType(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_constructor
+XPtr<LexiconDecoder> cpp_LexiconDecoder_constructor(XPtr<LexiconDecoderOptions> opt, XPtr<TriePtr> lexicon, XPtr<LMPtr> lm, int sil, int blank, int unk, std::vector<float>& transitions, bool isLmToken);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_constructor(SEXP optSEXP, SEXP lexiconSEXP, SEXP lmSEXP, SEXP silSEXP, SEXP blankSEXP, SEXP unkSEXP, SEXP transitionsSEXP, SEXP isLmTokenSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type opt(optSEXP);
+    Rcpp::traits::input_parameter< XPtr<TriePtr> >::type lexicon(lexiconSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMPtr> >::type lm(lmSEXP);
+    Rcpp::traits::input_parameter< int >::type sil(silSEXP);
+    Rcpp::traits::input_parameter< int >::type blank(blankSEXP);
+    Rcpp::traits::input_parameter< int >::type unk(unkSEXP);
+    Rcpp::traits::input_parameter< std::vector<float>& >::type transitions(transitionsSEXP);
+    Rcpp::traits::input_parameter< bool >::type isLmToken(isLmTokenSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_constructor(opt, lexicon, lm, sil, blank, unk, transitions, isLmToken));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeBegin
+void cpp_LexiconDecoder_decodeBegin(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeBegin(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_decodeBegin(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeStep
+void cpp_LexiconDecoder_decodeStep(XPtr<LexiconDecoder> obj, std::string emissions, int T, int N);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeStep(SEXP objSEXP, SEXP emissionsSEXP, SEXP TSEXP, SEXP NSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< std::string >::type emissions(emissionsSEXP);
+    Rcpp::traits::input_parameter< int >::type T(TSEXP);
+    Rcpp::traits::input_parameter< int >::type N(NSEXP);
+    cpp_LexiconDecoder_decodeStep(obj, emissions, T, N);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeEnd
+void cpp_LexiconDecoder_decodeEnd(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeEnd(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_decodeEnd(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_nHypothesis
+int cpp_LexiconDecoder_nHypothesis(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_nHypothesis(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_nHypothesis(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_prune
+void cpp_LexiconDecoder_prune(XPtr<LexiconDecoder> obj, int lookBack);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_prune(SEXP objSEXP, SEXP lookBackSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type lookBack(lookBackSEXP);
+    cpp_LexiconDecoder_prune(obj, lookBack);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_nDecodedFramesInBuffer
+int cpp_LexiconDecoder_nDecodedFramesInBuffer(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_nDecodedFramesInBuffer(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_getBestHypothesis
+XPtr<DecodeResult> cpp_LexiconDecoder_getBestHypothesis(XPtr<LexiconDecoder> obj, int lookBack);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_getBestHypothesis(SEXP objSEXP, SEXP lookBackSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type lookBack(lookBackSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_getBestHypothesis(obj, lookBack));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_getAllFinalHypothesis
+void cpp_LexiconDecoder_getAllFinalHypothesis(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_getAllFinalHypothesis(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_Trie_constructor
+XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx);
+RcppExport SEXP _flashlighttext_cpp_Trie_constructor(SEXP maxChildrenSEXP, SEXP rootIdxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type maxChildren(maxChildrenSEXP);
+    Rcpp::traits::input_parameter< int >::type rootIdx(rootIdxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_constructor(maxChildren, rootIdx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_getRoot
+XPtr<TrieNode*> cpp_Trie_getRoot(XPtr<Trie> obj);
+RcppExport SEXP _flashlighttext_cpp_Trie_getRoot(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_getRoot(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_insert
+XPtr<TrieNodePtr> cpp_Trie_insert(XPtr<Trie> obj, const std::vector<int>& indices, int label, float score);
+RcppExport SEXP _flashlighttext_cpp_Trie_insert(SEXP objSEXP, SEXP indicesSEXP, SEXP labelSEXP, SEXP scoreSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
+    Rcpp::traits::input_parameter< int >::type label(labelSEXP);
+    Rcpp::traits::input_parameter< float >::type score(scoreSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_insert(obj, indices, label, score));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_search
+XPtr<TrieNodePtr> cpp_Trie_search(XPtr<Trie> obj, const std::vector<int>& indices);
+RcppExport SEXP _flashlighttext_cpp_Trie_search(SEXP objSEXP, SEXP indicesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Trie_search(obj, indices));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Trie_smear
+void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode);
+RcppExport SEXP _flashlighttext_cpp_Trie_smear(SEXP objSEXP, SEXP smear_modeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< std::string& >::type smear_mode(smear_modeSEXP);
+    cpp_Trie_smear(obj, smear_mode);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_TrieNode_constructor
+XPtr<TrieNode> cpp_TrieNode_constructor(int idx);
+RcppExport SEXP _flashlighttext_cpp_TrieNode_constructor(SEXP idxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type idx(idxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_TrieNode_constructor(idx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_TrieNode_maxScore
+float cpp_TrieNode_maxScore(XPtr<TrieNodePtr> obj);
+RcppExport SEXP _flashlighttext_cpp_TrieNode_maxScore(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<TrieNodePtr> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_TrieNode_maxScore(obj));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_flashlighttext_cpp_Dictionary_create_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_empty, 0},
-    {"_flashlighttext_cpp_Dictionary_create_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_string, 1},
-    {"_flashlighttext_cpp_Dictionary_create_vector_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_create_vector_string, 1},
+    {"_flashlighttext_cpp_Dictionary_constructor_empty", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_empty, 0},
+    {"_flashlighttext_cpp_Dictionary_constructor_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_string, 1},
+    {"_flashlighttext_cpp_Dictionary_constructor_vector_string", (DL_FUNC) &_flashlighttext_cpp_Dictionary_constructor_vector_string, 1},
     {"_flashlighttext_cpp_Dictionary_entry_size", (DL_FUNC) &_flashlighttext_cpp_Dictionary_entry_size, 1},
     {"_flashlighttext_cpp_Dictionary_index_size", (DL_FUNC) &_flashlighttext_cpp_Dictionary_index_size, 1},
     {"_flashlighttext_cpp_Dictionary_add_entry_entry", (DL_FUNC) &_flashlighttext_cpp_Dictionary_add_entry_entry, 2},
@@ -237,8 +692,47 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_is_contiguous", (DL_FUNC) &_flashlighttext_cpp_Dictionary_is_contiguous, 1},
     {"_flashlighttext_cpp_Dictionary_map_entries_to_indices", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_entries_to_indices, 2},
     {"_flashlighttext_cpp_Dictionary_map_indices_to_entries", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_indices_to_entries, 2},
-    {"_flashlighttext_cpp_load_words", (DL_FUNC) &_flashlighttext_cpp_load_words, 2},
-    {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 1},
+    {"_flashlighttext_cpp_load_words2", (DL_FUNC) &_flashlighttext_cpp_load_words2, 2},
+    {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
+    {"_flashlighttext_cpp_KenLM_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLM_constructor, 2},
+    {"_flashlighttext_cpp_KenLM_start", (DL_FUNC) &_flashlighttext_cpp_KenLM_start, 2},
+    {"_flashlighttext_cpp_KenLM_score", (DL_FUNC) &_flashlighttext_cpp_KenLM_score, 3},
+    {"_flashlighttext_cpp_KenLM_finish", (DL_FUNC) &_flashlighttext_cpp_KenLM_finish, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_constructor", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_constructor, 9},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_beamSize", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_beamSize, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_beamSize", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_beamSize, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_beamSizeToken", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_beamSizeToken, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_beamSizeToken", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_beamSizeToken, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_beamThreshold", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_beamThreshold, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_beamThreshold", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_beamThreshold, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_lmWeight", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_lmWeight, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_lmWeight", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_lmWeight, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_wordScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_wordScore, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_wordScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_wordScore, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_unkScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_unkScore, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_unkScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_unkScore, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_silScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_silScore, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_silScore", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_silScore, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_logAdd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_logAdd, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_logAdd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_logAdd, 1},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_set_CriterionType", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_CriterionType, 2},
+    {"_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_constructor", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_constructor, 8},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeBegin", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeBegin, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeStep", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeStep, 4},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeEnd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeEnd, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_nHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nHypothesis, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_prune", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_prune, 2},
+    {"_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_getBestHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_getBestHypothesis, 2},
+    {"_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis, 1},
+    {"_flashlighttext_cpp_Trie_constructor", (DL_FUNC) &_flashlighttext_cpp_Trie_constructor, 2},
+    {"_flashlighttext_cpp_Trie_getRoot", (DL_FUNC) &_flashlighttext_cpp_Trie_getRoot, 1},
+    {"_flashlighttext_cpp_Trie_insert", (DL_FUNC) &_flashlighttext_cpp_Trie_insert, 4},
+    {"_flashlighttext_cpp_Trie_search", (DL_FUNC) &_flashlighttext_cpp_Trie_search, 2},
+    {"_flashlighttext_cpp_Trie_smear", (DL_FUNC) &_flashlighttext_cpp_Trie_smear, 2},
+    {"_flashlighttext_cpp_TrieNode_constructor", (DL_FUNC) &_flashlighttext_cpp_TrieNode_constructor, 1},
+    {"_flashlighttext_cpp_TrieNode_maxScore", (DL_FUNC) &_flashlighttext_cpp_TrieNode_maxScore, 1},
     {NULL, NULL, 0}
 };
 

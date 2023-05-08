@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^\.github$
+^flashlighttext\.Rcheck$
+^flashlighttext.*\.tar\.gz$
+^flashlighttext.*\.tgz$
+^data-raw$

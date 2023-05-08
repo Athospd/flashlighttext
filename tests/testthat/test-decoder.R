@@ -1,10 +1,133 @@
-test_that("load_words", {
-  data_dir <- "include/flashlight/lib/text/test/decoder/data/"
-  lexicon <- load_words(system.file(file.path(data_dir, "words.lst"), package = "flashlighttext"), 1000)
-  tokenDict <- Dictionary$new(system.file(file.path(data_dir,  "letters.lst"), package = "flashlighttext"))
-  tokenDict$add_entry("<1>")
-  wordDict <- create_word_dict(lexicon)
-  wordDict$ptr
-  expect_equal(wordDict$index_size(), 1001)
-  expect_equal(wordDict$entry_size(), 1001)
+tkn_to_idx <- function(spelling, token_dict, maxReps = 0){
+  result <- c()
+  for(token in spelling) {
+    result <- c(result, token_dict$get_index(token))
+  }
+  return(pack_replabels(result, token_dict, maxReps))
+}
+
+# bench::mark(check = FALSE,
+#   lexicon1 <- load_words(sys_file("words.lst"), -1),
+#   lexicon2 <- load_words2(sys_file("words.lst"), -1)
+# )
+
+
+  
+# test_that("load_words", {
+  # emissions ---------------------------------------------------------------
+  
+  Emissions <- function(
+    emission, # A column-major tensor with shape T x N.
+    nFrames = 0,
+    nTokens = 0
+  ) {
+    list(emission = emission, nFrames = nFrames, nTokens = nTokens)
+  }
+  
+  sys_file <- function(file) system.file(file, package = "flashlighttext")
+  
+  read_bin <- function(file, type) {
+    readBin(sys_file(file), type, n = 10000)
+  }
+  
+  # emissionUnit = Emissions()
+  c(T, N) %<-% read_bin("TN.bin", "integer")
+  emissions <- read_bin("emission.bin", "numeric")
+  transitions <- read_bin("transition.bin", "numeric")
+  lexicon <- load_words(sys_file("words.lst"))
+  word_dict <- create_word_dict(lexicon)
+  token_dict <- Dictionary$new(sys_file("letters.lst"))
+  token_dict$add_entry("<1>")
+  lm <- KenLM$new(sys_file("lm.arpa"), word_dict)
+  
+  # test LM
+  sentence <- c("the", "cat", "sat", "on", "the", "mat")
+  lm_state <- lm$start(FALSE)
+  total_score <- 0
+  lm_score_target <- c(-1.05971, -4.19448, -3.33383, -2.76726, -1.16237, -4.64589)
+  
+  # a <- lm$score(lm_state, word_dict$get_index(sentence[1]))
+  # iterate over words in the sentence
+  for(i in seq_along(sentence)) {
+    c(lm_state, lm_score) %<-% lm$score(lm_state, word_dict$get_index(sentence[i]))
+    expect_equal(lm_score, lm_score_target[i], tolerance = 1e-4)
+    total_score = total_score + lm_score
+  }
+  
+  # move lm to the final state, the score returned is for eos
+  c(lm_state, lm_score) %<-% lm$finish(lm_state)
+  total_score = total_score + lm_score
+  expect_equal(total_score, -19.5123, tolerance = 1e-4)
+
+  # build trie
+  separator_idx <- token_dict$get_index("|")
+  unk_idx <- word_dict$get_index("<unk>")
+  trie <- Trie$new(token_dict$index_size(), separator_idx)
+  start_state <- lm$start(FALSE)
+  for(word in names(lexicon)) {
+    spellings <- if(word != "<unk>") lexicon[[word]] else list()
+    usr_idx <- word_dict$get_index(word)
+    score <- lm$score(start_state, usr_idx)[[2]]
+    # cat(word, " - ", usr_idx, " - ", score, "\n")
+    for(spelling in spellings) {
+      spelling_idxs = tkn_to_idx(spelling, token_dict, 1)
+      trie$insert(spelling_idxs, usr_idx, score)
+      # cat("   >> ", toString(spelling), " - ", toString(spelling_idxs), "\n")
+    }
+  }
+  trie$smear(SmearingModes$MAX)
+  
+  trie_score_target <- c(-1.05971, -2.87742, -2.64553, -3.05081, -1.05971, -3.08968)
+  for(i in seq_along(sentence)) {
+    word <- sentence[i]
+    # max_reps should be 1; using 0 here to match DecoderTest bug
+    word_tensor <- tkn_to_idx(strsplit(word, "")[[1]], token_dict, 1)
+    node <- trie$search(word_tensor)
+    expect_equal(node$max_score(), trie_score_target[i], tolerance = 1e-4)
+  }
+  
+  # decoder
+  opts <- LexiconDecoderOptions$new(
+    beam_size = 2500,
+    beam_size_token = 25000,
+    beam_threshold = 100.0,
+    lm_weight = 2.0,
+    word_score = 2.0,
+    unk_score = -Inf,
+    sil_score = -1,
+    log_add = FALSE,
+    criterion_type = CriterionTypes$ASG
+  )
+  
+  decoder <- LexiconDecoder$new(
+    options = opts,
+    trie = trie,
+    lm = lm,
+    sil_token_idx = separator_idx,
+    blank_token_idx = -1,
+    unk_token_idx = unk_idx,
+    transitions = transitions,
+    is_token_lm = FALSE
+  )
+  
+  # run decoding
+  results <- decoder$decode(emissions, T, N)
+  
+  print(f("Decoding complete, obtained {length(results)} results"))
+  print("Showing top 5 results:")
+  for(i in seq.int(min(5, length(results)))) {
+    prediction = c()
+    for(idx in results[[i]]$tokens) {
+      if(idx < 0) break
+      prediction$append(token_dict$get_entry(idx))
+    }
+    prediction = paste(prediction, collapse = " ")
+    f("score={results[[i]]$score} emittingModelScore={results[[i]]$emittingModelScore} lmScore={results[[i]]$lmScore} prediction='{prediction}'")
+  }
+      
+  expect_equal(length(results), 16)
+  hyp_score_target <- c(-284.0998, -284.108, -284.119, -284.127, -284.296)
+  for(i in seq.int(min(5, length(results)))) {
+    expect_equal(results[[i]]$score, hyp_score_target[[i]], tolerance = 1e-3) 
+  }
 })

@@ -1,18 +1,28 @@
-Package: flashlighttext
 Type: Package
+Package: flashlighttext
 Title: Bindings to the Flashlight Text
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Athos", "Damiani", email = "athos.damiani@gmail.com", role = c("aut", "cre", "cph"))
+    person("Athos", "Damiani", email = "athos.damiani@gmail.com", role = c("aut", "cre", "cph")),
+    person("Daniel", "Falbel", role = c("aut"))
     )
-Description: Provides bindings to part of the Flashlight's Text toolkit. The Flashlight Text R package contains beam search decoder and Dictionary components.
+Description: Provides bindings to part of the Flashlight's Text toolkit.
+    The Flashlight Text R package contains beam search decoder and
+    Dictionary components.
 License: MIT + file LICENSE
-Encoding: UTF-8
 Imports: 
-  methods, 
-  Rcpp (>= 1.0.10)
-LinkingTo: Rcpp
-RoxygenNote: 7.2.3
+    glue,
+    magrittr,
+    R6,
+    Rcpp (>= 1.0.10),
+    zeallot
 Suggests: 
     testthat (>= 3.0.0)
+LinkingTo: 
+    Rcpp
 Config/testthat/edition: 3
+Encoding: UTF-8
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+LazyData: true

@@ -13,7 +13,7 @@ tkn_to_idx <- function(spelling, token_dict, maxReps = 0){
 
 
   
-test_that("load_words", {
+# test_that("load_words", {
   # emissions ---------------------------------------------------------------
   
   Emissions <- function(
@@ -39,7 +39,6 @@ test_that("load_words", {
   token_dict <- Dictionary$new(sys_file("letters.lst"))
   token_dict$add_entry("<1>")
   lm <- KenLM$new(sys_file("lm.arpa"), word_dict)
-  flashlighttext:::explore_kenlm(lm$ptr)
   
   # test LM
   sentence <- c("the", "cat", "sat", "on", "the", "mat")
@@ -112,7 +111,7 @@ test_that("load_words", {
   )
   
   # run decoding
-  results = decoder$decode(emissions$ctypes$data, T, N)
+  results <- decoder$decode(emissions, T, N)
   
   print(f("Decoding complete, obtained {length(results)} results"))
   print("Showing top 5 results:")

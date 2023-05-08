@@ -62,12 +62,12 @@ size_t cpp_Dictionary_index_size(XPtr<Dictionary> obj) {
 
 // [[Rcpp::export]]
 void cpp_Dictionary_add_entry_entry(XPtr<Dictionary> obj, const std::string& entry) {
-  return obj->addEntry(entry);
+  obj->addEntry(entry);
 }
 
 // [[Rcpp::export]]
 void cpp_Dictionary_add_entry_entry_idx(XPtr<Dictionary> obj, const std::string& entry, int idx) {
-  return obj->addEntry(entry, idx);
+  obj->addEntry(entry, idx);
 }
 
 // [[Rcpp::export]]

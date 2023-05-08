@@ -486,6 +486,112 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_LexiconDecoder_constructor
+XPtr<LexiconDecoder> cpp_LexiconDecoder_constructor(XPtr<LexiconDecoderOptions> opt, XPtr<TriePtr> lexicon, XPtr<LMPtr> lm, int sil, int blank, int unk, std::vector<float>& transitions, bool isLmToken);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_constructor(SEXP optSEXP, SEXP lexiconSEXP, SEXP lmSEXP, SEXP silSEXP, SEXP blankSEXP, SEXP unkSEXP, SEXP transitionsSEXP, SEXP isLmTokenSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoderOptions> >::type opt(optSEXP);
+    Rcpp::traits::input_parameter< XPtr<TriePtr> >::type lexicon(lexiconSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMPtr> >::type lm(lmSEXP);
+    Rcpp::traits::input_parameter< int >::type sil(silSEXP);
+    Rcpp::traits::input_parameter< int >::type blank(blankSEXP);
+    Rcpp::traits::input_parameter< int >::type unk(unkSEXP);
+    Rcpp::traits::input_parameter< std::vector<float>& >::type transitions(transitionsSEXP);
+    Rcpp::traits::input_parameter< bool >::type isLmToken(isLmTokenSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_constructor(opt, lexicon, lm, sil, blank, unk, transitions, isLmToken));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeBegin
+void cpp_LexiconDecoder_decodeBegin(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeBegin(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_decodeBegin(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeStep
+void cpp_LexiconDecoder_decodeStep(XPtr<LexiconDecoder> obj, std::string emissions, int T, int N);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeStep(SEXP objSEXP, SEXP emissionsSEXP, SEXP TSEXP, SEXP NSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< std::string >::type emissions(emissionsSEXP);
+    Rcpp::traits::input_parameter< int >::type T(TSEXP);
+    Rcpp::traits::input_parameter< int >::type N(NSEXP);
+    cpp_LexiconDecoder_decodeStep(obj, emissions, T, N);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_decodeEnd
+void cpp_LexiconDecoder_decodeEnd(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decodeEnd(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_decodeEnd(obj);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_nHypothesis
+int cpp_LexiconDecoder_nHypothesis(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_nHypothesis(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_nHypothesis(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_prune
+void cpp_LexiconDecoder_prune(XPtr<LexiconDecoder> obj, int lookBack);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_prune(SEXP objSEXP, SEXP lookBackSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type lookBack(lookBackSEXP);
+    cpp_LexiconDecoder_prune(obj, lookBack);
+    return R_NilValue;
+END_RCPP
+}
+// cpp_LexiconDecoder_nDecodedFramesInBuffer
+int cpp_LexiconDecoder_nDecodedFramesInBuffer(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_nDecodedFramesInBuffer(obj));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_getBestHypothesis
+XPtr<DecodeResult> cpp_LexiconDecoder_getBestHypothesis(XPtr<LexiconDecoder> obj, int lookBack);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_getBestHypothesis(SEXP objSEXP, SEXP lookBackSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int >::type lookBack(lookBackSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_getBestHypothesis(obj, lookBack));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LexiconDecoder_getAllFinalHypothesis
+void cpp_LexiconDecoder_getAllFinalHypothesis(XPtr<LexiconDecoder> obj);
+RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    cpp_LexiconDecoder_getAllFinalHypothesis(obj);
+    return R_NilValue;
+END_RCPP
+}
 // cpp_Trie_constructor
 XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx);
 RcppExport SEXP _flashlighttext_cpp_Trie_constructor(SEXP maxChildrenSEXP, SEXP rootIdxSEXP) {
@@ -611,6 +717,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_LexiconDecoderOptions_get_logAdd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_logAdd, 1},
     {"_flashlighttext_cpp_LexiconDecoderOptions_set_CriterionType", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_CriterionType, 2},
     {"_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_constructor", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_constructor, 8},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeBegin", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeBegin, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeStep", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeStep, 4},
+    {"_flashlighttext_cpp_LexiconDecoder_decodeEnd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeEnd, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_nHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nHypothesis, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_prune", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_prune, 2},
+    {"_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer, 1},
+    {"_flashlighttext_cpp_LexiconDecoder_getBestHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_getBestHypothesis, 2},
+    {"_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis, 1},
     {"_flashlighttext_cpp_Trie_constructor", (DL_FUNC) &_flashlighttext_cpp_Trie_constructor, 2},
     {"_flashlighttext_cpp_Trie_getRoot", (DL_FUNC) &_flashlighttext_cpp_Trie_getRoot, 1},
     {"_flashlighttext_cpp_Trie_insert", (DL_FUNC) &_flashlighttext_cpp_Trie_insert, 4},

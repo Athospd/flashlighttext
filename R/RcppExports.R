@@ -165,6 +165,42 @@ cpp_LexiconDecoderOptions_get_CriterionType <- function(obj) {
     .Call('_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType', PACKAGE = 'flashlighttext', obj)
 }
 
+cpp_LexiconDecoder_constructor <- function(opt, lexicon, lm, sil, blank, unk, transitions, isLmToken) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon, lm, sil, blank, unk, transitions, isLmToken)
+}
+
+cpp_LexiconDecoder_decodeBegin <- function(obj) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decodeBegin', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_LexiconDecoder_decodeStep <- function(obj, emissions, T, N) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decodeStep', PACKAGE = 'flashlighttext', obj, emissions, T, N))
+}
+
+cpp_LexiconDecoder_decodeEnd <- function(obj) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decodeEnd', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_LexiconDecoder_nHypothesis <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_nHypothesis', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconDecoder_prune <- function(obj, lookBack = 0L) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_prune', PACKAGE = 'flashlighttext', obj, lookBack))
+}
+
+cpp_LexiconDecoder_nDecodedFramesInBuffer <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconDecoder_getBestHypothesis <- function(obj, lookBack = 0L) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_getBestHypothesis', PACKAGE = 'flashlighttext', obj, lookBack)
+}
+
+cpp_LexiconDecoder_getAllFinalHypothesis <- function(obj) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis', PACKAGE = 'flashlighttext', obj))
+}
+
 cpp_Trie_constructor <- function(maxChildren, rootIdx) {
     .Call('_flashlighttext_cpp_Trie_constructor', PACKAGE = 'flashlighttext', maxChildren, rootIdx)
 }

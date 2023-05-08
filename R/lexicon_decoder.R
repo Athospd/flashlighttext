@@ -16,15 +16,15 @@ LexiconDecoderOptions <- R6::R6Class(
     #' @param criterion_type a CriterionType: "CTC" or "ASG" (see [CriterionTypes])
     #' @returns LexiconDecoderOptions
     initialize = function(
-      beam_size = 2500,
-      beam_size_token = 25000,
-      beam_threshold = 100.0,
-      lm_weight = 2.0,
-      word_score = 2.0,
-      unk_score = -Inf,
-      sil_score = -1,
-      log_add = FALSE,
-      criterion_type = CriterionTypes$ASG
+    beam_size = 2500,
+    beam_size_token = 25000,
+    beam_threshold = 100.0,
+    lm_weight = 2.0,
+    word_score = 2.0,
+    unk_score = -Inf,
+    sil_score = -1,
+    log_add = FALSE,
+    criterion_type = CriterionTypes$ASG
     ) {
       private$beam_size_ = beam_size
       private$beam_size_token_ = beam_size_token
@@ -152,71 +152,117 @@ LexiconDecoderOptions <- R6::R6Class(
   )
 )
 
-
-# LexiconDecoder <- R6::R6Class(
-#   "LexiconDecoder",
-#   inherit = Decoder,
-#   public = list(
-#     initialize = function(
-#     opt, lexicon, lm, sil, blank, unk, transitions, isLmToken
-#     ) {
-#       self$opt_ <- opt
-#       self$lexicon_ <- lexicon
-#       self$lm_ <- lm
-#       self$sil_ <- sil
-#       self$blank_ <- blank
-#       self$unk_ <- unk
-#       self$transitions_ <- transitions
-#       self$isLmToken_ <- isLmToken
-#       self$candidates_ <- list()
-#       self$candidatePtrs_ <- list()
-#       self$candidatesBestScore_ <- 0
-#       self$hyp_ <- list()
-#       self$nDecodedFrames_ <- 0
-#       self$nPrunedFrames_ <- 0
-#     },
-#     decode_begin = function() {
-#       cpp_LexiconDecoder_decodeBegin(self$ptr)
-#     },
-#     decode_step = function(emissions, T, N) {
-#       cpp_LexiconDecoder_decodeStep(self$ptr, emissions, T, N)
-#     },
-#     decode_end = function() {
-#       cpp_LexiconDecoder_decodeEnd(self$ptr)
-#     },
-#     n_hypothesis = function() {
-#       cpp_LexiconDecoder_nHypothesis(self$ptr)
-#     },
-#     prune = function(lookBack = 0) {
-#       cpp_LexiconDecoder_prune(self$ptr, lookBack)
-#     },
-#     n_decoded_frames_in_buffer = function() {
-#       cpp_LexiconDecoder_nDecodedFramesInBuffer(self$ptr)
-#     },
-#     get_best_hypothesis = function(lookBack = 0) {
-#       cpp_LexiconDecoder_bestHypothesis(self$ptr)
-#     },
-#     get_all_final_hypothesis = function() {
-#       cpp_LexiconDecoder_getAllFinalHypothesis(self$ptr)
-#     }
-#   ),
-#   
-#   private = list(
-#     opt_ = NULL,
-#     lexicon_ = NULL,
-#     lm_ = NULL,
-#     sil_ = NULL,
-#     blank_ = NULL,
-#     unk_ = NULL,
-#     transitions_ = NULL,
-#     isLmToken_ = NULL,
-#     candidates_ = NULL,
-#     candidatePtrs_ = NULL,
-#     candidatesBestScore_ = NULL,
-#     hyp_ = NULL,
-#     nDecodedFrames_ = NULL,
-#     nPrunedFrames_ = NULL
-#   )
-# )
+#' LexiconDecoder
+#'
+#' @export
+#' @rdname LexiconDecoder
+LexiconDecoder <- R6::R6Class(
+  "LexiconDecoder",
+  inherit = Decoder,
+  public = list(
+    
+    #' @param options a options 
+    #' @param trie a trie 
+    #' @param lm a lm 
+    #' @param sil_token_idx a sil_token_idx 
+    #' @param blank_token_idx a blank_token_idx 
+    #' @param unk_token_idx a unk_token_idx 
+    #' @param transitions a transitions 
+    #' @param is_token_lm a is_token_lm 
+    #' @return LexiconDecoder
+    initialize = function(
+      options, 
+      trie, 
+      lm, 
+      sil_token_idx, 
+      blank_token_idx, 
+      unk_token_idx, 
+      transitions, 
+      is_token_lm
+    ) {
+      private$options_ <- options
+      private$trie_ <- trie
+      private$lm_ <- lm
+      private$sil_token_idx_ <- sil_token_idx
+      private$blank_token_idx_ <- blank_token_idx
+      private$unk_token_idx_ <- unk_token_idx
+      private$transitions_ <- transitions
+      private$is_token_lm_ <- is_token_lm
+      private$ptr_ <- cpp_LexiconDecoder_constructor(
+        options$ptr, 
+        trie$ptr, 
+        lm$ptr, 
+        sil_token_idx, 
+        blank_token_idx, 
+        unk_token_idx, 
+        transitions, 
+        is_token_lm
+      )
+    },
+    #' @return invisible(NULL)
+    decode_begin = function() {
+      cpp_LexiconDecoder_decodeBegin(self$ptr)
+    },
+    #' @param emissions a emissions 
+    #' @param T a T 
+    #' @param N a N 
+    #' @return invisible(NULL)
+    decode_step = function(emissions, T, N) {
+      cpp_LexiconDecoder_decodeStep(self$ptr, lobstr::obj_addr(emissions), T, N)
+    },
+    #' @return invisible(NULL)
+    decode_end = function() {
+      cpp_LexiconDecoder_decodeEnd(self$ptr)
+    },
+    #' @return int
+    n_hypothesis = function() {
+      cpp_LexiconDecoder_nHypothesis(self$ptr)
+    },
+    #' @param lookBack a lookBack
+    #' @return invisible(NULL)
+    prune = function(lookBack = 0) {
+      cpp_LexiconDecoder_prune(self$ptr, lookBack)
+    },
+    #' @return int
+    n_decoded_frames_in_buffer = function() {
+      cpp_LexiconDecoder_nDecodedFramesInBuffer(self$ptr)
+    },
+    #' @param lookBack a lookBack
+    #' @return DecodeResult
+    get_best_hypothesis = function(lookBack = 0) {
+      cpp_LexiconDecoder_getBestHypothesis(self$ptr, lookBack)
+    },
+    #' @return list of DecodeResult
+    get_all_final_hypothesis = function() {
+      cpp_LexiconDecoder_getAllFinalHypothesis(self$ptr)
+    }
+  ),
+  
+  active = list(
+    #' @field ptr set and get the pointer to a LexiconDecoder instance.
+    ptr = function(new_ptr) {
+      if(!missing(new_ptr)) private$ptr_ <- new_ptr
+      private$ptr_
+    }
+  ),
+  
+  private = list(
+    ptr_ = NULL,
+    options_ = NULL,
+    trie_ = NULL,
+    lm_ = NULL,
+    sil_token_idx_ = NULL,
+    blank_token_idx_ = NULL,
+    unk_token_idx_ = NULL,
+    transitions_ = NULL,
+    is_token_lm_ = NULL,
+    candidates_ = NULL,
+    candidatePtrs_ = NULL,
+    candidatesBestScore_ = NULL,
+    hyp_ = NULL,
+    nDecodedFrames_ = NULL,
+    nPrunedFrames_ = NULL
+  )
+)
 
 

@@ -2,8 +2,10 @@
 
 export("%<-%")
 export("%>%")
+export(Decoder)
 export(Dictionary)
 export(KenLM)
+export(LexiconDecoder)
 export(LexiconDecoderOptions)
 export(Trie)
 export(TrieNode)

@@ -145,3 +145,39 @@ for i in range(len(sentence)):
   word_tensor = tkn_to_idx([c for c in word], token_dict, 1)
   node = trie.search(word_tensor)
   print(node.max_score - trie_score_target[i])
+
+
+opts = LexiconDecoderOptions(
+    beam_size=2500,
+    beam_size_token=25000,
+    beam_threshold=100.0,
+    lm_weight=2.0,
+    word_score=2.0,
+    unk_score=-math.inf,
+    sil_score=-1,
+    log_add=False,
+    criterion_type=CriterionType.ASG,
+)
+
+# define lexicon beam-search decoder with word-level lm
+# LexiconDecoder(decoder options, trie, lm, silence index,
+#                blank index (for CTC), unk index,
+#                transitions matrix, is token-level lm)
+decoder = LexiconDecoder(
+    options=opts,
+    trie=trie,
+    lm=lm,
+    sil_token_idx=separator_idx,
+    blank_token_idx=-1,
+    unk_token_idx=unk_idx,
+    transitions=transitions,
+    is_token_lm=False,
+)
+
+# run decoding
+# decoder.decode(emissions, Time, Ntokens)
+# result is a list of sorted hypothesis, 0-index is the best hypothesis
+# each hypothesis is a struct with "score" and "words" representation
+# in the hypothesis and the "tokens" representation
+results = decoder.decode(emissions.ctypes.data, T, N)
+

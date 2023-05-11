@@ -11,7 +11,7 @@ KenLM
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a KenLM.
+\item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a KenLMWrapper.
 It returns invisible(NULL)}
 
 \item{\code{path}}{returns a string}

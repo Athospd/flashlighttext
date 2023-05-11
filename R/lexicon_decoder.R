@@ -208,12 +208,19 @@ LexiconDecoder <- R6::R6Class(
     #' @param N a N 
     #' @return invisible(NULL)
     decode_step = function(emissions, T, N) {
-      cpp_LexiconDecoder_decodeStep(self$ptr, lobstr::obj_addr(emissions), T, N)
+      cpp_LexiconDecoder_decodeStep(self$ptr, emissions, T, N)
     },
     #' @return invisible(NULL)
     decode_end = function() {
       cpp_LexiconDecoder_decodeEnd(self$ptr)
     },
+    # #' @param emissions a emissions 
+    # #' @param T a T 
+    # #' @param N a N 
+    # #' @return invisible(NULL)
+    # decode = function(emissions, T, N) {
+    #   cpp_LexiconDecoder_decode(self$ptr, emissions, T, N)
+    # },
     #' @return int
     n_hypothesis = function() {
       cpp_LexiconDecoder_nHypothesis(self$ptr)

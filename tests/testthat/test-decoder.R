@@ -5,13 +5,6 @@ tkn_to_idx <- function(spelling, token_dict, maxReps = 0){
   }
   return(pack_replabels(result, token_dict, maxReps))
 }
-
-# bench::mark(check = FALSE,
-#   lexicon1 <- load_words(sys_file("words.lst"), -1),
-#   lexicon2 <- load_words2(sys_file("words.lst"), -1)
-# )
-
-
   
 # test_that("load_words", {
   # emissions ---------------------------------------------------------------

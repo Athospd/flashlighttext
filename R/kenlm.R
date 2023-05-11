@@ -11,33 +11,33 @@ KenLM <- R6::R6Class(
     initialize = function(path = NULL, usrTknDict = NULL) {
       private$path_ <- path
       private$usrTknDict_ <- usrTknDict
-      private$ptr_ <- cpp_KenLM_constructor(path, usrTknDict$ptr)
+      private$ptr_ <- cpp_KenLMWrapper_constructor(path, usrTknDict$ptr)
     },
     
     #' @param startWithNothing a boolean
     #' @return LMState
     start = function(startWithNothing) {
-      cpp_KenLM_start(self$ptr, startWithNothing)
+      cpp_KenLMWrapper_start(self$ptr, startWithNothing)
     },
     
     #' @param state a state
     #' @param usrTokenIdx a usrTokenIdx
     #' @return list(LMState, numeric)
     score = function(state, usrTokenIdx) {
-      cpp_KenLM_score(self$ptr, state, usrTokenIdx)
+      cpp_KenLMWrapper_score(self$ptr, state, usrTokenIdx)
     },
     
     #' @param state a state
     #' @return list(LMState, numeric)
     finish = function(state) {
-      cpp_KenLM_finish(self$ptr, state)
+      cpp_KenLMWrapper_finish(self$ptr, state)
     }
   ),
   
   active = list(
     
     #' @field 
-    #' ptr has a single parameter new_ptr that accepts a new pointer to a KenLM.
+    #' ptr has a single parameter new_ptr that accepts a new pointer to a KenLMWrapper.
     #' It returns invisible(NULL)
     ptr = function(new_ptr) {
       if(!missing(new_ptr)) {

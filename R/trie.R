@@ -11,12 +11,12 @@ Trie <- R6::R6Class(
     initialize = function(maxChildren = NULL, rootIdx = NULL) {
       private$maxChildren_ <- maxChildren
       private$rootIdx_ <- rootIdx
-      private$ptr_ <- cpp_Trie_constructor(maxChildren, rootIdx)
+      private$ptr_ <- cpp_TrieWrapper_constructor(maxChildren, rootIdx)
     },
     
     #' @return the root node pointer
     get_root = function() {
-      invisible(cpp_Trie_getRoot(self$ptr))
+      invisible(cpp_TrieWrapper_getRoot(self$ptr))
     },
     
     #' @param indices a indices
@@ -25,7 +25,7 @@ Trie <- R6::R6Class(
     #' @return a TrieNodePtr
     insert = function(indices, label, score) {
       trie_node <- TrieNode$new(0)
-      trie_node$ptr <- cpp_Trie_insert(self$ptr, indices, label, score)
+      trie_node$ptr <- cpp_TrieWrapper_insert(self$ptr, indices, label, score)
       return(invisible(trie_node))
     },
     
@@ -33,7 +33,7 @@ Trie <- R6::R6Class(
     #' @return a TrieNodePtr
     search = function(indices) {
       trie_node <- TrieNode$new(0)
-      trie_node$ptr <- cpp_Trie_search(self$ptr, indices)
+      trie_node$ptr <- cpp_TrieWrapper_search(self$ptr, indices)
       return(invisible(trie_node))
     },
     
@@ -41,7 +41,7 @@ Trie <- R6::R6Class(
     #' @param smearMode a smearMode (see [SmearingModes] for options)
     #' @return invisible(NULL)
     smear = function(smearMode) {
-      cpp_Trie_smear(self$ptr, smearMode)
+      cpp_TrieWrapper_smear(self$ptr, smearMode)
       invisible(self$ptr)
     }
   ),

@@ -28,7 +28,7 @@ Decoder <- R6::R6Class(
     #' @return invisible(NULL)
     decode = function(emissions, T, N) {
       self$decode_begin()
-      self$decode_step(lobstr::obj_addr(emissions), T, N)
+      self$decode_step(emissions, T, N)
       self$decode_end()
       return(self$get_all_final_hypothesis())
     },

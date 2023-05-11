@@ -34,15 +34,9 @@ LexiconDecoder
 }
 }
 \if{html}{\out{
-<details><summary>Inherited methods</summary>
+<details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decode"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decode'><code>flashlighttext::Decoder$decode()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeBegin"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeBegin'><code>flashlighttext::Decoder$decodeBegin()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeEnd"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeEnd'><code>flashlighttext::Decoder$decodeEnd()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeStep"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeStep'><code>flashlighttext::Decoder$decodeStep()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="getAllFinalHypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-getAllFinalHypothesis'><code>flashlighttext::Decoder$getAllFinalHypothesis()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="getBestHypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-getBestHypothesis'><code>flashlighttext::Decoder$getBestHypothesis()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="nDecodedFramesInBuffer"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-nDecodedFramesInBuffer'><code>flashlighttext::Decoder$nDecodedFramesInBuffer()</code></a></span></li>
 </ul>
 </details>
 }}

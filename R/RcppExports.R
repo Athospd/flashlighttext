@@ -77,16 +77,32 @@ cpp_KenLM_constructor <- function(path, ptr) {
     .Call('_flashlighttext_cpp_KenLM_constructor', PACKAGE = 'flashlighttext', path, ptr)
 }
 
+cpp_KenLMWrapper_constructor <- function(path, ptr) {
+    .Call('_flashlighttext_cpp_KenLMWrapper_constructor', PACKAGE = 'flashlighttext', path, ptr)
+}
+
 cpp_KenLM_start <- function(obj, startWithNothing) {
     .Call('_flashlighttext_cpp_KenLM_start', PACKAGE = 'flashlighttext', obj, startWithNothing)
+}
+
+cpp_KenLMWrapper_start <- function(obj, startWithNothing) {
+    .Call('_flashlighttext_cpp_KenLMWrapper_start', PACKAGE = 'flashlighttext', obj, startWithNothing)
 }
 
 cpp_KenLM_score <- function(obj, state, usrTokenIdx) {
     .Call('_flashlighttext_cpp_KenLM_score', PACKAGE = 'flashlighttext', obj, state, usrTokenIdx)
 }
 
+cpp_KenLMWrapper_score <- function(obj, state, usrTokenIdx) {
+    .Call('_flashlighttext_cpp_KenLMWrapper_score', PACKAGE = 'flashlighttext', obj, state, usrTokenIdx)
+}
+
 cpp_KenLM_finish <- function(obj, state) {
     .Call('_flashlighttext_cpp_KenLM_finish', PACKAGE = 'flashlighttext', obj, state)
+}
+
+cpp_KenLMWrapper_finish <- function(obj, state) {
+    .Call('_flashlighttext_cpp_KenLMWrapper_finish', PACKAGE = 'flashlighttext', obj, state)
 }
 
 cpp_LexiconDecoderOptions_constructor <- function(beamSize, beamSizeToken, beamThreshold, lmWeight, wordScore, unkScore, silScore, logAdd, criterionType) {
@@ -165,8 +181,8 @@ cpp_LexiconDecoderOptions_get_CriterionType <- function(obj) {
     .Call('_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType', PACKAGE = 'flashlighttext', obj)
 }
 
-cpp_LexiconDecoder_constructor <- function(opt, lexicon, lm, sil, blank, unk, transitions, isLmToken) {
-    .Call('_flashlighttext_cpp_LexiconDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon, lm, sil, blank, unk, transitions, isLmToken)
+cpp_LexiconDecoder_constructor <- function(opt, lexicon_, lm_, sil, blank, unk, transitions, isLmToken) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon_, lm_, sil, blank, unk, transitions, isLmToken)
 }
 
 cpp_LexiconDecoder_decodeBegin <- function(obj) {
@@ -179,6 +195,10 @@ cpp_LexiconDecoder_decodeStep <- function(obj, emissions, T, N) {
 
 cpp_LexiconDecoder_decodeEnd <- function(obj) {
     invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decodeEnd', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_LexiconDecoder_decode <- function(obj, emissions, T, N) {
+    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decode', PACKAGE = 'flashlighttext', obj, emissions, T, N))
 }
 
 cpp_LexiconDecoder_nHypothesis <- function(obj) {
@@ -198,27 +218,47 @@ cpp_LexiconDecoder_getBestHypothesis <- function(obj, lookBack = 0L) {
 }
 
 cpp_LexiconDecoder_getAllFinalHypothesis <- function(obj) {
-    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis', PACKAGE = 'flashlighttext', obj))
+    .Call('_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Trie_constructor <- function(maxChildren, rootIdx) {
     .Call('_flashlighttext_cpp_Trie_constructor', PACKAGE = 'flashlighttext', maxChildren, rootIdx)
 }
 
+cpp_TrieWrapper_constructor <- function(maxChildren, rootIdx) {
+    .Call('_flashlighttext_cpp_TrieWrapper_constructor', PACKAGE = 'flashlighttext', maxChildren, rootIdx)
+}
+
 cpp_Trie_getRoot <- function(obj) {
     .Call('_flashlighttext_cpp_Trie_getRoot', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_TrieWrapper_getRoot <- function(obj) {
+    .Call('_flashlighttext_cpp_TrieWrapper_getRoot', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Trie_insert <- function(obj, indices, label, score) {
     .Call('_flashlighttext_cpp_Trie_insert', PACKAGE = 'flashlighttext', obj, indices, label, score)
 }
 
+cpp_TrieWrapper_insert <- function(obj, indices, label, score) {
+    .Call('_flashlighttext_cpp_TrieWrapper_insert', PACKAGE = 'flashlighttext', obj, indices, label, score)
+}
+
 cpp_Trie_search <- function(obj, indices) {
     .Call('_flashlighttext_cpp_Trie_search', PACKAGE = 'flashlighttext', obj, indices)
 }
 
+cpp_TrieWrapper_search <- function(obj, indices) {
+    .Call('_flashlighttext_cpp_TrieWrapper_search', PACKAGE = 'flashlighttext', obj, indices)
+}
+
 cpp_Trie_smear <- function(obj, smear_mode) {
     invisible(.Call('_flashlighttext_cpp_Trie_smear', PACKAGE = 'flashlighttext', obj, smear_mode))
+}
+
+cpp_TrieWrapper_smear <- function(obj, smear_mode) {
+    invisible(.Call('_flashlighttext_cpp_TrieWrapper_smear', PACKAGE = 'flashlighttext', obj, smear_mode))
 }
 
 cpp_TrieNode_constructor <- function(idx) {

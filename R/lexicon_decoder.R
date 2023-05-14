@@ -168,7 +168,7 @@ LexiconDecoder <- R6::R6Class(
     #' @param blank_token_idx a blank_token_idx 
     #' @param unk_token_idx a unk_token_idx 
     #' @param transitions a transitions 
-    #' @param is_token_lm a is_token_lm 
+    #' @param is_lm_token a is_lm_token 
     #' @return LexiconDecoder
     initialize = function(
       options, 
@@ -178,7 +178,7 @@ LexiconDecoder <- R6::R6Class(
       blank_token_idx, 
       unk_token_idx, 
       transitions, 
-      is_token_lm
+      is_lm_token
     ) {
       private$options_ <- options
       private$trie_ <- trie
@@ -187,7 +187,7 @@ LexiconDecoder <- R6::R6Class(
       private$blank_token_idx_ <- blank_token_idx
       private$unk_token_idx_ <- unk_token_idx
       private$transitions_ <- transitions
-      private$is_token_lm_ <- is_token_lm
+      private$is_lm_token_ <- is_lm_token
       private$ptr_ <- cpp_LexiconDecoder_constructor(
         options$ptr, 
         trie$ptr, 
@@ -196,7 +196,7 @@ LexiconDecoder <- R6::R6Class(
         blank_token_idx, 
         unk_token_idx, 
         transitions, 
-        is_token_lm
+        is_lm_token
       )
     },
     #' @return invisible(NULL)
@@ -214,13 +214,15 @@ LexiconDecoder <- R6::R6Class(
     decode_end = function() {
       cpp_LexiconDecoder_decodeEnd(self$ptr)
     },
-    # #' @param emissions a emissions 
-    # #' @param T a T 
-    # #' @param N a N 
-    # #' @return invisible(NULL)
-    # decode = function(emissions, T, N) {
-    #   cpp_LexiconDecoder_decode(self$ptr, emissions, T, N)
-    # },
+    
+    #' @param emissions a emissions
+    #' @param T a T
+    #' @param N a N
+    #' @return invisible(NULL)
+    decode = function(emissions, T, N) {
+      cpp_LexiconDecoder_decode(self$ptr, emissions, T, N)
+    },
+    
     #' @return int
     n_hypothesis = function() {
       cpp_LexiconDecoder_nHypothesis(self$ptr)
@@ -262,7 +264,7 @@ LexiconDecoder <- R6::R6Class(
     blank_token_idx_ = NULL,
     unk_token_idx_ = NULL,
     transitions_ = NULL,
-    is_token_lm_ = NULL,
+    is_lm_token_ = NULL,
     candidates_ = NULL,
     candidatePtrs_ = NULL,
     candidatesBestScore_ = NULL,

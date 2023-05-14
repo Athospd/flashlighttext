@@ -181,8 +181,8 @@ cpp_LexiconDecoderOptions_get_CriterionType <- function(obj) {
     .Call('_flashlighttext_cpp_LexiconDecoderOptions_get_CriterionType', PACKAGE = 'flashlighttext', obj)
 }
 
-cpp_LexiconDecoder_constructor <- function(opt, lexicon_, lm_, sil, blank, unk, transitions, isLmToken) {
-    .Call('_flashlighttext_cpp_LexiconDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon_, lm_, sil, blank, unk, transitions, isLmToken)
+cpp_LexiconDecoder_constructor <- function(opt, lexicon, lm, sil, blank, unk, transitions, isLmToken) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon, lm, sil, blank, unk, transitions, isLmToken)
 }
 
 cpp_LexiconDecoder_decodeBegin <- function(obj) {
@@ -197,8 +197,12 @@ cpp_LexiconDecoder_decodeEnd <- function(obj) {
     invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decodeEnd', PACKAGE = 'flashlighttext', obj))
 }
 
+cpp_LexiconDecoder_results_from_decode <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconDecoder_results_from_decode', PACKAGE = 'flashlighttext', obj)
+}
+
 cpp_LexiconDecoder_decode <- function(obj, emissions, T, N) {
-    invisible(.Call('_flashlighttext_cpp_LexiconDecoder_decode', PACKAGE = 'flashlighttext', obj, emissions, T, N))
+    .Call('_flashlighttext_cpp_LexiconDecoder_decode', PACKAGE = 'flashlighttext', obj, emissions, T, N)
 }
 
 cpp_LexiconDecoder_nHypothesis <- function(obj) {
@@ -219,6 +223,106 @@ cpp_LexiconDecoder_getBestHypothesis <- function(obj, lookBack = 0L) {
 
 cpp_LexiconDecoder_getAllFinalHypothesis <- function(obj) {
     .Call('_flashlighttext_cpp_LexiconDecoder_getAllFinalHypothesis', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_constructor <- function(beamSize, beamSizeToken, beamThreshold, lmWeight, wordScore, eosScore, logAdd) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_constructor', PACKAGE = 'flashlighttext', beamSize, beamSizeToken, beamThreshold, lmWeight, wordScore, eosScore, logAdd)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_beamSize <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_beamSize', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_beamSize <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_beamSize', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_beamSizeToken <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_beamSizeToken', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_beamSizeToken <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_beamSizeToken', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_beamThreshold <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_beamThreshold', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_beamThreshold <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_beamThreshold', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_lmWeight <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_lmWeight', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_lmWeight <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_lmWeight', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_wordScore <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_wordScore', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_wordScore <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_wordScore', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_eosScore <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_eosScore', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_eosScore <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_eosScore', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_set_logAdd <- function(obj, value) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_set_logAdd', PACKAGE = 'flashlighttext', obj, value))
+}
+
+cpp_LexiconSeq2SeqDecoderOptions_get_logAdd <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoderOptions_get_logAdd', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoder_constructor <- function(opt, lexicon, lm, eos, emitting_model_update_func, max_output_length, is_lm_token) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_constructor', PACKAGE = 'flashlighttext', opt, lexicon, lm, eos, emitting_model_update_func, max_output_length, is_lm_token)
+}
+
+cpp_LexiconSeq2SeqDecoder_decodeBegin <- function(obj) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_decodeBegin', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_LexiconSeq2SeqDecoder_decodeStep <- function(obj, emissions, T, N) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_decodeStep', PACKAGE = 'flashlighttext', obj, emissions, T, N))
+}
+
+cpp_LexiconSeq2SeqDecoder_decodeEnd <- function(obj) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_decodeEnd', PACKAGE = 'flashlighttext', obj))
+}
+
+cpp_LexiconSeq2SeqDecoder_results_from_decode <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_results_from_decode', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoder_decode <- function(obj, emissions, T, N) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_decode', PACKAGE = 'flashlighttext', obj, emissions, T, N)
+}
+
+cpp_LexiconSeq2SeqDecoder_prune <- function(obj, lookBack = 0L) {
+    invisible(.Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_prune', PACKAGE = 'flashlighttext', obj, lookBack))
+}
+
+cpp_LexiconSeq2SeqDecoder_nDecodedFramesInBuffer <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_nDecodedFramesInBuffer', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_LexiconSeq2SeqDecoder_getBestHypothesis <- function(obj, lookBack = 0L) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_getBestHypothesis', PACKAGE = 'flashlighttext', obj, lookBack)
+}
+
+cpp_LexiconSeq2SeqDecoder_getAllFinalHypothesis <- function(obj) {
+    .Call('_flashlighttext_cpp_LexiconSeq2SeqDecoder_getAllFinalHypothesis', PACKAGE = 'flashlighttext', obj)
 }
 
 cpp_Trie_constructor <- function(maxChildren, rootIdx) {
@@ -267,5 +371,21 @@ cpp_TrieNode_constructor <- function(idx) {
 
 cpp_TrieNode_maxScore <- function(obj) {
     .Call('_flashlighttext_cpp_TrieNode_maxScore', PACKAGE = 'flashlighttext', obj)
+}
+
+cpp_ZeroLMWrapper_constructor <- function() {
+    .Call('_flashlighttext_cpp_ZeroLMWrapper_constructor', PACKAGE = 'flashlighttext')
+}
+
+cpp_ZeroLMWrapper_start <- function(obj, startWithNothing) {
+    .Call('_flashlighttext_cpp_ZeroLMWrapper_start', PACKAGE = 'flashlighttext', obj, startWithNothing)
+}
+
+cpp_ZeroLMWrapper_score <- function(obj, state, usrTozeroIdx) {
+    .Call('_flashlighttext_cpp_ZeroLMWrapper_score', PACKAGE = 'flashlighttext', obj, state, usrTozeroIdx)
+}
+
+cpp_ZeroLMWrapper_finish <- function(obj, state) {
+    .Call('_flashlighttext_cpp_ZeroLMWrapper_finish', PACKAGE = 'flashlighttext', obj, state)
 }
 

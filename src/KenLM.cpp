@@ -90,13 +90,13 @@ List cpp_KenLM_finish(XPtr<LM> obj, XPtr<LMStatePtr> state) {
 }
 
 // [[Rcpp::export]]
-List cpp_KenLMWrapper_finish(XPtr<KenLMWrapper> obj, XPtr<LMStatePtr> state) {
+Rcpp::List cpp_KenLMWrapper_finish(XPtr<KenLMWrapper> obj, XPtr<LMStatePtr> state) {
   
   std::pair<LMStatePtr, float> finish = obj->kenlm_wrap->finish(*state.get());
   auto finish_state = new LMStatePtr();
   *finish_state = finish.first;
   
-  List out = Rcpp::List::create(
+  Rcpp::List out = Rcpp::List::create(
     Rcpp::Named("state") = XPtr<LMStatePtr>(finish_state),
     Rcpp::Named("score") = finish.second
   );

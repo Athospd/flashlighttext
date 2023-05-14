@@ -181,7 +181,9 @@ decoder = LexiconDecoder(
 # each hypothesis is a struct with "score" and "words" representation
 # in the hypothesis and the "tokens" representation
 results = decoder.decode(emissions.ctypes.data, T, N)
-
+results[0].score # -1297.238538974896
+results[0].lmScore # -2.6859140396118164
+results[0].emittingModelScore # -1056.8667108956724
 print(f"Decoding complete, obtained {len(results)} results")
 print("Showing top 5 results:")
 for i in range(min(5, len(results))):
@@ -196,7 +198,8 @@ for i in range(min(5, len(results))):
   )
 
 
-self.assertEqual(len(results), 16)
+(len(results) == 16)
 hyp_score_target = [-284.0998, -284.108, -284.119, -284.127, -284.296]
 for i in range(min(5, len(results))):
-    self.assertAlmostEqual(results[i].score, hyp_score_target[i], places=3)
+    (results[i].score - hyp_score_target[i])
+

@@ -105,9 +105,6 @@ XPtr<TrieNode> cpp_TrieNode_constructor(int idx) {
 // methods ------------------------------
 // [[Rcpp::export]]
 float cpp_TrieNode_maxScore(XPtr<TrieNodePtr> obj) {
-  auto trie_node = new TrieNode(0L);
-  trie_node = obj->get();
-  float max_score = trie_node->maxScore;
-  return max_score;
+  return obj->get()->maxScore;
 }
 

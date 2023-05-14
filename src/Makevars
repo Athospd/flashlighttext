@@ -6,7 +6,7 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libkenlm_interpolate.a \
            flashlighttext/lib/libkenlm_filter.a \
            flashlighttext/lib/libkenlm_builder.a
-
+CXX_STD = CXX17
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight
 

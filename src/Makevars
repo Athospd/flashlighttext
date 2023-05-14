@@ -1,4 +1,4 @@
-PKG_CPPFLAGS = -Iflashlighttext/include -Iflashlighttext/include/kenlm
+PKG_CPPFLAGS = -Iflashlighttext/include -Iflashlighttext/include/kenlm 
 PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libflashlight-text-kenlm.a \
            flashlighttext/lib/libkenlm.a \
@@ -13,12 +13,16 @@ $(SHLIB): flashlight
 
 flashlight:
 	@echo "Building"
-	@echo "${CXX}"
+	@echo CXX is ${CXX}
 	mkdir build || true
-	(cd build; \
-        CC="$(CC)" CFLAGS="$(CFLAGS)" \
-        CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
-        cmake .. \
-        -DCMAKE_BUILD_TYPE=Release; \
-        cmake --build . --config Release)
+	(export CXX=/usr/bin/g++; \
+	echo CXX is --- ${CXX}; \
+	 cd build; \
+    CC="$(CC)" CFLAGS="$(CFLAGS)" \
+    CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
+    cmake .. \
+    -DCMAKE_BUILD_TYPE=Release; \
+    cmake --build . --config Release)
 
+	
+	

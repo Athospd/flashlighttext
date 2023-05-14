@@ -25,14 +25,14 @@ decoder <- Decoder$new()
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Decoder-new}{\code{Decoder$new()}}
-\item \href{#method-Decoder-decodeBegin}{\code{Decoder$decodeBegin()}}
-\item \href{#method-Decoder-decodeStep}{\code{Decoder$decodeStep()}}
-\item \href{#method-Decoder-decodeEnd}{\code{Decoder$decodeEnd()}}
+\item \href{#method-Decoder-decode_begin}{\code{Decoder$decode_begin()}}
+\item \href{#method-Decoder-decode_step}{\code{Decoder$decode_step()}}
+\item \href{#method-Decoder-decode_end}{\code{Decoder$decode_end()}}
 \item \href{#method-Decoder-decode}{\code{Decoder$decode()}}
 \item \href{#method-Decoder-prune}{\code{Decoder$prune()}}
-\item \href{#method-Decoder-nDecodedFramesInBuffer}{\code{Decoder$nDecodedFramesInBuffer()}}
-\item \href{#method-Decoder-getBestHypothesis}{\code{Decoder$getBestHypothesis()}}
-\item \href{#method-Decoder-getAllFinalHypothesis}{\code{Decoder$getAllFinalHypothesis()}}
+\item \href{#method-Decoder-n_decoded_frames_in_buffer}{\code{Decoder$n_decoded_frames_in_buffer()}}
+\item \href{#method-Decoder-get_best_hypothesis}{\code{Decoder$get_best_hypothesis()}}
+\item \href{#method-Decoder-get_all_final_hypothesis}{\code{Decoder$get_all_final_hypothesis()}}
 \item \href{#method-Decoder-clone}{\code{Decoder$clone()}}
 }
 }
@@ -49,11 +49,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decodeBegin"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decodeBegin}{}}}
-\subsection{Method \code{decodeBegin()}}{
+\if{html}{\out{<a id="method-Decoder-decode_begin"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-decode_begin}{}}}
+\subsection{Method \code{decode_begin()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decodeBegin()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_begin()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -61,11 +61,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decodeStep"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decodeStep}{}}}
-\subsection{Method \code{decodeStep()}}{
+\if{html}{\out{<a id="method-Decoder-decode_step"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-decode_step}{}}}
+\subsection{Method \code{decode_step()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decodeStep(emissions, T, N)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_step(emissions, T, N)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -84,11 +84,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decodeEnd"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decodeEnd}{}}}
-\subsection{Method \code{decodeEnd()}}{
+\if{html}{\out{<a id="method-Decoder-decode_end"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-decode_end}{}}}
+\subsection{Method \code{decode_end()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decodeEnd()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_end()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -138,11 +138,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-nDecodedFramesInBuffer"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-nDecodedFramesInBuffer}{}}}
-\subsection{Method \code{nDecodedFramesInBuffer()}}{
+\if{html}{\out{<a id="method-Decoder-n_decoded_frames_in_buffer"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-n_decoded_frames_in_buffer}{}}}
+\subsection{Method \code{n_decoded_frames_in_buffer()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$nDecodedFramesInBuffer()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$n_decoded_frames_in_buffer()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -150,11 +150,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-getBestHypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-getBestHypothesis}{}}}
-\subsection{Method \code{getBestHypothesis()}}{
+\if{html}{\out{<a id="method-Decoder-get_best_hypothesis"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-get_best_hypothesis}{}}}
+\subsection{Method \code{get_best_hypothesis()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$getBestHypothesis(lookBack = 0)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$get_best_hypothesis(lookBack = 0)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -169,11 +169,11 @@ invisible(NULL)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-getAllFinalHypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-getAllFinalHypothesis}{}}}
-\subsection{Method \code{getAllFinalHypothesis()}}{
+\if{html}{\out{<a id="method-Decoder-get_all_final_hypothesis"></a>}}
+\if{latex}{\out{\hypertarget{method-Decoder-get_all_final_hypothesis}{}}}
+\subsection{Method \code{get_all_final_hypothesis()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$getAllFinalHypothesis()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Decoder$get_all_final_hypothesis()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

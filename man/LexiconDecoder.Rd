@@ -25,6 +25,7 @@ LexiconDecoder
 \item \href{#method-LexiconDecoder-decode_begin}{\code{LexiconDecoder$decode_begin()}}
 \item \href{#method-LexiconDecoder-decode_step}{\code{LexiconDecoder$decode_step()}}
 \item \href{#method-LexiconDecoder-decode_end}{\code{LexiconDecoder$decode_end()}}
+\item \href{#method-LexiconDecoder-decode}{\code{LexiconDecoder$decode()}}
 \item \href{#method-LexiconDecoder-n_hypothesis}{\code{LexiconDecoder$n_hypothesis()}}
 \item \href{#method-LexiconDecoder-prune}{\code{LexiconDecoder$prune()}}
 \item \href{#method-LexiconDecoder-n_decoded_frames_in_buffer}{\code{LexiconDecoder$n_decoded_frames_in_buffer()}}
@@ -33,19 +34,6 @@ LexiconDecoder
 \item \href{#method-LexiconDecoder-clone}{\code{LexiconDecoder$clone()}}
 }
 }
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
-<ul>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decode"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decode'><code>flashlighttext::Decoder$decode()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeBegin"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeBegin'><code>flashlighttext::Decoder$decodeBegin()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeEnd"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeEnd'><code>flashlighttext::Decoder$decodeEnd()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decodeStep"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decodeStep'><code>flashlighttext::Decoder$decodeStep()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="getAllFinalHypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-getAllFinalHypothesis'><code>flashlighttext::Decoder$getAllFinalHypothesis()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="getBestHypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-getBestHypothesis'><code>flashlighttext::Decoder$getBestHypothesis()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="nDecodedFramesInBuffer"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-nDecodedFramesInBuffer'><code>flashlighttext::Decoder$nDecodedFramesInBuffer()</code></a></span></li>
-</ul>
-</details>
-}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconDecoder-new"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconDecoder-new}{}}}
@@ -59,7 +47,7 @@ LexiconDecoder
   blank_token_idx,
   unk_token_idx,
   transitions,
-  is_token_lm
+  is_lm_token
 )}\if{html}{\out{</div>}}
 }
 
@@ -80,7 +68,7 @@ LexiconDecoder
 
 \item{\code{transitions}}{a transitions}
 
-\item{\code{is_token_lm}}{a is_token_lm}
+\item{\code{is_lm_token}}{a is_lm_token}
 }
 \if{html}{\out{</div>}}
 }
@@ -131,6 +119,29 @@ invisible(NULL)
 \if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode_end()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+invisible(NULL)
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LexiconDecoder-decode"></a>}}
+\if{latex}{\out{\hypertarget{method-LexiconDecoder-decode}{}}}
+\subsection{Method \code{decode()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode(emissions, T, N)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{emissions}}{a emissions}
+
+\item{\code{T}}{a T}
+
+\item{\code{N}}{a N}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
 invisible(NULL)
 }

@@ -116,6 +116,7 @@ for i in range(len(sentence)):
     lm_state, lm_score = lm.score(lm_state, word_dict.get_index(sentence[i]))
     # add score of the current word to the total sentence score
     total_score += lm_score
+
 # move lm to the final state, the score returned is for eos
 lm_state, lm_score = lm.finish(lm_state)
 total_score += lm_score
@@ -180,4 +181,25 @@ decoder = LexiconDecoder(
 # each hypothesis is a struct with "score" and "words" representation
 # in the hypothesis and the "tokens" representation
 results = decoder.decode(emissions.ctypes.data, T, N)
+results[0].score # -1297.238538974896
+results[0].lmScore # -2.6859140396118164
+results[0].emittingModelScore # -1056.8667108956724
+print(f"Decoding complete, obtained {len(results)} results")
+print("Showing top 5 results:")
+for i in range(min(5, len(results))):
+  prediction = []
+  for idx in results[i].tokens:
+      if idx < 0:
+          break
+      prediction.append(token_dict.get_entry(idx))
+  prediction = " ".join(prediction)
+  print(
+      f"score={results[i].score} emittingModelScore={results[i].emittingModelScore} lmScore={results[i].lmScore} prediction='{prediction}'"
+  )
+
+
+(len(results) == 16)
+hyp_score_target = [-284.0998, -284.108, -284.119, -284.127, -284.296]
+for i in range(min(5, len(results))):
+    (results[i].score - hyp_score_target[i])
 

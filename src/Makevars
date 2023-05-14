@@ -12,6 +12,7 @@ $(SHLIB): flashlight
 
 flashlight:
 	@echo "Building"
+	export CXX=/usr/bin/g++;
 	mkdir build || true
 	(cd build; \
         CC="$(CC)" CFLAGS="$(CFLAGS)" \

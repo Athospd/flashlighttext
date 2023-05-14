@@ -1,9 +1,29 @@
 #include <stdexcept>
 #include <Rcpp.h>
 #include <string>
+#include <fstream>
+#include <iostream>
 using namespace Rcpp;
 #include <flashlight/lib/text/decoder/LexiconDecoder.h>
+#include <flashlight/lib/text/dictionary/Utils.h>
+#include <flashlight/lib/text/dictionary/Dictionary.h>
+#include <flashlight/lib/text/decoder/lm/KenLM.h>
+#include <flashlight/lib/text/decoder/Trie.h>
+#include "wrappers.h"
 using namespace fl::lib::text;
+
+template <typename T>
+std::string join(const std::vector<T>& vec, const char* delim) {
+  std::stringstream res;
+  std::copy(vec.begin(), vec.end(), std::ostream_iterator<T>(res, delim));
+  return res.str();
+}
+
+struct Emissions {
+  std::vector<float> emission; // A column-major tensor with shape T x N.
+  int nFrames{0};
+  int nTokens{0};
+};
 
 CriterionType string_to_CriterionType(std::string& criterion_type) {
   if(criterion_type == "ASG") return CriterionType::ASG;
@@ -89,53 +109,85 @@ std::string cpp_LexiconDecoderOptions_get_CriterionType(XPtr<LexiconDecoderOptio
 
 
 
-
-
 // LexiconDecoder /////////////////////////////////////////////////////////
 // constructors ------------------------------
-// [[Rcpp::export]]
+// [[Rcpp::export]]  
 XPtr<LexiconDecoder> cpp_LexiconDecoder_constructor(
     XPtr<LexiconDecoderOptions> opt,
-    XPtr<TriePtr> lexicon,
-    XPtr<LMPtr> lm,
+    XPtr<TrieWrapper> lexicon,
+    XPtr<KenLMWrapper> lm,
     int sil,
     int blank,
     int unk,
     std::vector<float>& transitions,
     bool isLmToken
 ) {
-  LexiconDecoder *obj = new LexiconDecoder(
-    *opt,
-    *lexicon.get(),
-    *lm.get(),
-    sil,
-    blank,
-    unk,
-    transitions,
-    isLmToken
+  LexiconDecoderOptions opt_ = *opt;
+  LexiconDecoder *decoder = new LexiconDecoder(
+  opt_,
+  lexicon->trie_wrap, 
+  lm->kenlm_wrap, 
+  sil, 
+  blank, 
+  unk, 
+  transitions, 
+  isLmToken
   );
-  XPtr<LexiconDecoder> ptr(obj, true);
+  
+  XPtr<LexiconDecoder> ptr(decoder, true);
   return ptr;
 }
 
 // methods ------------------------------
 // [[Rcpp::export]]
 void cpp_LexiconDecoder_decodeBegin(XPtr<LexiconDecoder> obj) {
-  std::cout << "-- decodeBegin --" << std::endl;
   obj->decodeBegin();
 }
 
 // [[Rcpp::export]]
-void cpp_LexiconDecoder_decodeStep(XPtr<LexiconDecoder> obj, std::string emissions, int T, int N) {
-  // float* emissions_address;
-  // std::cout << std::stof(emissions) << std::endl;
-  // *emissions_address = std::stof(emissions);
-  // obj->decodeStep(emissions_address, T, N);
+void cpp_LexiconDecoder_decodeStep(XPtr<LexiconDecoder> obj, std::vector<float>& emissions, int T, int N) {
+  float *emissions_ = emissions.data();
+  obj->decodeStep(emissions_, T, N);
 }
 
 // [[Rcpp::export]]
 void cpp_LexiconDecoder_decodeEnd(XPtr<LexiconDecoder> obj) {
-  // obj->decodeEnd();
+  obj->decodeEnd();
+}
+
+// [[Rcpp::export]]
+List cpp_LexiconDecoder_results_from_decode(XPtr<std::vector<DecodeResult>> obj) {
+  std::vector<DecodeResult> *out(obj);
+  std::vector<double> score_vec;
+  std::vector<double> emittingModelScore_vec;
+  std::vector<double> lmScore_vec;
+  std::vector<std::vector<int>> words_vec;
+  std::vector<std::vector<int>> tokens_vec;
+  // std::cout << "    score" << " " << "emittingModelScore" << " " << "lmScore" << "  " << "word" << "   " << "tokens" << std::endl;
+  for (auto const& it : *out) {
+    // std::cout << it.score << "    "<< it.emittingModelScore << "   "<< it.lmScore << "  " << join<int>(it.words, "") << "  " << join<int>(it.tokens, "")  << std::endl;
+    score_vec.push_back(it.score);
+    emittingModelScore_vec.push_back(it.emittingModelScore);
+    lmScore_vec.push_back(it.lmScore);
+    words_vec.push_back(it.words);
+    tokens_vec.push_back(it.tokens);
+  }
+  
+  return Rcpp::List::create(
+    Rcpp::Named("score") = score_vec,
+    Rcpp::Named("emittingModelScore") = emittingModelScore_vec,
+    Rcpp::Named("lmScore") = lmScore_vec,
+    Rcpp::Named("words") = words_vec,
+    Rcpp::Named("tokens") = tokens_vec
+  );
+}
+
+// [[Rcpp::export]]
+Rcpp::List cpp_LexiconDecoder_decode(XPtr<LexiconDecoder> obj, std::vector<float>& emissions, int T, int N) {
+  float *emissions_ = emissions.data();
+  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
+  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
+  return cpp_LexiconDecoder_results_from_decode(out_ptr);
 }
 
 // [[Rcpp::export]]
@@ -161,18 +213,10 @@ XPtr<DecodeResult> cpp_LexiconDecoder_getBestHypothesis(XPtr<LexiconDecoder> obj
   return out_ptr;
 }
 
-// // [[Rcpp::export]]
-// XPtr<std::vector<DecodeResult>> cpp_LexiconDecoder_getAllFinalHypothesis(XPtr<LexiconDecoder> obj) {
-//   std::vector<DecodeResult> *out;
-//   *out = obj->getAllFinalHypothesis();
-//   XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-//   return out_ptr;
-// }
-
 // [[Rcpp::export]]
-void cpp_LexiconDecoder_getAllFinalHypothesis(XPtr<LexiconDecoder> obj) {
-  // std::vector<DecodeResult> *out;
-  // *out = obj->getAllFinalHypothesis();
-  // XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-  // return out_ptr;
+Rcpp::List cpp_LexiconDecoder_getAllFinalHypothesis(XPtr<LexiconDecoder> obj) {
+  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->getAllFinalHypothesis());
+  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
+  return cpp_LexiconDecoder_results_from_decode(out_ptr);
 }
+

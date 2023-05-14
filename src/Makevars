@@ -10,10 +10,10 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight
 
+
 flashlight:
 	@echo "Building"
-	@export CXX=/usr/bin/g++
-	@echo $CXX
+	@echo "${CXX}"
 	mkdir build || true
 	(cd build; \
         CC="$(CC)" CFLAGS="$(CFLAGS)" \

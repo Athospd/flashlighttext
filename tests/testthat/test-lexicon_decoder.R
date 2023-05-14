@@ -85,7 +85,7 @@ test_that("lexicon_decoder", {
     blank_token_idx = -1,
     unk_token_idx = unk_idx,
     transitions = transitions,
-    is_token_lm = FALSE
+    is_lm_token = FALSE
   )
   
   # run decoding

@@ -4,6 +4,7 @@
 #' @rdname ZeroLM
 ZeroLM <- R6::R6Class(
   "ZeroLM",
+  inherit = LM,
   public = list(
     #' @param path a path
     #' @param usrTknDict a usrTknDict
@@ -14,8 +15,7 @@ ZeroLM <- R6::R6Class(
     
     #' @param startWithNothing a boolean
     #' @return LMState
-    start = function(startWithNothing) {
-      if(missing(startWithNothing)) startWithNothing <- FALSE
+    start = function(startWithNothing = FALSE) {
       cpp_ZeroLMWrapper_start(self$ptr, startWithNothing)
     },
     
@@ -31,19 +31,5 @@ ZeroLM <- R6::R6Class(
     finish = function(state) {
       cpp_ZeroLMWrapper_finish(self$ptr, state)
     }
-  ),
-  
-  active = list(
-    #' @field 
-    #' ptr has a single parameter new_ptr that accepts a new pointer to a ZeroLMWrapper.
-    #' It returns invisible(NULL)
-    ptr = function(new_ptr) {
-      if(!missing(new_ptr)) private$ptr_ <- new_ptr
-      private$ptr_
-    }
-  ),
-  
-  private = list(
-    ptr_ = NULL
   )
 )

@@ -5,7 +5,6 @@
 #include <vector>
 
 #include <Rcpp.h>
-#include <string>
 using namespace Rcpp;
 #include <flashlight/lib/text/dictionary/Dictionary.h>
 #include <flashlight/lib/text/dictionary/Utils.h>

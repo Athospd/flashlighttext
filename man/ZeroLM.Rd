@@ -8,13 +8,8 @@ ZeroLM
 
 ZeroLM
 }
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a ZeroLMWrapper.
-It returns invisible(NULL)}
-}
-\if{html}{\out{</div>}}
+\section{Super class}{
+\code{\link[flashlighttext:LM]{flashlighttext::LM}} -> \code{ZeroLM}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -52,7 +47,7 @@ ZeroLM
 \if{latex}{\out{\hypertarget{method-ZeroLM-start}{}}}
 \subsection{Method \code{start()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ZeroLM$start(startWithNothing)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ZeroLM$start(startWithNothing = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

@@ -9,13 +9,6 @@ using namespace fl::lib::text;
 // Trie ////////////////////////////////////////////////////////////////////
 // constructors ------------------------------
 // [[Rcpp::export]]
-XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx) {
-  Trie *obj = new Trie(maxChildren, rootIdx);
-  XPtr<Trie> ptr(obj, true);
-  return ptr;
-}
-
-// [[Rcpp::export]]
 XPtr<TrieWrapper> cpp_TrieWrapper_constructor(int maxChildren, int rootIdx) {
   TrieWrapper *obj = new TrieWrapper(maxChildren, rootIdx);
   XPtr<TrieWrapper> ptr(obj, true);
@@ -24,50 +17,24 @@ XPtr<TrieWrapper> cpp_TrieWrapper_constructor(int maxChildren, int rootIdx) {
 
 // methods ------------------------------
 // [[Rcpp::export]]
-XPtr<TrieNode*> cpp_Trie_getRoot(XPtr<Trie> obj) {
+XPtr<TrieNode> cpp_TrieWrapper_getRoot(XPtr<TrieWrapper> obj) {
   auto trie_node = new TrieNode(0L);
-  *trie_node = *(obj->getRoot());
-  XPtr<TrieNode*> out(&trie_node, true);
+  *trie_node = *(obj->getTrieWrap()->getRoot());
+  XPtr<TrieNode> out(trie_node, true);
   return out;
 }
 
 // [[Rcpp::export]]
-XPtr<TrieNode*> cpp_TrieWrapper_getRoot(XPtr<TrieWrapper> obj) {
-  auto trie_node = new TrieNode(0L);
-  *trie_node = *(obj->trie_wrap->getRoot());
-  XPtr<TrieNode*> out(&trie_node, true);
+XPtr<TrieNodeWrapper> cpp_TrieWrapper_insert(XPtr<TrieWrapper> obj, const std::vector<int>& indices, int label, float score) {
+  auto trie_node_ptr = new TrieNodeWrapper(obj->getTrieWrap()->insert(indices, label, score));
+  XPtr<TrieNodeWrapper> out(trie_node_ptr, true);
   return out;
 }
 
 // [[Rcpp::export]]
-XPtr<TrieNodePtr> cpp_Trie_insert(XPtr<Trie> obj, const std::vector<int>& indices, int label, float score) {
-  auto trie_node_ptr = new TrieNodePtr();
-  *trie_node_ptr = obj->insert(indices, label, score);
-  XPtr<TrieNodePtr> out(trie_node_ptr, true);
-  return out;
-}
-
-// [[Rcpp::export]]
-XPtr<TrieNodePtr> cpp_TrieWrapper_insert(XPtr<TrieWrapper> obj, const std::vector<int>& indices, int label, float score) {
-  auto trie_node_ptr = new TrieNodePtr();
-  *trie_node_ptr = obj->trie_wrap->insert(indices, label, score);
-  XPtr<TrieNodePtr> out(trie_node_ptr, true);
-  return out;
-}
-
-// [[Rcpp::export]]
-XPtr<TrieNodePtr> cpp_Trie_search(XPtr<Trie> obj, const std::vector<int>& indices) {
-  auto trie_node_ptr = new TrieNodePtr();
-  *trie_node_ptr = obj->search(indices);
-  XPtr<TrieNodePtr> out(trie_node_ptr, true);
-  return out;
-}
-
-// [[Rcpp::export]]
-XPtr<TrieNodePtr> cpp_TrieWrapper_search(XPtr<TrieWrapper> obj, const std::vector<int>& indices) {
-  auto trie_node_ptr = new TrieNodePtr();
-  *trie_node_ptr = obj->trie_wrap->search(indices);
-  XPtr<TrieNodePtr> out(trie_node_ptr, true);
+XPtr<TrieNodeWrapper> cpp_TrieWrapper_search(XPtr<TrieWrapper> obj, const std::vector<int>& indices) {
+  auto trie_node_ptr = new TrieNodeWrapper(obj->getTrieWrap()->search(indices));
+  XPtr<TrieNodeWrapper> out(trie_node_ptr, true);
   return out;
 }
 
@@ -79,15 +46,9 @@ SmearingMode SmearingMode_convert(const std::string& smear_mode) {
 }
 
 // [[Rcpp::export]]
-void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode) {
-  SmearingMode smear_mode_ = SmearingMode_convert(smear_mode);
-  obj->smear(smear_mode_);
-}
-
-// [[Rcpp::export]]
 void cpp_TrieWrapper_smear(XPtr<TrieWrapper> obj, std::string& smear_mode) {
   SmearingMode smear_mode_ = SmearingMode_convert(smear_mode);
-  obj->trie_wrap->smear(smear_mode_);
+  obj->getTrieWrap()->smear(smear_mode_);
 }
 
 

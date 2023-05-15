@@ -20,22 +20,20 @@ XPtr<ZeroLMWrapper> cpp_ZeroLMWrapper_constructor() {
 
 // methods ------------------------------
 // [[Rcpp::export]]
-XPtr<LMStatePtr> cpp_ZeroLMWrapper_start(XPtr<ZeroLMWrapper> obj, bool startWithNothing) {
-  auto lm_state_ptr = new LMStatePtr();
-  *lm_state_ptr = obj->zerolm_wrap->start(startWithNothing);
-  XPtr<LMStatePtr> out(lm_state_ptr, true);
+XPtr<LMStateWrapper> cpp_ZeroLMWrapper_start(XPtr<ZeroLMWrapper> obj, bool startWithNothing) {
+  LMStateWrapper* lm_state_ptr = new LMStateWrapper(obj->getZeroLMWrap()->start(startWithNothing));
+  XPtr<LMStateWrapper> out(lm_state_ptr, true);
   return out;
 }
 
 // [[Rcpp::export]]
-List cpp_ZeroLMWrapper_score(XPtr<ZeroLMWrapper> obj, XPtr<LMStatePtr> state, const int usrTozeroIdx) {
+Rcpp::List cpp_ZeroLMWrapper_score(XPtr<ZeroLMWrapper> obj, XPtr<LMStateWrapper> state, const int usrTozeroIdx) {
   
-  std::pair<LMStatePtr, float> score = obj->zerolm_wrap->score(*state.get(), usrTozeroIdx);
-  auto score_state = new LMStatePtr();
-  *score_state = score.first;
+  std::pair<LMStatePtr, float> score = obj->getZeroLMWrap()->score(state->getLMStateWrap(), usrTozeroIdx);
+  auto score_state = new LMStateWrapper(score.first);
   
   List out = Rcpp::List::create(
-    Rcpp::Named("state") = XPtr<LMStatePtr>(score_state),
+    Rcpp::Named("state") = XPtr<LMStateWrapper>(score_state),
     Rcpp::Named("score") = score.second
   );
   
@@ -43,14 +41,13 @@ List cpp_ZeroLMWrapper_score(XPtr<ZeroLMWrapper> obj, XPtr<LMStatePtr> state, co
 }
 
 // [[Rcpp::export]]
-Rcpp::List cpp_ZeroLMWrapper_finish(XPtr<ZeroLMWrapper> obj, XPtr<LMStatePtr> state) {
+Rcpp::List cpp_ZeroLMWrapper_finish(XPtr<ZeroLMWrapper> obj, XPtr<LMStateWrapper> state) {
   
-  std::pair<LMStatePtr, float> finish = obj->zerolm_wrap->finish(*state.get());
-  auto finish_state = new LMStatePtr();
-  *finish_state = finish.first;
+  std::pair<LMStatePtr, float> finish = obj->getZeroLMWrap()->finish(state->getLMStateWrap());
+  auto finish_state = new LMStateWrapper(finish.first);
   
   Rcpp::List out = Rcpp::List::create(
-    Rcpp::Named("state") = XPtr<LMStatePtr>(finish_state),
+    Rcpp::Named("state") = XPtr<LMStateWrapper>(finish_state),
     Rcpp::Named("score") = finish.second
   );
   

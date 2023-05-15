@@ -4,6 +4,7 @@
 #' @rdname KenLM
 KenLM <- R6::R6Class(
   "KenLM",
+  inherit = LM,
   public = list(
     #' @param path a character string representing the path to the binary file containing the language model.
     #' @param usrTknDict a list of user-defined tokens.
@@ -35,14 +36,6 @@ KenLM <- R6::R6Class(
   ),
   
   active = list(
-    #' @field 
-    #' ptr has a single parameter new_ptr that accepts a new pointer to a KenLMWrapper.
-    #' It returns invisible(NULL)
-    ptr = function(new_ptr) {
-      if(!missing(new_ptr))  private$ptr_ <- new_ptr
-      private$ptr_
-    },
-    
     #' @field
     #' path returns a string
     path = function() {
@@ -57,7 +50,6 @@ KenLM <- R6::R6Class(
   ),
   
   private = list(
-    ptr_ = NULL,
     path_ = NULL,
     usrTknDict_ = NULL
   )

@@ -220,44 +220,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_KenLM_constructor
-XPtr<KenLM> cpp_KenLM_constructor(const std::string& path, SEXP ptr);
-RcppExport SEXP _flashlighttext_cpp_KenLM_constructor(SEXP pathSEXP, SEXP ptrSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_constructor(path, ptr));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_KenLMWrapper_constructor
-XPtr<KenLMWrapper> cpp_KenLMWrapper_constructor(const std::string& path, SEXP ptr);
-RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_constructor(SEXP pathSEXP, SEXP ptrSEXP) {
+XPtr<KenLMWrapper> cpp_KenLMWrapper_constructor(const std::string& path, XPtr<Dictionary> usrTknDict);
+RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_constructor(SEXP pathSEXP, SEXP usrTknDictSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type ptr(ptrSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_KenLMWrapper_constructor(path, ptr));
-    return rcpp_result_gen;
-END_RCPP
-}
-// cpp_KenLM_start
-XPtr<LMStatePtr> cpp_KenLM_start(XPtr<LM> obj, bool startWithNothing);
-RcppExport SEXP _flashlighttext_cpp_KenLM_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<LM> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< bool >::type startWithNothing(startWithNothingSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_start(obj, startWithNothing));
+    Rcpp::traits::input_parameter< XPtr<Dictionary> >::type usrTknDict(usrTknDictSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_KenLMWrapper_constructor(path, usrTknDict));
     return rcpp_result_gen;
 END_RCPP
 }
 // cpp_KenLMWrapper_start
-XPtr<LMStatePtr> cpp_KenLMWrapper_start(XPtr<KenLMWrapper> obj, bool startWithNothing);
+XPtr<LMStateWrapper> cpp_KenLMWrapper_start(XPtr<KenLMWrapper> obj, bool startWithNothing);
 RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -268,53 +244,73 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_KenLM_score
-List cpp_KenLM_score(XPtr<LM> obj, XPtr<LMStatePtr> state, const int usrTokenIdx);
-RcppExport SEXP _flashlighttext_cpp_KenLM_score(SEXP objSEXP, SEXP stateSEXP, SEXP usrTokenIdxSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<LM> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
-    Rcpp::traits::input_parameter< const int >::type usrTokenIdx(usrTokenIdxSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_score(obj, state, usrTokenIdx));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_KenLMWrapper_score
-List cpp_KenLMWrapper_score(XPtr<KenLMWrapper> obj, XPtr<LMStatePtr> state, const int usrTokenIdx);
+List cpp_KenLMWrapper_score(XPtr<KenLMWrapper> obj, XPtr<LMStateWrapper> state, const int usrTokenIdx);
 RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_score(SEXP objSEXP, SEXP stateSEXP, SEXP usrTokenIdxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtr<KenLMWrapper> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type state(stateSEXP);
     Rcpp::traits::input_parameter< const int >::type usrTokenIdx(usrTokenIdxSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_KenLMWrapper_score(obj, state, usrTokenIdx));
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_KenLM_finish
-List cpp_KenLM_finish(XPtr<LM> obj, XPtr<LMStatePtr> state);
-RcppExport SEXP _flashlighttext_cpp_KenLM_finish(SEXP objSEXP, SEXP stateSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<LM> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_KenLM_finish(obj, state));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_KenLMWrapper_finish
-Rcpp::List cpp_KenLMWrapper_finish(XPtr<KenLMWrapper> obj, XPtr<LMStatePtr> state);
+Rcpp::List cpp_KenLMWrapper_finish(XPtr<KenLMWrapper> obj, XPtr<LMStateWrapper> state);
 RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_finish(SEXP objSEXP, SEXP stateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtr<KenLMWrapper> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type state(stateSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_KenLMWrapper_finish(obj, state));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LMStateWrapper_constructor
+XPtr<LMStateWrapper> cpp_LMStateWrapper_constructor();
+RcppExport SEXP _flashlighttext_cpp_LMStateWrapper_constructor() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(cpp_LMStateWrapper_constructor());
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LMStateWrapper_child
+XPtr<LMStateWrapper> cpp_LMStateWrapper_child(XPtr<LMStateWrapper> obj, int& usrIdx);
+RcppExport SEXP _flashlighttext_cpp_LMStateWrapper_child(SEXP objSEXP, SEXP usrIdxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int& >::type usrIdx(usrIdxSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LMStateWrapper_child(obj, usrIdx));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LMStateWrapper_compare
+int cpp_LMStateWrapper_compare(XPtr<LMStateWrapper> obj, XPtr<LMStateWrapper> state);
+RcppExport SEXP _flashlighttext_cpp_LMStateWrapper_compare(SEXP objSEXP, SEXP stateSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type state(stateSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LMStateWrapper_compare(obj, state));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_LMStateWrapper_children
+Rcpp::List cpp_LMStateWrapper_children(XPtr<LMStateWrapper> obj);
+RcppExport SEXP _flashlighttext_cpp_LMStateWrapper_children(SEXP objSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type obj(objSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_LMStateWrapper_children(obj));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -958,18 +954,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Trie_constructor
-XPtr<Trie> cpp_Trie_constructor(int maxChildren, int rootIdx);
-RcppExport SEXP _flashlighttext_cpp_Trie_constructor(SEXP maxChildrenSEXP, SEXP rootIdxSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type maxChildren(maxChildrenSEXP);
-    Rcpp::traits::input_parameter< int >::type rootIdx(rootIdxSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Trie_constructor(maxChildren, rootIdx));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_TrieWrapper_constructor
 XPtr<TrieWrapper> cpp_TrieWrapper_constructor(int maxChildren, int rootIdx);
 RcppExport SEXP _flashlighttext_cpp_TrieWrapper_constructor(SEXP maxChildrenSEXP, SEXP rootIdxSEXP) {
@@ -982,19 +966,8 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Trie_getRoot
-XPtr<TrieNode*> cpp_Trie_getRoot(XPtr<Trie> obj);
-RcppExport SEXP _flashlighttext_cpp_Trie_getRoot(SEXP objSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Trie_getRoot(obj));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_TrieWrapper_getRoot
-XPtr<TrieNode*> cpp_TrieWrapper_getRoot(XPtr<TrieWrapper> obj);
+XPtr<TrieNode> cpp_TrieWrapper_getRoot(XPtr<TrieWrapper> obj);
 RcppExport SEXP _flashlighttext_cpp_TrieWrapper_getRoot(SEXP objSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1004,22 +977,8 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Trie_insert
-XPtr<TrieNodePtr> cpp_Trie_insert(XPtr<Trie> obj, const std::vector<int>& indices, int label, float score);
-RcppExport SEXP _flashlighttext_cpp_Trie_insert(SEXP objSEXP, SEXP indicesSEXP, SEXP labelSEXP, SEXP scoreSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
-    Rcpp::traits::input_parameter< int >::type label(labelSEXP);
-    Rcpp::traits::input_parameter< float >::type score(scoreSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Trie_insert(obj, indices, label, score));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_TrieWrapper_insert
-XPtr<TrieNodePtr> cpp_TrieWrapper_insert(XPtr<TrieWrapper> obj, const std::vector<int>& indices, int label, float score);
+XPtr<TrieNodeWrapper> cpp_TrieWrapper_insert(XPtr<TrieWrapper> obj, const std::vector<int>& indices, int label, float score);
 RcppExport SEXP _flashlighttext_cpp_TrieWrapper_insert(SEXP objSEXP, SEXP indicesSEXP, SEXP labelSEXP, SEXP scoreSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1032,20 +991,8 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_Trie_search
-XPtr<TrieNodePtr> cpp_Trie_search(XPtr<Trie> obj, const std::vector<int>& indices);
-RcppExport SEXP _flashlighttext_cpp_Trie_search(SEXP objSEXP, SEXP indicesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Trie_search(obj, indices));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_TrieWrapper_search
-XPtr<TrieNodePtr> cpp_TrieWrapper_search(XPtr<TrieWrapper> obj, const std::vector<int>& indices);
+XPtr<TrieNodeWrapper> cpp_TrieWrapper_search(XPtr<TrieWrapper> obj, const std::vector<int>& indices);
 RcppExport SEXP _flashlighttext_cpp_TrieWrapper_search(SEXP objSEXP, SEXP indicesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1054,17 +1001,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const std::vector<int>& >::type indices(indicesSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_TrieWrapper_search(obj, indices));
     return rcpp_result_gen;
-END_RCPP
-}
-// cpp_Trie_smear
-void cpp_Trie_smear(XPtr<Trie> obj, std::string& smear_mode);
-RcppExport SEXP _flashlighttext_cpp_Trie_smear(SEXP objSEXP, SEXP smear_modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<Trie> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< std::string& >::type smear_mode(smear_modeSEXP);
-    cpp_Trie_smear(obj, smear_mode);
-    return R_NilValue;
 END_RCPP
 }
 // cpp_TrieWrapper_smear
@@ -1111,7 +1047,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_ZeroLMWrapper_start
-XPtr<LMStatePtr> cpp_ZeroLMWrapper_start(XPtr<ZeroLMWrapper> obj, bool startWithNothing);
+XPtr<LMStateWrapper> cpp_ZeroLMWrapper_start(XPtr<ZeroLMWrapper> obj, bool startWithNothing);
 RcppExport SEXP _flashlighttext_cpp_ZeroLMWrapper_start(SEXP objSEXP, SEXP startWithNothingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1123,26 +1059,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_ZeroLMWrapper_score
-List cpp_ZeroLMWrapper_score(XPtr<ZeroLMWrapper> obj, XPtr<LMStatePtr> state, const int usrTozeroIdx);
+Rcpp::List cpp_ZeroLMWrapper_score(XPtr<ZeroLMWrapper> obj, XPtr<LMStateWrapper> state, const int usrTozeroIdx);
 RcppExport SEXP _flashlighttext_cpp_ZeroLMWrapper_score(SEXP objSEXP, SEXP stateSEXP, SEXP usrTozeroIdxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtr<ZeroLMWrapper> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type state(stateSEXP);
     Rcpp::traits::input_parameter< const int >::type usrTozeroIdx(usrTozeroIdxSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_ZeroLMWrapper_score(obj, state, usrTozeroIdx));
     return rcpp_result_gen;
 END_RCPP
 }
 // cpp_ZeroLMWrapper_finish
-Rcpp::List cpp_ZeroLMWrapper_finish(XPtr<ZeroLMWrapper> obj, XPtr<LMStatePtr> state);
+Rcpp::List cpp_ZeroLMWrapper_finish(XPtr<ZeroLMWrapper> obj, XPtr<LMStateWrapper> state);
 RcppExport SEXP _flashlighttext_cpp_ZeroLMWrapper_finish(SEXP objSEXP, SEXP stateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtr<ZeroLMWrapper> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< XPtr<LMStatePtr> >::type state(stateSEXP);
+    Rcpp::traits::input_parameter< XPtr<LMStateWrapper> >::type state(stateSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_ZeroLMWrapper_finish(obj, state));
     return rcpp_result_gen;
 END_RCPP
@@ -1167,14 +1103,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_map_indices_to_entries", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_indices_to_entries, 2},
     {"_flashlighttext_cpp_load_words2", (DL_FUNC) &_flashlighttext_cpp_load_words2, 2},
     {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
-    {"_flashlighttext_cpp_KenLM_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLM_constructor, 2},
     {"_flashlighttext_cpp_KenLMWrapper_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_constructor, 2},
-    {"_flashlighttext_cpp_KenLM_start", (DL_FUNC) &_flashlighttext_cpp_KenLM_start, 2},
     {"_flashlighttext_cpp_KenLMWrapper_start", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_start, 2},
-    {"_flashlighttext_cpp_KenLM_score", (DL_FUNC) &_flashlighttext_cpp_KenLM_score, 3},
     {"_flashlighttext_cpp_KenLMWrapper_score", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_score, 3},
-    {"_flashlighttext_cpp_KenLM_finish", (DL_FUNC) &_flashlighttext_cpp_KenLM_finish, 2},
     {"_flashlighttext_cpp_KenLMWrapper_finish", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_finish, 2},
+    {"_flashlighttext_cpp_LMStateWrapper_constructor", (DL_FUNC) &_flashlighttext_cpp_LMStateWrapper_constructor, 0},
+    {"_flashlighttext_cpp_LMStateWrapper_child", (DL_FUNC) &_flashlighttext_cpp_LMStateWrapper_child, 2},
+    {"_flashlighttext_cpp_LMStateWrapper_compare", (DL_FUNC) &_flashlighttext_cpp_LMStateWrapper_compare, 2},
+    {"_flashlighttext_cpp_LMStateWrapper_children", (DL_FUNC) &_flashlighttext_cpp_LMStateWrapper_children, 1},
     {"_flashlighttext_cpp_LexiconDecoderOptions_constructor", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_constructor, 9},
     {"_flashlighttext_cpp_LexiconDecoderOptions_set_beamSize", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_set_beamSize, 2},
     {"_flashlighttext_cpp_LexiconDecoderOptions_get_beamSize", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoderOptions_get_beamSize, 1},
@@ -1230,15 +1166,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_LexiconSeq2SeqDecoder_nDecodedFramesInBuffer", (DL_FUNC) &_flashlighttext_cpp_LexiconSeq2SeqDecoder_nDecodedFramesInBuffer, 1},
     {"_flashlighttext_cpp_LexiconSeq2SeqDecoder_getBestHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconSeq2SeqDecoder_getBestHypothesis, 2},
     {"_flashlighttext_cpp_LexiconSeq2SeqDecoder_getAllFinalHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconSeq2SeqDecoder_getAllFinalHypothesis, 1},
-    {"_flashlighttext_cpp_Trie_constructor", (DL_FUNC) &_flashlighttext_cpp_Trie_constructor, 2},
     {"_flashlighttext_cpp_TrieWrapper_constructor", (DL_FUNC) &_flashlighttext_cpp_TrieWrapper_constructor, 2},
-    {"_flashlighttext_cpp_Trie_getRoot", (DL_FUNC) &_flashlighttext_cpp_Trie_getRoot, 1},
     {"_flashlighttext_cpp_TrieWrapper_getRoot", (DL_FUNC) &_flashlighttext_cpp_TrieWrapper_getRoot, 1},
-    {"_flashlighttext_cpp_Trie_insert", (DL_FUNC) &_flashlighttext_cpp_Trie_insert, 4},
     {"_flashlighttext_cpp_TrieWrapper_insert", (DL_FUNC) &_flashlighttext_cpp_TrieWrapper_insert, 4},
-    {"_flashlighttext_cpp_Trie_search", (DL_FUNC) &_flashlighttext_cpp_Trie_search, 2},
     {"_flashlighttext_cpp_TrieWrapper_search", (DL_FUNC) &_flashlighttext_cpp_TrieWrapper_search, 2},
-    {"_flashlighttext_cpp_Trie_smear", (DL_FUNC) &_flashlighttext_cpp_Trie_smear, 2},
     {"_flashlighttext_cpp_TrieWrapper_smear", (DL_FUNC) &_flashlighttext_cpp_TrieWrapper_smear, 2},
     {"_flashlighttext_cpp_TrieNode_constructor", (DL_FUNC) &_flashlighttext_cpp_TrieNode_constructor, 1},
     {"_flashlighttext_cpp_TrieNode_maxScore", (DL_FUNC) &_flashlighttext_cpp_TrieNode_maxScore, 1},

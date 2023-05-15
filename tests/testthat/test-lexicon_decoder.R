@@ -1,6 +1,6 @@
 sys_file <- function(file) system.file(file, package = "flashlighttext")
 read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
-tkn_to_idx <- function(spelling, token_dict, maxReps = 0){
+tkn_to_idx <- function(spelling, token_dict, maxReps = 0) {
   result <- c()
   for(token in spelling) {
     result <- c(result, token_dict$get_index(token))
@@ -45,7 +45,7 @@ test_that("lexicon_decoder", {
   trie <- Trie$new(token_dict$index_size(), separator_idx) 
   start_state <- lm$start(FALSE)
   for(word in names(lexicon)) {
-    spellings <- if(word != "<unk>") lexicon[[word]] else list()
+    spellings <- lexicon[[word]]
     usr_idx <- word_dict$get_index(word)
     score <- lm$score(start_state, usr_idx)[[2]]
     for(spelling in spellings) {

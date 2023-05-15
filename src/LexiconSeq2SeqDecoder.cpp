@@ -87,8 +87,8 @@ XPtr<LexiconSeq2SeqDecoder> cpp_LexiconSeq2SeqDecoder_constructor(
   EmittingModelUpdateFunc emitting_model_update_func_ = *emitting_model_update_func;
   LexiconSeq2SeqDecoder *decoder = new LexiconSeq2SeqDecoder(
     opt_,
-    lexicon->trie_wrap, 
-    lm->kenlm_wrap, 
+    lexicon->getTrieWrap(), 
+    lm->getKenLMWrap(), 
     eos, 
     emitting_model_update_func_, 
     max_output_length, 

@@ -125,8 +125,8 @@ XPtr<LexiconDecoder> cpp_LexiconDecoder_constructor(
   LexiconDecoderOptions opt_ = *opt;
   LexiconDecoder *decoder = new LexiconDecoder(
   opt_,
-  lexicon->trie_wrap, 
-  lm->kenlm_wrap, 
+  lexicon->getTrieWrap(), 
+  lm->getKenLMWrap(), 
   sil, 
   blank, 
   unk, 

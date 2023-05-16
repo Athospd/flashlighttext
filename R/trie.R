@@ -25,6 +25,7 @@ Trie <- R6::R6Class(
     #' @return a TrieNodePtr
     insert = function(indices, label, score) {
       trie_node <- TrieNode$new(0)
+      if(length(indices) == 0) indices <- numeric(0)
       trie_node$ptr <- cpp_TrieWrapper_insert(self$ptr, indices, label, score)
       return(invisible(trie_node))
     },

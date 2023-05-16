@@ -19,10 +19,6 @@ dict <- Dictionary$new()
 \describe{
 \item{\code{ptr}}{has a single parameter new_ptr that accepts a new pointer to a Dictionary.
 It returns invisible(NULL)}
-
-\item{\code{filename}}{returns a string}
-
-\item{\code{tokens}}{returns a string vector}
 }
 \if{html}{\out{</div>}}
 }
@@ -48,15 +44,15 @@ It returns invisible(NULL)}
 \if{latex}{\out{\hypertarget{method-Dictionary-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Dictionary$new(filename = NULL, tkns = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Dictionary$new(tokens = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{filename}}{path to a file}
-
-\item{\code{tkns}}{tokens}
+\item{\code{tokens}}{file or list containing valid tokens. If using a file, the 
+expected format is for tokens mapping to the same index to be on the same
+line}
 }
 \if{html}{\out{</div>}}
 }

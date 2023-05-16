@@ -7,10 +7,10 @@ LM <- R6::R6Class(
     #' @return NULL
     initialize = function() {},
     
-    #' @param startWithNothing A boolean indicating whether or not to start
+    #' @param start_with_nothing A boolean indicating whether or not to start
     #' the sentence with a sil token.
     #' @return LMState
-    start = function(startWithNothing = FALSE) {
+    start = function(start_with_nothing = FALSE) {
       stop("start method must be implemented by subclass")
     },
     

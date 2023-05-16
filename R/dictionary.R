@@ -11,18 +11,20 @@ Dictionary <- R6::R6Class(
   "Dictionary",
   public = list(
     
-    #' @param filename path to a file
-    #' @param tkns tokens
+    #' @param tokens file or list containing valid tokens. If using a file, the 
+    #' expected format is for tokens mapping to the same index to be on the same
+    #' line
     #' @return Dictionary
-    initialize = function(filename = NULL, tkns = NULL) {
-      if(!is.null(filename)) {
-        private$filename_ <- filename
-        private$ptr_ <- cpp_Dictionary_constructor_string(filename)
-      } else if (!is.null(tkns)) {
-        private$tokens_ <- tkns
+    initialize = function(tokens = NULL) {
+      if(!is.null(tokens) & length(tokens) == 1) {
+        private$ptr_ <- cpp_Dictionary_constructor_string(tokens)
+      } else if (!is.null(tokens) & length(tokens) > 1) {
         private$ptr_ <- cpp_Dictionary_constructor_vector_string(tokens)
-      } else {
+      } else if (is.null(tokens)){
         private$ptr_ <- cpp_Dictionary_constructor_empty()
+      } else {
+        stop("Invalid tokens. Please provide either a path to tokens or a 
+             character vector containing them.")
       }
     },
     
@@ -103,25 +105,11 @@ Dictionary <- R6::R6Class(
         private$ptr_ <- cpp_Dictionary_constructor()
       
       private$ptr_
-    },
-    
-    #' @field
-    #' filename returns a string
-    filename = function() {
-      private$filename_
-    },
-    
-    #' @field
-    #' tokens returns a string vector
-    tokens = function() {
-      private$tokens_
     }
   ),
   
   private = list(
-    ptr_ = NULL,
-    filename_ = NULL,
-    tokens_ = NULL
+    ptr_ = NULL
   )
 )
 

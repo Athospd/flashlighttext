@@ -1,30 +1,30 @@
 #' LM
 #' 
 #' @export
-#' @rdname LM
 LM <- R6::R6Class(
   "LM",
   public = list(
     #' @return NULL
     initialize = function() {},
     
-    #' @param startWithNothing a boolean
+    #' @param startWithNothing A boolean indicating whether or not to start
+    #' the sentence with a sil token.
     #' @return LMState
     start = function(startWithNothing = FALSE) {
-      stop("Tried to call pure virtual function 'LM::start'")
+      stop("start method must be implemented by subclass")
     },
     
     #' @param state a state
     #' @param usrTokenIdx a usrTokenIdx
     #' @return list(LMState, numeric)
     score = function(state, usrTokenIdx) {
-      stop("Tried to call pure virtual function 'LM::score'")
+      stop("score method must be implemented by subclass")
     },
     
     #' @param state a state
     #' @return list(LMState, numeric)
     finish = function(state) {
-      stop("Tried to call pure virtual function 'LM::finish'")
+      stop("finish method must be implemented by subclass")
     }
   ),
   
@@ -41,3 +41,4 @@ LM <- R6::R6Class(
     ptr_ = NULL
   )
 )
+

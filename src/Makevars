@@ -3,9 +3,9 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libflashlight-text-kenlm.a \
            flashlighttext/lib/libkenlm.a \
            flashlighttext/lib/libkenlm_util.a \
-           flashlighttext/lib/libkenlm_interpolate.a \
            flashlighttext/lib/libkenlm_filter.a \
-           flashlighttext/lib/libkenlm_builder.a
+           flashlighttext/lib/libkenlm_builder.a \
+           #flashlighttext/lib/libkenlm_interpolate.a 
 
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight

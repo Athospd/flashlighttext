@@ -7,10 +7,10 @@ tkn_to_idx <- function(spelling, token_dict, maxReps = 0) {
   }
   return(pack_replabels(result, token_dict, maxReps))
 }
-  
+
 test_that("lexicon_decoder", {
   # emissions ---------------------------------------------------------------
- 
+  
   c(T, N) %<-% read_bin("TN.bin", "integer", size = 4) 
   emissions <- read_bin("emission.bin", "numeric", size = 4) 
   transitions <- read_bin("transition.bin", "numeric", size = 4) 
@@ -38,7 +38,7 @@ test_that("lexicon_decoder", {
   c(lm_state, lm_score) %<-% lm$finish(lm_state) 
   total_score = total_score + lm_score 
   expect_equal(total_score, -19.5123, tolerance = 1e-4) 
-
+  
   # build trie
   separator_idx <- token_dict$get_index("|") 
   unk_idx <- word_dict$get_index("<unk>") 
@@ -91,8 +91,6 @@ test_that("lexicon_decoder", {
   # run decoding
   results <- decoder$decode(emissions, T, N)
   
-  print(f("Decoding complete, obtained {length(results)} results"))
-  print("Showing top 5 results:")
   for(i in seq_along(results$score)) {
     prediction = c()
     for(idx in results$tokens[[i]]) {
@@ -100,13 +98,11 @@ test_that("lexicon_decoder", {
       prediction = c(prediction, token_dict$get_entry(idx))
     }
     prediction = paste(prediction, collapse = "")
-    # print(f("score={results$score[[i]]} emittingModelScore={results$emittingModelScore[[i]]} lmScore={results$lmScore[[i]]} prediction='{prediction}'"))
   }
-      
+  
   expect_equal(length(results$score), 16)
   hyp_score_target <- c(-284.0998, -284.108, -284.119, -284.127, -284.296)
   for(i in seq_along(hyp_score_target)) {
-    # print(c(results$score[[i]], hyp_score_target[i]))
     expect_equal(results$score[[i]], hyp_score_target[i], tolerance = 1e-3) 
   }
 })

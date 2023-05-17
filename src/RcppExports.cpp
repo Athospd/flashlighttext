@@ -220,16 +220,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_EmittingModelUpdateFunc_constructor
-XPtr<EmittingModelUpdateFunc> cpp_EmittingModelUpdateFunc_constructor();
-RcppExport SEXP _flashlighttext_cpp_EmittingModelUpdateFunc_constructor() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(cpp_EmittingModelUpdateFunc_constructor());
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpp_KenLMWrapper_constructor
 XPtr<KenLMWrapper> cpp_KenLMWrapper_constructor(const std::string& path, XPtr<Dictionary> usrTknDict);
 RcppExport SEXP _flashlighttext_cpp_KenLMWrapper_constructor(SEXP pathSEXP, SEXP usrTknDictSEXP) {
@@ -1723,7 +1713,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_Dictionary_map_indices_to_entries", (DL_FUNC) &_flashlighttext_cpp_Dictionary_map_indices_to_entries, 2},
     {"_flashlighttext_cpp_load_words2", (DL_FUNC) &_flashlighttext_cpp_load_words2, 2},
     {"_flashlighttext_cpp_create_word_dict", (DL_FUNC) &_flashlighttext_cpp_create_word_dict, 2},
-    {"_flashlighttext_cpp_EmittingModelUpdateFunc_constructor", (DL_FUNC) &_flashlighttext_cpp_EmittingModelUpdateFunc_constructor, 0},
     {"_flashlighttext_cpp_KenLMWrapper_constructor", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_constructor, 2},
     {"_flashlighttext_cpp_KenLMWrapper_start", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_start, 2},
     {"_flashlighttext_cpp_KenLMWrapper_score", (DL_FUNC) &_flashlighttext_cpp_KenLMWrapper_score, 3},

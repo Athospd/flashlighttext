@@ -73,10 +73,6 @@ cpp_create_word_dict <- function(ptr, lexicon) {
     .Call('_flashlighttext_cpp_create_word_dict', PACKAGE = 'flashlighttext', ptr, lexicon)
 }
 
-cpp_EmittingModelUpdateFunc_constructor <- function() {
-    .Call('_flashlighttext_cpp_EmittingModelUpdateFunc_constructor', PACKAGE = 'flashlighttext')
-}
-
 cpp_KenLMWrapper_constructor <- function(path, usrTknDict) {
     .Call('_flashlighttext_cpp_KenLMWrapper_constructor', PACKAGE = 'flashlighttext', path, usrTknDict)
 }

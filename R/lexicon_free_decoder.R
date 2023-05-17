@@ -1,7 +1,7 @@
 #' LexiconFreeDecoderOptions
 #'
-#' @export
 #' @rdname LexiconFreeDecoderOptions
+#' @export
 LexiconFreeDecoderOptions <- R6::R6Class(
   "LexiconFreeDecoderOptions",
   public = list(

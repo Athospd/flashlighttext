@@ -213,12 +213,12 @@ Rcpp::List cpp_LexiconFreeDecoder_cpp_getOptions(XPtr<LexiconFreeDecoder> obj) {
   
   return Rcpp::List::create(
     Rcpp::Named("beam_size") = opt.beamSize, 
-    Rcpp::Named("beam_size_token") = 1, 
-    Rcpp::Named("beam_threshold") = 1,
-    Rcpp::Named("lm_weight") = 1, 
-    Rcpp::Named("sil_score") = 1,
-    Rcpp::Named("log_add") = 1, 
-    Rcpp::Named("criterion_type") = 1
+    Rcpp::Named("beam_size_token") = opt.beamSizeToken, 
+    Rcpp::Named("beam_threshold") = opt.beamThreshold,
+    Rcpp::Named("lm_weight") = opt.lmWeight, 
+    Rcpp::Named("sil_score") = opt.silScore,
+    Rcpp::Named("log_add") = opt.logAdd, 
+    Rcpp::Named("criterion_type") = CriterionType_to_string2(opt.criterionType)
   );
 }
 

@@ -8,6 +8,7 @@
 #include <flashlight/lib/text/decoder/LexiconDecoder.h>
 #include <flashlight/lib/text/decoder/LexiconFreeDecoder.h>
 #include <flashlight/lib/text/decoder/LexiconSeq2SeqDecoder.h>
+#include <flashlight/lib/text/decoder/LexiconFreeSeq2SeqDecoder.h>
 #include "wrappers.h"
 
 using namespace fl::lib::text;

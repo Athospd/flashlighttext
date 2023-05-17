@@ -16,15 +16,15 @@ LexiconDecoderOptions <- R6::R6Class(
     #' @param criterion_type a CriterionType: "CTC" or "ASG" (see [CriterionTypes])
     #' @returns LexiconDecoderOptions
     initialize = function(
-    beam_size = 2500,
-    beam_size_token = 25000,
-    beam_threshold = 100.0,
-    lm_weight = 2.0,
-    word_score = 2.0,
-    unk_score = -Inf,
-    sil_score = -1,
-    log_add = FALSE,
-    criterion_type = CriterionTypes$ASG
+    beam_size,
+    beam_size_token,
+    beam_threshold,
+    lm_weight,
+    word_score,
+    unk_score,
+    sil_score,
+    log_add,
+    criterion_type
     ) {
       private$beam_size_ = beam_size
       private$beam_size_token_ = beam_size_token

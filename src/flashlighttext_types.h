@@ -6,6 +6,7 @@
 #include <flashlight/lib/text/decoder/lm/ZeroLM.h>
 #include <flashlight/lib/text/decoder/Trie.h>
 #include <flashlight/lib/text/decoder/LexiconDecoder.h>
+#include <flashlight/lib/text/decoder/LexiconFreeDecoder.h>
 #include <flashlight/lib/text/decoder/LexiconSeq2SeqDecoder.h>
 #include "wrappers.h"
 

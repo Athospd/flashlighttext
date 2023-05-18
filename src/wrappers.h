@@ -115,7 +115,24 @@ private:
   TrieNodePtr trienode_wrap;
 };
 
-
+// class LMWrapper {
+// public:
+//   LMWrapper(): lm_wrap(std::make_shared<LM>()) {};
+//   LMWrapper(LMPtr newLMWrap) {
+//     lm_wrap = newLMWrap;
+//   };
+//   
+//   LMPtr& getLMWrap() {
+//     return lm_wrap;
+//   }
+//   
+//   void setLMWrap(LMPtr newLMWrap) {
+//     lm_wrap = newLMWrap;
+//   }
+//   
+// private:
+//   LMPtr lm_wrap;
+// };
 
 
 

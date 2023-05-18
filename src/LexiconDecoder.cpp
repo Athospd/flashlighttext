@@ -183,7 +183,7 @@ List cpp_LexiconDecoder_results_from_decode(XPtr<std::vector<DecodeResult>> obj)
 }
 
 // [[Rcpp::export]]
-Rcpp::List cpp_LexiconDecoder_decode(XPtr<LexiconDecoder> obj, std::vector<float>& emissions, int T, int N) {
+Rcpp::List cpp_LexiconDecoder_decode(XPtr<LexiconDecoder> obj, const float* emissions, int T, int N) {
   float *emissions_ = emissions.data();
   std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
   XPtr<std::vector<DecodeResult>> out_ptr(out, true);

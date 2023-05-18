@@ -1,0 +1,58 @@
+
+#include <Rcpp.h>
+// [[Rcpp::plugins(cpp11)]]
+
+#include <string>
+using namespace Rcpp;
+#include <flashlight/lib/text/decoder/lm/LM.h>
+#include <flashlight/lib/text/dictionary/Dictionary.h>
+#include <flashlight/lib/text/dictionary/Utils.h>
+#include "wrappers.h"
+using namespace fl::lib::text;
+
+// constructors ------------------------------
+// [[Rcpp::export]]
+XPtr<LMWrapper> cpp_LMWrapper_constructor() {
+  LMWrapper *obj = new LMWrapper();
+  XPtr<LMWrapper> obj_ptr(obj, true);
+  return obj_ptr;
+}
+
+// methods ------------------------------
+// [[Rcpp::export]]
+XPtr<LMStatePtr> cpp_LMWrapper_start(XPtr<LMWrapper> obj, bool startWithNothing) {
+  auto lm_state_ptr = new LMStatePtr();
+  *lm_state_ptr = obj->lm_wrap->start(startWithNothing);
+  XPtr<LMStatePtr> out(lm_state_ptr, true);
+  return out;
+}
+
+// [[Rcpp::export]]
+List cpp_LMWrapper_score(XPtr<LMWrapper> obj, XPtr<LMStatePtr> state, const int usrTozeroIdx) {
+  
+  std::pair<LMStatePtr, float> score = obj->lm_wrap->score(*state.get(), usrTozeroIdx);
+  auto score_state = new LMStatePtr();
+  *score_state = score.first;
+  
+  List out = Rcpp::List::create(
+    Rcpp::Named("state") = XPtr<LMStatePtr>(score_state),
+    Rcpp::Named("score") = score.second
+  );
+  
+  return out;
+}
+
+// [[Rcpp::export]]
+Rcpp::List cpp_LMWrapper_finish(XPtr<LMWrapper> obj, XPtr<LMStatePtr> state) {
+  
+  std::pair<LMStatePtr, float> finish = obj->lm_wrap->finish(*state.get());
+  auto finish_state = new LMStatePtr();
+  *finish_state = finish.first;
+  
+  Rcpp::List out = Rcpp::List::create(
+    Rcpp::Named("state") = XPtr<LMStatePtr>(finish_state),
+    Rcpp::Named("score") = finish.second
+  );
+  
+  return out;
+}

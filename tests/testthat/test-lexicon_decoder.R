@@ -91,6 +91,15 @@ test_that("lexicon_decoder", {
   # run decoding
   results <- decoder$decode(emissions, T, N)
   
+  emissions_torch <- torch::torch_tensor(emissions)
+  
+  results_numeric_torch <- decoder$decode(as.numeric(emissions_torch$storage()$data_ptr()), T, N)
+  results_chr_torch <- decoder$decode(emissions_torch$storage()$data_ptr(), T, N)
+  results_torch <- decoder$decode(emissions_torch, T, N)
+  expect_equal(results, results_numeric_torch)
+  expect_equal(results, results_chr_torch)
+  expect_equal(results, results_torch)
+  
   for(i in seq_along(results$score)) {
     prediction = c()
     for(idx in results$tokens[[i]]) {

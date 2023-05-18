@@ -593,17 +593,31 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpp_LexiconDecoder_decode
-Rcpp::List cpp_LexiconDecoder_decode(XPtr<LexiconDecoder> obj, std::vector<float>& emissions, int T, int N);
-RcppExport SEXP _flashlighttext_cpp_LexiconDecoder_decode(SEXP objSEXP, SEXP emissionsSEXP, SEXP TSEXP, SEXP NSEXP) {
+// cpp_Decoder_decode_numeric_vector
+Rcpp::List cpp_Decoder_decode_numeric_vector(XPtr<Decoder> obj, std::vector<float>& emissions, int T, int N);
+RcppExport SEXP _flashlighttext_cpp_Decoder_decode_numeric_vector(SEXP objSEXP, SEXP emissionsSEXP, SEXP TSEXP, SEXP NSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< XPtr<LexiconDecoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< XPtr<Decoder> >::type obj(objSEXP);
     Rcpp::traits::input_parameter< std::vector<float>& >::type emissions(emissionsSEXP);
     Rcpp::traits::input_parameter< int >::type T(TSEXP);
     Rcpp::traits::input_parameter< int >::type N(NSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_LexiconDecoder_decode(obj, emissions, T, N));
+    rcpp_result_gen = Rcpp::wrap(cpp_Decoder_decode_numeric_vector(obj, emissions, T, N));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_Decoder_decode_numeric_ptr
+Rcpp::List cpp_Decoder_decode_numeric_ptr(XPtr<Decoder> obj, int64_t emissions, int T, int N);
+RcppExport SEXP _flashlighttext_cpp_Decoder_decode_numeric_ptr(SEXP objSEXP, SEXP emissionsSEXP, SEXP TSEXP, SEXP NSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< XPtr<Decoder> >::type obj(objSEXP);
+    Rcpp::traits::input_parameter< int64_t >::type emissions(emissionsSEXP);
+    Rcpp::traits::input_parameter< int >::type T(TSEXP);
+    Rcpp::traits::input_parameter< int >::type N(NSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Decoder_decode_numeric_ptr(obj, emissions, T, N));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -1745,7 +1759,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_flashlighttext_cpp_LexiconDecoder_decodeStep", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeStep, 4},
     {"_flashlighttext_cpp_LexiconDecoder_decodeEnd", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decodeEnd, 1},
     {"_flashlighttext_cpp_LexiconDecoder_results_from_decode", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_results_from_decode, 1},
-    {"_flashlighttext_cpp_LexiconDecoder_decode", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_decode, 4},
+    {"_flashlighttext_cpp_Decoder_decode_numeric_vector", (DL_FUNC) &_flashlighttext_cpp_Decoder_decode_numeric_vector, 4},
+    {"_flashlighttext_cpp_Decoder_decode_numeric_ptr", (DL_FUNC) &_flashlighttext_cpp_Decoder_decode_numeric_ptr, 4},
     {"_flashlighttext_cpp_LexiconDecoder_nHypothesis", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nHypothesis, 1},
     {"_flashlighttext_cpp_LexiconDecoder_prune", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_prune, 2},
     {"_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer", (DL_FUNC) &_flashlighttext_cpp_LexiconDecoder_nDecodedFramesInBuffer, 1},

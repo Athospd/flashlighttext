@@ -4,6 +4,7 @@
 #' @rdname LexiconSeq2SeqDecoderOptions
 LexiconSeq2SeqDecoderOptions <- R6::R6Class(
   "LexiconSeq2SeqDecoderOptions",
+  inherit = Decoder,
   public = list(
     #' @param beam_size Maximum number of hypothesis we hold after each step
     #' @param beam_size_token Maximum number of tokens we consider at each step

@@ -22,16 +22,32 @@ Decoder <- R6::R6Class(
     decode_step = function(emissions, T, N) {},
     #' @return invisible(NULL)
     decode_end = function() {},
-    #' @param emissions a emissions 
-    #' @param T a T 
-    #' @param N a N 
+    
+    #' @param emissions a emissions
+    #' @param T a T
+    #' @param N a N
     #' @return invisible(NULL)
     decode = function(emissions, T, N) {
-      self$decode_begin()
-      self$decode_step(emissions, T, N)
-      self$decode_end()
-      return(self$get_all_final_hypothesis())
+      if(inherits(emissions, "torch_tensor")) {
+        emissions <- as.numeric(emissions$storage()$data_ptr())
+        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+      }
+      
+      if(inherits(emissions, "character") & length(emissions) == 1) {
+        emissions <- as.numeric(emissions)
+        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+      }
+      
+      if(inherits(emissions, "numeric") & length(emissions) == 1) 
+        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+      
+      if(inherits(emissions, "numeric") & length(emissions) > 1) 
+        return(cpp_Decoder_decode_numeric_vector(self$ptr, emissions, T, N))
+      
+      type_error("Invalid emissions value. It should be a pointer address, 
+                 a numeric vector, or a torch_tensor.")
     },
+    
     #' @param lookBack a lookBack
     #' @return invisible(NULL)
     prune = function(lookBack = 0) {},

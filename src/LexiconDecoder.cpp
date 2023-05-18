@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <cstdint>
 using namespace Rcpp;
 #include <flashlight/lib/text/decoder/LexiconDecoder.h>
 #include <flashlight/lib/text/dictionary/Utils.h>
@@ -183,8 +184,16 @@ List cpp_LexiconDecoder_results_from_decode(XPtr<std::vector<DecodeResult>> obj)
 }
 
 // [[Rcpp::export]]
-Rcpp::List cpp_LexiconDecoder_decode(XPtr<LexiconDecoder> obj, const float* emissions, int T, int N) {
+Rcpp::List cpp_Decoder_decode_numeric_vector(XPtr<Decoder> obj, std::vector<float>& emissions, int T, int N) {
   float *emissions_ = emissions.data();
+  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
+  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
+  return cpp_LexiconDecoder_results_from_decode(out_ptr);
+}
+
+// [[Rcpp::export]]
+Rcpp::List cpp_Decoder_decode_numeric_ptr(XPtr<Decoder> obj, int64_t emissions, int T, int N) {
+  float* emissions_ = reinterpret_cast<float*>(emissions);
   std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
   XPtr<std::vector<DecodeResult>> out_ptr(out, true);
   return cpp_LexiconDecoder_results_from_decode(out_ptr);

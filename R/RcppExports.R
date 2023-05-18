@@ -201,8 +201,12 @@ cpp_LexiconDecoder_results_from_decode <- function(obj) {
     .Call('_flashlighttext_cpp_LexiconDecoder_results_from_decode', PACKAGE = 'flashlighttext', obj)
 }
 
-cpp_LexiconDecoder_decode <- function(obj, emissions, T, N) {
-    .Call('_flashlighttext_cpp_LexiconDecoder_decode', PACKAGE = 'flashlighttext', obj, emissions, T, N)
+cpp_Decoder_decode_numeric_vector <- function(obj, emissions, T, N) {
+    .Call('_flashlighttext_cpp_Decoder_decode_numeric_vector', PACKAGE = 'flashlighttext', obj, emissions, T, N)
+}
+
+cpp_Decoder_decode_numeric_ptr <- function(obj, emissions, T, N) {
+    .Call('_flashlighttext_cpp_Decoder_decode_numeric_ptr', PACKAGE = 'flashlighttext', obj, emissions, T, N)
 }
 
 cpp_LexiconDecoder_nHypothesis <- function(obj) {

@@ -163,80 +163,35 @@ LexiconFreeDecoder <- R6::R6Class(
         transitions
       )
     },
-    #' @return invisible(NULL)
-    decode_begin = function() {
-      cpp_LexiconFreeDecoder_decodeBegin(self$ptr)
-    },
-    #' @param emissions a emissions 
-    #' @param T a T 
-    #' @param N a N 
-    #' @return invisible(NULL)
-    decode_step = function(emissions, T, N) {
-      cpp_LexiconFreeDecoder_decodeStep(self$ptr, emissions, T, N)
-    },
-    #' @return invisible(NULL)
-    decode_end = function() {
-      cpp_LexiconFreeDecoder_decodeEnd(self$ptr)
-    },
-    
-    #' @param emissions a emissions
-    #' @param T a T
-    #' @param N a N
-    #' @return invisible(NULL)
-    decode = function(emissions, T, N) {
-      cpp_LexiconFreeDecoder_decode(self$ptr, emissions, T, N)
-    },
     
     #' @return int
     n_hypothesis = function() {
       cpp_LexiconFreeDecoder_nHypothesis(self$ptr)
     },
-    #' @param lookBack a lookBack
-    #' @return invisible(NULL)
-    prune = function(lookBack = 0) {
-      cpp_LexiconFreeDecoder_prune(self$ptr, lookBack)
-    },
-    #' @return int
-    n_decoded_frames_in_buffer = function() {
-      cpp_LexiconFreeDecoder_nDecodedFramesInBuffer(self$ptr)
-    },
-    #' @param lookBack a lookBack
-    #' @return DecodeResult
-    get_best_hypothesis = function(lookBack = 0) {
-      cpp_LexiconFreeDecoder_getBestHypothesis(self$ptr, lookBack)
+    #' @return a externalpointer
+    get_lm_ptr = function() {
+      not_implemented_error("getLMPtr method not implemented yet.")
+      # cpp_LexiconFreeDecoder_getLMPtr(self$ptr)
     },
     #' @return list of DecodeResult
-    get_all_final_hypothesis = function() {
-      cpp_LexiconFreeDecoder_getAllFinalHypothesis(self$ptr)
-    },
-    #' @return list of DecodeResult
-    get_transitions = function() {
-      cpp_LexiconFreeDecoder_getTransitions(self$ptr)
-    },
-    #' @return list of DecodeResult
-    get_options = function() {
-      cpp_LexiconFreeDecoder_getOptions(self$ptr)
+    get_sil_idx = function() {
+      cpp_LexiconFreeDecoder_getSilIdx(self$ptr)
     },
     #' @return list of DecodeResult
     get_blank_idx = function() {
       cpp_LexiconFreeDecoder_getBlankIdx(self$ptr)
     },
     #' @return list of DecodeResult
-    get_sil_idx = function() {
-      cpp_LexiconFreeDecoder_getSilIdx(self$ptr)
-    }
-  ),
-  
-  active = list(
-    #' @field ptr set and get the pointer to a LexiconFreeDecoder instance.
-    ptr = function(new_ptr) {
-      if(!missing(new_ptr)) private$ptr_ <- new_ptr
-      private$ptr_
+    get_options = function() {
+      cpp_LexiconFreeDecoder_getOptions(self$ptr)
+    },
+    #' @return list of DecodeResult
+    get_transitions = function() {
+      cpp_LexiconFreeDecoder_getTransitions(self$ptr)
     }
   ),
   
   private = list(
-    ptr_ = NULL,
     options_ = NULL,
     lm_ = NULL,
     sil_token_idx_ = NULL,

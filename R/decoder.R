@@ -12,16 +12,9 @@ Decoder <- R6::R6Class(
   "Decoder",
   public = list(
     #' @return invisible(NULL)
-    initialize = function() {},
-    #' @return invisible(NULL)
-    decode_begin = function() {},
-    #' @param emissions a emissions 
-    #' @param T a T 
-    #' @param N a N 
-    #' @return invisible(NULL)
-    decode_step = function(emissions, T, N) {},
-    #' @return invisible(NULL)
-    decode_end = function() {},
+    initialize = function() {
+      stop("Decoder is a base class and cannot be initialized.")
+    },
     
     #' @param emissions a emissions
     #' @param T a T
@@ -30,34 +23,44 @@ Decoder <- R6::R6Class(
     decode = function(emissions, T, N) {
       if(inherits(emissions, "torch_tensor")) {
         emissions <- as.numeric(emissions$storage()$data_ptr())
-        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+        result <- cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N)
       }
       
       if(inherits(emissions, "character") & length(emissions) == 1) {
         emissions <- as.numeric(emissions)
-        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+        result <- cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N)
       }
       
       if(inherits(emissions, "numeric") & length(emissions) == 1) 
-        return(cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N))
+        result <- cpp_Decoder_decode_numeric_ptr(self$ptr, emissions, T, N)
       
       if(inherits(emissions, "numeric") & length(emissions) > 1) 
-        return(cpp_Decoder_decode_numeric_vector(self$ptr, emissions, T, N))
+        result <- cpp_Decoder_decode_numeric_vector(self$ptr, emissions, T, N)
       
-      type_error("Invalid emissions value. It should be a pointer address, 
-                 a numeric vector, or a torch_tensor.")
+      return(purrr::transpose(result))
     },
     
     #' @param lookBack a lookBack
     #' @return invisible(NULL)
-    prune = function(lookBack = 0) {},
-    #' @return invisible(NULL)
-    n_decoded_frames_in_buffer = function() {},
+    prune = function(lookBack = 0) {
+      cpp_Decoder_prune(self$ptr, lookBack)
+    },
+    
+    #' @return int
+    n_decoded_frames_in_buffer = function() {
+      cpp_Decoder_nDecodedFramesInBuffer(self$ptr)
+    },
+    
     #' @param lookBack a lookBack
-    #' @return invisible(NULL)
-    get_best_hypothesis = function(lookBack = 0) {},
-    #' @return invisible(NULL)
-    get_all_final_hypothesis = function() {}
+    #' @return DecodeResult
+    get_best_hypothesis = function(lookBack = 0) {
+      cpp_Decoder_getBestHypothesis(self$ptr, lookBack)
+    },
+    
+    #' @return list of DecodeResult
+    get_all_final_hypothesis = function() {
+      cpp_Decoder_getAllFinalHypothesis(self$ptr)
+    }
   ),
 
   active = list(

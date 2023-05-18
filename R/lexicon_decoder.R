@@ -199,56 +199,14 @@ LexiconDecoder <- R6::R6Class(
         is_lm_token
       )
     },
-    #' @return invisible(NULL)
-    decode_begin = function() {
-      cpp_LexiconDecoder_decodeBegin(self$ptr)
-    },
-    #' @param emissions a emissions 
-    #' @param T a T 
-    #' @param N a N 
-    #' @return invisible(NULL)
-    decode_step = function(emissions, T, N) {
-      cpp_LexiconDecoder_decodeStep(self$ptr, emissions, T, N)
-    },
-    #' @return invisible(NULL)
-    decode_end = function() {
-      cpp_LexiconDecoder_decodeEnd(self$ptr)
-    },
     
     #' @return int
     n_hypothesis = function() {
       cpp_LexiconDecoder_nHypothesis(self$ptr)
-    },
-    #' @param lookBack a lookBack
-    #' @return invisible(NULL)
-    prune = function(lookBack = 0) {
-      cpp_LexiconDecoder_prune(self$ptr, lookBack)
-    },
-    #' @return int
-    n_decoded_frames_in_buffer = function() {
-      cpp_LexiconDecoder_nDecodedFramesInBuffer(self$ptr)
-    },
-    #' @param lookBack a lookBack
-    #' @return DecodeResult
-    get_best_hypothesis = function(lookBack = 0) {
-      cpp_LexiconDecoder_getBestHypothesis(self$ptr, lookBack)
-    },
-    #' @return list of DecodeResult
-    get_all_final_hypothesis = function() {
-      cpp_LexiconDecoder_getAllFinalHypothesis(self$ptr)
-    }
-  ),
-  
-  active = list(
-    #' @field ptr set and get the pointer to a LexiconDecoder instance.
-    ptr = function(new_ptr) {
-      if(!missing(new_ptr)) private$ptr_ <- new_ptr
-      private$ptr_
     }
   ),
   
   private = list(
-    ptr_ = NULL,
     options_ = NULL,
     trie_ = NULL,
     lm_ = NULL,

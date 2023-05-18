@@ -13,25 +13,6 @@ KenLM <- R6::R6Class(
       private$path_ <- path
       private$usrTknDict_ <- usrTknDict
       private$ptr_ <- cpp_KenLMWrapper_constructor(path, usrTknDict$ptr)
-    },
-    
-    #' @param startWithNothing a logical value indicating whether the state should be initialized with a start-of-sequence marker.
-    #' @return An LMState object representing the current state.
-    start = function(startWithNothing) {
-      cpp_KenLMWrapper_start(self$ptr, startWithNothing)
-    },
-    
-    #' @param state An LMState object representing the current state.
-    #' @param usrTokenIdx An integer representing the index of the current token in the user-defined token list.
-    #' @return A list containing the updated LMState object and a numeric value representing the score.
-    score = function(state, usrTokenIdx) {
-      cpp_KenLMWrapper_score(self$ptr, state, usrTokenIdx)
-    },
-    
-    #' @param state An LMState object representing the current state.
-    #' @return A list containing the updated LMState object and a numeric value representing the final score.
-    finish = function(state) {
-      cpp_KenLMWrapper_finish(self$ptr, state)
     }
   ),
   

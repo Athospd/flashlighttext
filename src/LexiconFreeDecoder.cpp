@@ -88,104 +88,30 @@ std::string cpp_LexiconFreeDecoderOptions_get_CriterionType(XPtr<LexiconFreeDeco
 // LexiconFreeDecoder /////////////////////////////////////////////////////////
 // constructors ------------------------------
 // [[Rcpp::export]]  
-XPtr<LexiconFreeDecoder> cpp_LexiconFreeDecoder_constructor(
+XPtr<Decoder> cpp_LexiconFreeDecoder_constructor(
     XPtr<LexiconFreeDecoderOptions> opt,
-    XPtr<KenLMWrapper> lm,
+    XPtr<LMWrapper> lm,
     int sil,
     int blank,
     std::vector<float>& transitions
 ) {
   LexiconFreeDecoderOptions opt_ = *opt;
-  LexiconFreeDecoder *decoder = new LexiconFreeDecoder(
+  Decoder *decoder = new LexiconFreeDecoder(
   opt_,
-  lm->getKenLMWrap(), 
+  lm->getLMWrap(), 
   sil, 
   blank,
   transitions
   );
   
-  XPtr<LexiconFreeDecoder> ptr(decoder, true);
+  XPtr<Decoder> ptr(decoder, true);
   return ptr;
 }
 
 // methods ------------------------------
 // [[Rcpp::export]]
-void cpp_LexiconFreeDecoder_decodeBegin(XPtr<LexiconFreeDecoder> obj) {
-  obj->decodeBegin();
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeDecoder_decodeStep(XPtr<LexiconFreeDecoder> obj, std::vector<float>& emissions, int T, int N) {
-  float *emissions_ = emissions.data();
-  obj->decodeStep(emissions_, T, N);
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeDecoder_decodeEnd(XPtr<LexiconFreeDecoder> obj) {
-  obj->decodeEnd();
-}
-
-// [[Rcpp::export]]
-List cpp_LexiconFreeDecoder_results_from_decode(XPtr<std::vector<DecodeResult>> obj) {
-  std::vector<DecodeResult> *out(obj);
-  std::vector<double> score_vec;
-  std::vector<double> emittingModelScore_vec;
-  std::vector<double> lmScore_vec;
-  std::vector<std::vector<int>> words_vec;
-  std::vector<std::vector<int>> tokens_vec;
-  for (auto const& it : *out) {
-    score_vec.push_back(it.score);
-    emittingModelScore_vec.push_back(it.emittingModelScore);
-    lmScore_vec.push_back(it.lmScore);
-    words_vec.push_back(it.words);
-    tokens_vec.push_back(it.tokens);
-  }
-  
-  return Rcpp::List::create(
-    Rcpp::Named("score") = score_vec,
-    Rcpp::Named("emittingModelScore") = emittingModelScore_vec,
-    Rcpp::Named("lmScore") = lmScore_vec,
-    Rcpp::Named("words") = words_vec,
-    Rcpp::Named("tokens") = tokens_vec
-  );
-}
-
-// [[Rcpp::export]]
-Rcpp::List cpp_LexiconFreeDecoder_decode(XPtr<LexiconFreeDecoder> obj, std::vector<float>& emissions, int T, int N) {
-  float *emissions_ = emissions.data();
-  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
-  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-  return cpp_LexiconFreeDecoder_results_from_decode(out_ptr);
-}
-
-// [[Rcpp::export]]
 int cpp_LexiconFreeDecoder_nHypothesis(XPtr<LexiconFreeDecoder> obj) {
   return obj->nHypothesis();
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeDecoder_prune(XPtr<LexiconFreeDecoder> obj, int lookBack = 0) {
-  obj->prune(lookBack);
-}
-
-// [[Rcpp::export]]
-int cpp_LexiconFreeDecoder_nDecodedFramesInBuffer(XPtr<LexiconFreeDecoder> obj) {
-  return obj->nDecodedFramesInBuffer();
-}
-
-// [[Rcpp::export]]
-XPtr<DecodeResult> cpp_LexiconFreeDecoder_getBestHypothesis(XPtr<LexiconFreeDecoder> obj, int lookBack = 0) {
-  DecodeResult *out = new DecodeResult();
-  *out = obj->getBestHypothesis(lookBack);
-  XPtr<DecodeResult> out_ptr(out, true);
-  return out_ptr;
-}
-
-// [[Rcpp::export]]
-Rcpp::List cpp_LexiconFreeDecoder_getAllFinalHypothesis(XPtr<LexiconFreeDecoder> obj) {
-  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->getAllFinalHypothesis());
-  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-  return cpp_LexiconFreeDecoder_results_from_decode(out_ptr);
 }
 
 // TO DO

@@ -69,7 +69,7 @@ bool cpp_LexiconFreeSeq2SeqDecoderOptions_get_logAdd(XPtr<LexiconFreeSeq2SeqDeco
 // [[Rcpp::export]]  
 XPtr<LexiconFreeSeq2SeqDecoder> cpp_LexiconFreeSeq2SeqDecoder_constructor(
     XPtr<LexiconFreeSeq2SeqDecoderOptions> opt,
-    XPtr<KenLMWrapper> lm,
+    XPtr<LMWrapper> lm,
     int eos,
     XPtr<EmittingModelUpdateFunc> emitting_model_update_func,
     int max_output_length
@@ -78,7 +78,7 @@ XPtr<LexiconFreeSeq2SeqDecoder> cpp_LexiconFreeSeq2SeqDecoder_constructor(
   EmittingModelUpdateFunc emitting_model_update_func_ = *emitting_model_update_func;
   LexiconFreeSeq2SeqDecoder *decoder = new LexiconFreeSeq2SeqDecoder(
     opt_,
-    lm->getKenLMWrap(), 
+    lm->getLMWrap(), 
     eos, 
     emitting_model_update_func_,
     max_output_length
@@ -87,80 +87,4 @@ XPtr<LexiconFreeSeq2SeqDecoder> cpp_LexiconFreeSeq2SeqDecoder_constructor(
   XPtr<LexiconFreeSeq2SeqDecoder> ptr(decoder, true);
   return ptr;
 }
-
-// methods ------------------------------
-// [[Rcpp::export]]
-void cpp_LexiconFreeSeq2SeqDecoder_decodeBegin(XPtr<LexiconFreeSeq2SeqDecoder> obj) {
-  obj->decodeBegin();
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeSeq2SeqDecoder_decodeStep(XPtr<LexiconFreeSeq2SeqDecoder> obj, std::vector<float>& emissions, int T, int N) {
-  float *emissions_ = emissions.data();
-  obj->decodeStep(emissions_, T, N);
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeSeq2SeqDecoder_decodeEnd(XPtr<LexiconFreeSeq2SeqDecoder> obj) {
-  obj->decodeEnd();
-}
-
-// [[Rcpp::export]]
-List cpp_LexiconFreeSeq2SeqDecoder_results_from_decode(XPtr<std::vector<DecodeResult>> obj) {
-  std::vector<DecodeResult> *out(obj);
-  std::vector<double> score_vec;
-  std::vector<double> emittingModelScore_vec;
-  std::vector<double> lmScore_vec;
-  std::vector<std::vector<int>> words_vec;
-  std::vector<std::vector<int>> tokens_vec;
-  for (auto const& it : *out) {
-    score_vec.push_back(it.score);
-    emittingModelScore_vec.push_back(it.emittingModelScore);
-    lmScore_vec.push_back(it.lmScore);
-    words_vec.push_back(it.words);
-    tokens_vec.push_back(it.tokens);
-  }
-  
-  return Rcpp::List::create(
-    Rcpp::Named("score") = score_vec,
-    Rcpp::Named("emittingModelScore") = emittingModelScore_vec,
-    Rcpp::Named("lmScore") = lmScore_vec,
-    Rcpp::Named("words") = words_vec,
-    Rcpp::Named("tokens") = tokens_vec
-  );
-}
-
-// [[Rcpp::export]]
-Rcpp::List cpp_LexiconFreeSeq2SeqDecoder_decode(XPtr<LexiconFreeSeq2SeqDecoder> obj, std::vector<float>& emissions, int T, int N) {
-  float *emissions_ = emissions.data();
-  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->decode(emissions_, T, N));
-  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-  return cpp_LexiconFreeSeq2SeqDecoder_results_from_decode(out_ptr);
-}
-
-// [[Rcpp::export]]
-void cpp_LexiconFreeSeq2SeqDecoder_prune(XPtr<LexiconFreeSeq2SeqDecoder> obj, int lookBack = 0) {
-  obj->prune(lookBack);
-}
-
-// [[Rcpp::export]]
-int cpp_LexiconFreeSeq2SeqDecoder_nDecodedFramesInBuffer(XPtr<LexiconFreeSeq2SeqDecoder> obj) {
-  return obj->nDecodedFramesInBuffer();
-}
-
-// [[Rcpp::export]]
-XPtr<DecodeResult> cpp_LexiconFreeSeq2SeqDecoder_getBestHypothesis(XPtr<LexiconFreeSeq2SeqDecoder> obj, int lookBack = 0) {
-  DecodeResult *out = new DecodeResult();
-  *out = obj->getBestHypothesis(lookBack);
-  XPtr<DecodeResult> out_ptr(out, true);
-  return out_ptr;
-}
-
-// [[Rcpp::export]]
-Rcpp::List cpp_LexiconFreeSeq2SeqDecoder_getAllFinalHypothesis(XPtr<LexiconFreeSeq2SeqDecoder> obj) {
-  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->getAllFinalHypothesis());
-  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
-  return cpp_LexiconFreeSeq2SeqDecoder_results_from_decode(out_ptr);
-}
-
 

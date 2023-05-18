@@ -100,18 +100,20 @@ test_that("lexicon_decoder", {
   expect_equal(results, results_chr_torch)
   expect_equal(results, results_torch)
   
-  for(i in seq_along(results$score)) {
+  scores <- purrr::map_dbl(results, "score")
+  tokens <- purrr::map(results, "tokens")
+  for(i in seq_along(scores)) {
     prediction = c()
-    for(idx in results$tokens[[i]]) {
+    for(idx in tokens[[i]]) {
       if(idx < 0) break
       prediction = c(prediction, token_dict$get_entry(idx))
     }
     prediction = paste(prediction, collapse = "")
   }
   
-  expect_equal(length(results$score), 16)
+  expect_equal(length(scores), 16)
   hyp_score_target <- c(-284.0998, -284.108, -284.119, -284.127, -284.296)
   for(i in seq_along(hyp_score_target)) {
-    expect_equal(results$score[[i]], hyp_score_target[i], tolerance = 1e-3) 
+    expect_equal(scores[i], hyp_score_target[i], tolerance = 1e-3) 
   }
 })

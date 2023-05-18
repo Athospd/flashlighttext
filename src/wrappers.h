@@ -7,50 +7,40 @@ using namespace fl::lib::text;
 
 using LMPtr = std::shared_ptr<LM>;
 using LMStatePtr = std::shared_ptr<LMState>;
-using KenLMPtr = std::shared_ptr<KenLM>;
-using ZeroLMPtr = std::shared_ptr<ZeroLM>;
 using TriePtr = std::shared_ptr<Trie>;
 
-class KenLMWrapper {
-public:
-  KenLMWrapper(KenLMPtr& newKenLMWrap) {
-    kenlm_wrap = newKenLMWrap;
-  }
-  
-  KenLMWrapper(
-    const std::string& path, 
-    const Dictionary& usrTknDict
-  ): kenlm_wrap(std::make_shared<KenLM>(path, usrTknDict)) {};
-  
-  KenLMPtr& getKenLMWrap() {
-    return kenlm_wrap;
-  }
-  
-  void setKenLMWrap(KenLMPtr newKenLMWrap) {
-    kenlm_wrap = newKenLMWrap;
-  }
-  
-private:
-  KenLMPtr kenlm_wrap;
+class LMWrapper {
+  public:
+    LMPtr lm_wrap;
+    
+    LMPtr& getLMWrap() {
+      return lm_wrap;
+    }
+    
+    void setLMWrap(LMPtr newLMWrap) {
+      lm_wrap = newLMWrap;
+    }
 };
 
-class ZeroLMWrapper {
-public:
-  ZeroLMWrapper(): zerolm_wrap(std::make_shared<ZeroLM>()) {};
-  ZeroLMWrapper(ZeroLMPtr newZeroLMWrap) {
-    zerolm_wrap = newZeroLMWrap;
-  };
-  
-  ZeroLMPtr& getZeroLMWrap() {
-    return zerolm_wrap;
-  }
-  
-  void setZeroLMWrap(ZeroLMPtr newZeroLMWrap) {
-    zerolm_wrap = newZeroLMWrap;
-  }
-  
-private:
-  ZeroLMPtr zerolm_wrap;
+class ZeroLMWrapper : public LMWrapper {
+  public:
+    ZeroLMWrapper() {
+      this->setLMWrap(std::make_shared<ZeroLM>());
+    }
+};
+
+class KenLMWrapper : public LMWrapper {
+  public:
+    KenLMWrapper(
+      const std::string& path, 
+      const Dictionary& usrTknDict
+    ) {
+      this->setLMWrap(std::make_shared<KenLM>(path, usrTknDict));
+    }
+    
+    KenLMWrapper(LMPtr& newKenLMWrap) {
+      this->setLMWrap(newKenLMWrap);
+    }
 };
 
 class LMStateWrapper {
@@ -115,23 +105,5 @@ private:
   TrieNodePtr trienode_wrap;
 };
 
-// class LMWrapper {
-// public:
-//   LMWrapper(): lm_wrap(std::make_shared<LM>()) {};
-//   LMWrapper(LMPtr newLMWrap) {
-//     lm_wrap = newLMWrap;
-//   };
-//   
-//   LMPtr& getLMWrap() {
-//     return lm_wrap;
-//   }
-//   
-//   void setLMWrap(LMPtr newLMWrap) {
-//     lm_wrap = newLMWrap;
-//   }
-//   
-// private:
-//   LMPtr lm_wrap;
-// };
 
 

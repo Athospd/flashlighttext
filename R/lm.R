@@ -5,26 +5,31 @@ LM <- R6::R6Class(
   "LM",
   public = list(
     #' @return NULL
-    initialize = function() {},
-    
-    #' @param start_with_nothing A boolean indicating whether or not to start
-    #' the sentence with a sil token.
-    #' @return LMState
-    start = function(start_with_nothing = FALSE) {
-      stop("start method must be implemented by subclass")
+    initialize = function() {
+      stop("LM is a base class and cannot be initialized. Instantiate ZeroLM or KenLM instead.")
     },
     
-    #' @param state a state
-    #' @param usrTokenIdx a usrTokenIdx
-    #' @return list(LMState, numeric)
+    #' @param startWithNothing a logical value indicating whether the state 
+    #' should be initialized with a start-of-sequence marker.
+    #' @return An LMState object representing the current state.
+    start = function(startWithNothing) {
+      cpp_LMWrapper_start(self$ptr, startWithNothing)
+    },
+    
+    #' @param state An LMState object representing the current state.
+    #' @param usrTokenIdx An integer representing the index of the current token 
+    #' in the user-defined token list.
+    #' @return A list containing the updated LMState object and a numeric value 
+    #' representing the score.
     score = function(state, usrTokenIdx) {
-      stop("score method must be implemented by subclass")
+      cpp_LMWrapper_score(self$ptr, state, usrTokenIdx)
     },
     
-    #' @param state a state
-    #' @return list(LMState, numeric)
+    #' @param state An LMState object representing the current state.
+    #' @return A list containing the updated LMState object and a numeric value 
+    #' representing the final score.
     finish = function(state) {
-      stop("finish method must be implemented by subclass")
+      cpp_LMWrapper_finish(self$ptr, state)
     }
   ),
   

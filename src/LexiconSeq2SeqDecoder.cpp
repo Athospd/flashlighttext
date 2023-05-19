@@ -79,18 +79,19 @@ XPtr<LexiconSeq2SeqDecoder> cpp_LexiconSeq2SeqDecoder_constructor(
     XPtr<TrieWrapper> lexicon,
     XPtr<LMWrapper> lm,
     int eos,
-    XPtr<EmittingModelUpdateFunc> emitting_model_update_func,
+    // XPtr<EmittingModelUpdateFunc> emitting_model_update_func,
     int max_output_length,
     bool is_lm_token
 ) {
   LexiconSeq2SeqDecoderOptions opt_ = *opt;
-  EmittingModelUpdateFunc emitting_model_update_func_ = *emitting_model_update_func;
+  // EmittingModelUpdateFunc emitting_model_update_func_ = *emitting_model_update_func;
+  EmittingModelUpdateFunc* emitting_model_update_func_ = new EmittingModelUpdateFunc();
   LexiconSeq2SeqDecoder *decoder = new LexiconSeq2SeqDecoder(
     opt_,
     lexicon->getTrieWrap(), 
     lm->getLMWrap(), 
     eos, 
-    emitting_model_update_func_, 
+    *emitting_model_update_func_, 
     max_output_length, 
     is_lm_token
   );

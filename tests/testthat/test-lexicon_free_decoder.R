@@ -28,8 +28,8 @@ test_that("lexicon_free_decoder", {
   decoder <- LexiconFreeSeq2SeqDecoder$new(
     options = options,
     lm = ZeroLM$new(),
-    eos_idx = eos_idx,
-    update_func = update_func,
+    eos_token_idx = eos_idx,
+    emitting_model_update_func = update_func,
     max_output_length = max_output_length
   )
   

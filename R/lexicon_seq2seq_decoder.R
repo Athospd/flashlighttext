@@ -162,7 +162,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
     trie, 
     lm, 
     eos, 
-    emitting_model_update_func, 
+    # emitting_model_update_func, 
     max_output_length, 
     transitions, 
     is_lm_token
@@ -171,7 +171,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
       private$trie_ <- trie
       private$lm_ <- lm
       private$eos_ <- eos
-      private$emitting_model_update_func_ <- emitting_model_update_func
+      # private$emitting_model_update_func_ <- emitting_model_update_func
       private$max_output_length_ <- max_output_length
       private$is_lm_token_ <- is_lm_token
       private$ptr_ <- cpp_LexiconSeq2SeqDecoder_constructor(
@@ -179,7 +179,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
         trie$ptr, 
         lm$ptr, 
         eos, 
-        emitting_model_update_func$ptr,
+        # emitting_model_update_func$ptr,
         max_output_length,
         is_lm_token
       )
@@ -196,7 +196,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
     trie_ = NULL,
     lm_ = NULL,
     eos_ = NULL,
-    emitting_model_update_func_ = NULL,
+    # emitting_model_update_func_ = NULL,
     max_output_length_ = NULL,
     is_lm_token_ = NULL
   )

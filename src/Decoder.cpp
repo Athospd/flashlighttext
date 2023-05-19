@@ -84,16 +84,21 @@ int cpp_Decoder_nDecodedFramesInBuffer(XPtr<Decoder> obj) {
 }
 
 // [[Rcpp::export]]
-XPtr<DecodeResult> cpp_Decoder_getBestHypothesis(XPtr<Decoder> obj, int lookBack = 0) {
-  DecodeResult *out = new DecodeResult();
-  *out = obj->getBestHypothesis(lookBack);
-  XPtr<DecodeResult> out_ptr(out, true);
-  return out_ptr;
+Rcpp::List cpp_Decoder_getBestHypothesis(XPtr<Decoder> obj, int lookBack = 0) {
+  // DecodeResult *out = new DecodeResult();
+  // *out = obj->getBestHypothesis(lookBack);
+  // XPtr<DecodeResult> out_ptr(out, true);
+
+  std::vector<DecodeResult>* out;
+  out->push_back(obj->getBestHypothesis(lookBack));
+  XPtr<std::vector<DecodeResult>> out_ptr(out, true);
+
+  return cpp_Decoder_results_from_decode(out_ptr);
 }
 
 // [[Rcpp::export]]
 Rcpp::List cpp_Decoder_getAllFinalHypothesis(XPtr<Decoder> obj) {
-  std::vector<DecodeResult> *out = new std::vector<DecodeResult>(obj->getAllFinalHypothesis());
+  std::vector<DecodeResult>* out = new std::vector<DecodeResult>(obj->getAllFinalHypothesis());
   XPtr<std::vector<DecodeResult>> out_ptr(out, true);
   return cpp_Decoder_results_from_decode(out_ptr);
 }

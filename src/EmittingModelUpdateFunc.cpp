@@ -28,22 +28,21 @@ using namespace fl::lib::text;
 //https://github.com/flashlight/text/blob/7cba9a1351eba52727bc2948a66c62cb75ca60d1/flashlight/lib/text/decoder/Utils.h
 
 
-// 
-// 
+
+
 // 
 // 
 // EmittingModelUpdateFunc = std::function<
 //   std::pair<
-//     std::vector<std::vector<float>>, 
+//     std::vector<std::vector<float>>,
 //     std::vector<EmittingModelStatePtr>
 //   > (
-//       const float*, 
-//       const int, 
+//       const float*,
 //       const int,
-//       const std::vector<int>&, 
-//       const std::vector<int>&, 
-//       const std::vector<EmittingModelStatePtr>&, 
-//       int& 
+//       const int,
+//       const std::vector<int>&,
+//       const std::vector<int>&,
+//       const std::vector<EmittingModelStatePtr>&,
+//       int&
 //   )
 // >
-//   

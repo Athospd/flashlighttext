@@ -106,7 +106,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_Decoder_getBestHypothesis
-XPtr<DecodeResult> cpp_Decoder_getBestHypothesis(XPtr<Decoder> obj, int lookBack);
+Rcpp::List cpp_Decoder_getBestHypothesis(XPtr<Decoder> obj, int lookBack);
 RcppExport SEXP _flashlighttext_cpp_Decoder_getBestHypothesis(SEXP objSEXP, SEXP lookBackSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1253,7 +1253,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_LexiconSeq2SeqDecoder_constructor
-XPtr<LexiconSeq2SeqDecoder> cpp_LexiconSeq2SeqDecoder_constructor(XPtr<LexiconSeq2SeqDecoderOptions> opt, XPtr<TrieWrapper> lexicon, XPtr<LMWrapper> lm, int eos, XPtr<EmittingModelUpdateFunc> emitting_model_update_func, int max_output_length, bool is_lm_token);
+XPtr<LexiconSeq2SeqDecoder> cpp_LexiconSeq2SeqDecoder_constructor(XPtr<LexiconSeq2SeqDecoderOptions> opt, XPtr<TrieWrapper> lexicon, XPtr<LMWrapper> lm, int eos, // XPtr<EmittingModelUpdateFunc> emitting_model_update_func, int max_output_length, bool is_lm_token);
 RcppExport SEXP _flashlighttext_cpp_LexiconSeq2SeqDecoder_constructor(SEXP optSEXP, SEXP lexiconSEXP, SEXP lmSEXP, SEXP eosSEXP, SEXP emitting_model_update_funcSEXP, SEXP max_output_lengthSEXP, SEXP is_lm_tokenSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -1262,7 +1262,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< XPtr<TrieWrapper> >::type lexicon(lexiconSEXP);
     Rcpp::traits::input_parameter< XPtr<LMWrapper> >::type lm(lmSEXP);
     Rcpp::traits::input_parameter< int >::type eos(eosSEXP);
-    Rcpp::traits::input_parameter< XPtr<EmittingModelUpdateFunc> >::type emitting_model_update_func(emitting_model_update_funcSEXP);
+    Rcpp::traits::input_parameter< // XPtr<EmittingModelUpdateFunc> >::type emitting_model_update_func(emitting_model_update_funcSEXP);
     Rcpp::traits::input_parameter< int >::type max_output_length(max_output_lengthSEXP);
     Rcpp::traits::input_parameter< bool >::type is_lm_token(is_lm_tokenSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_LexiconSeq2SeqDecoder_constructor(opt, lexicon, lm, eos, emitting_model_update_func, max_output_length, is_lm_token));

@@ -6,7 +6,7 @@ LM <- R6::R6Class(
   public = list(
     #' @return NULL
     initialize = function() {
-      stop("LM is a base class and cannot be initialized. Instantiate ZeroLM or KenLM instead.")
+      # stop("LM is a base class and cannot be initialized. Instantiate ZeroLM or KenLM instead.")
     },
     
     #' @param startWithNothing a logical value indicating whether the state 

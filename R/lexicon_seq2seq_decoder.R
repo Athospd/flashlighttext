@@ -38,8 +38,7 @@ LexiconSeq2SeqDecoderOptions <- R6::R6Class(
         word_score,
         unk_score,
         sil_score,
-        log_add,
-        criterion_type
+        log_add
       )
     }
   ),

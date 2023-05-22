@@ -28,6 +28,14 @@ XPtr<LMStateWrapper> cpp_LMStateWrapper_child(XPtr<LMStateWrapper> obj, int& usr
   return out;
 }
 
+// TO DO
+// // [[Rcpp::export]]
+// Rcpp::List cpp_LMStateWrapper_child_as_r(XPtr<LMStateWrapper> obj, int& usrIdx) {
+//   auto lm_state_ptr = new LMStateWrapper(obj->getLMStateWrap()->child<LMState>(usrIdx));
+//   XPtr<LMStateWrapper> out(lm_state_ptr, true);
+//   return out;
+// }
+
 // [[Rcpp::export]]
 int cpp_LMStateWrapper_compare(XPtr<LMStateWrapper> obj, XPtr<LMStateWrapper> state) {
   return obj->getLMStateWrap()->compare(state->getLMStateWrap());

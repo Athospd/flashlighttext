@@ -19,8 +19,8 @@ LM <- R6::R6Class(
     #' @param state An LMState object representing the current state.
     #' @param usrTokenIdx An integer representing the index of the current token 
     #' in the user-defined token list.
-    #' @return A list containing the updated LMState object and a numeric value 
-    #' representing the score.
+    #' @return A list containing the externalpointer to the updated LMState object
+    #' and a numeric value representing the score.
     score = function(state, usrTokenIdx) {
       cpp_LMWrapper_score(self$ptr, state, usrTokenIdx)
     },

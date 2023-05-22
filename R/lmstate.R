@@ -12,15 +12,18 @@ LMState <- R6::R6Class(
     },
     
     #' @param usr_index a usr_index
-    #' @return LMStatePtr
+    #' @return externalpointer to a LMStateWrapper
     child = function(usr_index) {
       if(!is.numeric(usr_index)) 
         stop(f("usr_index should be an integer. Got {toString(class(usr_index))}."))
-
+      # TO DO
+      # lmstate_ptr <- cpp_LMStateWrapper_child(self$ptr, usr_index)
+      # lmstate_ptr_to_r(lmstate_ptr)
+      
       cpp_LMStateWrapper_child(self$ptr, usr_index)
     },
     
-    #' @param state a LMState to compare with.
+    #' @param state an externalpointer to a LMState to compare with.
     #' @return int
     compare = function(state) {
       cpp_LMStateWrapper_compare(self$ptr, state)
@@ -38,6 +41,8 @@ LMState <- R6::R6Class(
     #' @field children a list of pairs (index, LMStatePtr)
     children = function() {
       c(indices, lm_states) %<-% cpp_LMStateWrapper_children(self$ptr)
+      # TO DO
+      # lm_states <- purrr::map(lm_states, lmstate_ptr_to_r)
       attr(lm_states, "names") <- indices
       return(lm_states)
     }

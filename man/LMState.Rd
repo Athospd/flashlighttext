@@ -54,7 +54,7 @@ An instance of the LMState class.
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-LMStatePtr
+externalpointer to a LMStateWrapper
 }
 }
 \if{html}{\out{<hr>}}
@@ -68,7 +68,7 @@ LMStatePtr
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{state}}{a LMState to compare with.}
+\item{\code{state}}{an externalpointer to a LMState to compare with.}
 }
 \if{html}{\out{</div>}}
 }

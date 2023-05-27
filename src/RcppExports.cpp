@@ -218,14 +218,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // cpp_Dictionary_get_index
-int cpp_Dictionary_get_index(XPtr<Dictionary> obj, const std::string& entry);
-RcppExport SEXP _flashlighttext_cpp_Dictionary_get_index(SEXP objSEXP, SEXP entrySEXP) {
+Rcpp::NumericVector cpp_Dictionary_get_index(XPtr<Dictionary> obj, const std::vector<std::string>& entries);
+RcppExport SEXP _flashlighttext_cpp_Dictionary_get_index(SEXP objSEXP, SEXP entriesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< XPtr<Dictionary> >::type obj(objSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type entry(entrySEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_get_index(obj, entry));
+    Rcpp::traits::input_parameter< const std::vector<std::string>& >::type entries(entriesSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_Dictionary_get_index(obj, entries));
     return rcpp_result_gen;
 END_RCPP
 }

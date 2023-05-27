@@ -11,6 +11,9 @@ LexiconFreeSeq2SeqDecoderOptions
 
 LexiconFreeSeq2SeqDecoderOptions
 }
+\section{Super class}{
+\code{\link[flashlighttext:Decoder]{flashlighttext::Decoder}} -> \code{LexiconFreeSeq2SeqDecoderOptions}
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
@@ -37,6 +40,17 @@ LexiconFreeSeq2SeqDecoderOptions
 \item \href{#method-LexiconFreeSeq2SeqDecoderOptions-clone}{\code{LexiconFreeSeq2SeqDecoderOptions$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decode"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decode'><code>flashlighttext::Decoder$decode()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_all_final_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_all_final_hypothesis'><code>flashlighttext::Decoder$get_all_final_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_best_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_best_hypothesis'><code>flashlighttext::Decoder$get_best_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="n_decoded_frames_in_buffer"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-n_decoded_frames_in_buffer'><code>flashlighttext::Decoder$n_decoded_frames_in_buffer()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="prune"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-prune'><code>flashlighttext::Decoder$prune()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoderOptions-new"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoderOptions-new}{}}}

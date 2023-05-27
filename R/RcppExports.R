@@ -73,8 +73,8 @@ cpp_Dictionary_get_entry <- function(obj, idx) {
     .Call('_flashlighttext_cpp_Dictionary_get_entry', PACKAGE = 'flashlighttext', obj, idx)
 }
 
-cpp_Dictionary_get_index <- function(obj, entry) {
-    .Call('_flashlighttext_cpp_Dictionary_get_index', PACKAGE = 'flashlighttext', obj, entry)
+cpp_Dictionary_get_index <- function(obj, entries) {
+    .Call('_flashlighttext_cpp_Dictionary_get_index', PACKAGE = 'flashlighttext', obj, entries)
 }
 
 cpp_Dictionary_contains <- function(obj, entry) {

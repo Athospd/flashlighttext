@@ -42,19 +42,19 @@ NULL
 \if{latex}{\out{\hypertarget{method-LM-start}{}}}
 \subsection{Method \code{start()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LM$start(start_with_nothing = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{LM$start(startWithNothing)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{start_with_nothing}}{A boolean indicating whether or not to start
-the sentence with a sil token.}
+\item{\code{startWithNothing}}{a logical value indicating whether the state 
+should be initialized with a start-of-sequence marker.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-LMState
+An LMState object representing the current state.
 }
 }
 \if{html}{\out{<hr>}}
@@ -68,14 +68,16 @@ LMState
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{state}}{a state}
+\item{\code{state}}{An LMState object representing the current state.}
 
-\item{\code{usrTokenIdx}}{a usrTokenIdx}
+\item{\code{usrTokenIdx}}{An integer representing the index of the current token 
+in the user-defined token list.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-list(LMState, numeric)
+A list containing the externalpointer to the updated LMState object
+and a numeric value representing the score.
 }
 }
 \if{html}{\out{<hr>}}
@@ -89,12 +91,13 @@ list(LMState, numeric)
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{state}}{a state}
+\item{\code{state}}{An LMState object representing the current state.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-list(LMState, numeric)
+A list containing the updated LMState object and a numeric value 
+representing the final score.
 }
 }
 \if{html}{\out{<hr>}}

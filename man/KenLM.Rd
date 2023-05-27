@@ -24,12 +24,18 @@ KenLM
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-KenLM-new}{\code{KenLM$new()}}
-\item \href{#method-KenLM-start}{\code{KenLM$start()}}
-\item \href{#method-KenLM-score}{\code{KenLM$score()}}
-\item \href{#method-KenLM-finish}{\code{KenLM$finish()}}
 \item \href{#method-KenLM-clone}{\code{KenLM$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="finish"><a href='../../flashlighttext/html/LM.html#method-LM-finish'><code>flashlighttext::LM$finish()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="score"><a href='../../flashlighttext/html/LM.html#method-LM-score'><code>flashlighttext::LM$score()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="start"><a href='../../flashlighttext/html/LM.html#method-LM-start'><code>flashlighttext::LM$start()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-KenLM-new"></a>}}
 \if{latex}{\out{\hypertarget{method-KenLM-new}{}}}
@@ -49,65 +55,6 @@ KenLM
 }
 \subsection{Returns}{
 An instance of the KenLM class.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-KenLM-start"></a>}}
-\if{latex}{\out{\hypertarget{method-KenLM-start}{}}}
-\subsection{Method \code{start()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KenLM$start(startWithNothing)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{startWithNothing}}{a logical value indicating whether the state should be initialized with a start-of-sequence marker.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An LMState object representing the current state.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-KenLM-score"></a>}}
-\if{latex}{\out{\hypertarget{method-KenLM-score}{}}}
-\subsection{Method \code{score()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KenLM$score(state, usrTokenIdx)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{state}}{An LMState object representing the current state.}
-
-\item{\code{usrTokenIdx}}{An integer representing the index of the current token in the user-defined token list.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A list containing the updated LMState object and a numeric value representing the score.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-KenLM-finish"></a>}}
-\if{latex}{\out{\hypertarget{method-KenLM-finish}{}}}
-\subsection{Method \code{finish()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{KenLM$finish(state)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{state}}{An LMState object representing the current state.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A list containing the updated LMState object and a numeric value representing the final score.
 }
 }
 \if{html}{\out{<hr>}}

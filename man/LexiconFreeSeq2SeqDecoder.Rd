@@ -11,29 +11,25 @@ LexiconFreeSeq2SeqDecoder
 \section{Super class}{
 \code{\link[flashlighttext:Decoder]{flashlighttext::Decoder}} -> \code{LexiconFreeSeq2SeqDecoder}
 }
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{ptr}}{set and get the pointer to a LexiconFreeSeq2SeqDecoder instance.}
-}
-\if{html}{\out{</div>}}
-}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-LexiconFreeSeq2SeqDecoder-new}{\code{LexiconFreeSeq2SeqDecoder$new()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-decode_begin}{\code{LexiconFreeSeq2SeqDecoder$decode_begin()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-decode_step}{\code{LexiconFreeSeq2SeqDecoder$decode_step()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-decode_end}{\code{LexiconFreeSeq2SeqDecoder$decode_end()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-decode}{\code{LexiconFreeSeq2SeqDecoder$decode()}}
 \item \href{#method-LexiconFreeSeq2SeqDecoder-n_hypothesis}{\code{LexiconFreeSeq2SeqDecoder$n_hypothesis()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-prune}{\code{LexiconFreeSeq2SeqDecoder$prune()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-n_decoded_frames_in_buffer}{\code{LexiconFreeSeq2SeqDecoder$n_decoded_frames_in_buffer()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-get_best_hypothesis}{\code{LexiconFreeSeq2SeqDecoder$get_best_hypothesis()}}
-\item \href{#method-LexiconFreeSeq2SeqDecoder-get_all_final_hypothesis}{\code{LexiconFreeSeq2SeqDecoder$get_all_final_hypothesis()}}
 \item \href{#method-LexiconFreeSeq2SeqDecoder-clone}{\code{LexiconFreeSeq2SeqDecoder$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decode"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decode'><code>flashlighttext::Decoder$decode()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_all_final_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_all_final_hypothesis'><code>flashlighttext::Decoder$get_all_final_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_best_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_best_hypothesis'><code>flashlighttext::Decoder$get_best_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="n_decoded_frames_in_buffer"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-n_decoded_frames_in_buffer'><code>flashlighttext::Decoder$n_decoded_frames_in_buffer()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="prune"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-prune'><code>flashlighttext::Decoder$prune()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-new"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-new}{}}}
@@ -68,76 +64,6 @@ LexiconFreeSeq2SeqDecoder
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-decode_begin"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-decode_begin}{}}}
-\subsection{Method \code{decode_begin()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$decode_begin()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-decode_step"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-decode_step}{}}}
-\subsection{Method \code{decode_step()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$decode_step(emissions, T, N)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{emissions}}{a emissions}
-
-\item{\code{T}}{a T}
-
-\item{\code{N}}{a N}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-decode_end"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-decode_end}{}}}
-\subsection{Method \code{decode_end()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$decode_end()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-decode"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-decode}{}}}
-\subsection{Method \code{decode()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$decode(emissions, T, N)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{emissions}}{a emissions}
-
-\item{\code{T}}{a T}
-
-\item{\code{N}}{a N}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-n_hypothesis"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-n_hypothesis}{}}}
 \subsection{Method \code{n_hypothesis()}}{
@@ -147,68 +73,6 @@ invisible(NULL)
 
 \subsection{Returns}{
 int
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-prune"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-prune}{}}}
-\subsection{Method \code{prune()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$prune(lookBack = 0)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lookBack}}{a lookBack}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-n_decoded_frames_in_buffer"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-n_decoded_frames_in_buffer}{}}}
-\subsection{Method \code{n_decoded_frames_in_buffer()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$n_decoded_frames_in_buffer()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-int
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-get_best_hypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-get_best_hypothesis}{}}}
-\subsection{Method \code{get_best_hypothesis()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$get_best_hypothesis(lookBack = 0)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lookBack}}{a lookBack}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-DecodeResult
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconFreeSeq2SeqDecoder-get_all_final_hypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconFreeSeq2SeqDecoder-get_all_final_hypothesis}{}}}
-\subsection{Method \code{get_all_final_hypothesis()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconFreeSeq2SeqDecoder$get_all_final_hypothesis()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-list of DecodeResult
 }
 }
 \if{html}{\out{<hr>}}

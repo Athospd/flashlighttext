@@ -15,12 +15,18 @@ ZeroLM
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-ZeroLM-new}{\code{ZeroLM$new()}}
-\item \href{#method-ZeroLM-start}{\code{ZeroLM$start()}}
-\item \href{#method-ZeroLM-score}{\code{ZeroLM$score()}}
-\item \href{#method-ZeroLM-finish}{\code{ZeroLM$finish()}}
 \item \href{#method-ZeroLM-clone}{\code{ZeroLM$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="finish"><a href='../../flashlighttext/html/LM.html#method-LM-finish'><code>flashlighttext::LM$finish()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="score"><a href='../../flashlighttext/html/LM.html#method-LM-score'><code>flashlighttext::LM$score()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="LM" data-id="start"><a href='../../flashlighttext/html/LM.html#method-LM-start'><code>flashlighttext::LM$start()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ZeroLM-new"></a>}}
 \if{latex}{\out{\hypertarget{method-ZeroLM-new}{}}}
@@ -40,65 +46,6 @@ ZeroLM
 }
 \subsection{Returns}{
 ZeroLM
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ZeroLM-start"></a>}}
-\if{latex}{\out{\hypertarget{method-ZeroLM-start}{}}}
-\subsection{Method \code{start()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ZeroLM$start(startWithNothing = FALSE)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{startWithNothing}}{a boolean}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-LMState
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ZeroLM-score"></a>}}
-\if{latex}{\out{\hypertarget{method-ZeroLM-score}{}}}
-\subsection{Method \code{score()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ZeroLM$score(state, usrTokenIdx)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{state}}{a state}
-
-\item{\code{usrTokenIdx}}{a usrTokenIdx}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-list(LMState, numeric)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ZeroLM-finish"></a>}}
-\if{latex}{\out{\hypertarget{method-ZeroLM-finish}{}}}
-\subsection{Method \code{finish()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ZeroLM$finish(state)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{state}}{a state}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-list(LMState, numeric)
 }
 }
 \if{html}{\out{<hr>}}

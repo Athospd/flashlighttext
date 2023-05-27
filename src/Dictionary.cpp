@@ -75,8 +75,12 @@ std::string cpp_Dictionary_get_entry(XPtr<Dictionary> obj, int idx) {
 }
 
 // [[Rcpp::export]]
-int cpp_Dictionary_get_index(XPtr<Dictionary> obj, const std::string& entry) {
-  return obj->getIndex(entry);
+Rcpp::NumericVector cpp_Dictionary_get_index(XPtr<Dictionary> obj, const std::vector<std::string>& entries) {
+  Rcpp::NumericVector indeces(entries.size());
+  for (std::size_t i = 0; i < entries.size(); i++) {
+    indeces[i] = obj->getIndex(entries[i]);
+  }
+  return indeces;
 }
 
 // [[Rcpp::export]]

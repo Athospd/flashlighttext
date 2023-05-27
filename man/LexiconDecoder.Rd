@@ -11,29 +11,25 @@ LexiconDecoder
 \section{Super class}{
 \code{\link[flashlighttext:Decoder]{flashlighttext::Decoder}} -> \code{LexiconDecoder}
 }
-\section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{ptr}}{set and get the pointer to a LexiconDecoder instance.}
-}
-\if{html}{\out{</div>}}
-}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-LexiconDecoder-new}{\code{LexiconDecoder$new()}}
-\item \href{#method-LexiconDecoder-decode_begin}{\code{LexiconDecoder$decode_begin()}}
-\item \href{#method-LexiconDecoder-decode_step}{\code{LexiconDecoder$decode_step()}}
-\item \href{#method-LexiconDecoder-decode_end}{\code{LexiconDecoder$decode_end()}}
-\item \href{#method-LexiconDecoder-decode}{\code{LexiconDecoder$decode()}}
 \item \href{#method-LexiconDecoder-n_hypothesis}{\code{LexiconDecoder$n_hypothesis()}}
-\item \href{#method-LexiconDecoder-prune}{\code{LexiconDecoder$prune()}}
-\item \href{#method-LexiconDecoder-n_decoded_frames_in_buffer}{\code{LexiconDecoder$n_decoded_frames_in_buffer()}}
-\item \href{#method-LexiconDecoder-get_best_hypothesis}{\code{LexiconDecoder$get_best_hypothesis()}}
-\item \href{#method-LexiconDecoder-get_all_final_hypothesis}{\code{LexiconDecoder$get_all_final_hypothesis()}}
 \item \href{#method-LexiconDecoder-clone}{\code{LexiconDecoder$clone()}}
 }
 }
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="decode"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-decode'><code>flashlighttext::Decoder$decode()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_all_final_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_all_final_hypothesis'><code>flashlighttext::Decoder$get_all_final_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="get_best_hypothesis"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-get_best_hypothesis'><code>flashlighttext::Decoder$get_best_hypothesis()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="n_decoded_frames_in_buffer"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-n_decoded_frames_in_buffer'><code>flashlighttext::Decoder$n_decoded_frames_in_buffer()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="flashlighttext" data-topic="Decoder" data-id="prune"><a href='../../flashlighttext/html/Decoder.html#method-Decoder-prune'><code>flashlighttext::Decoder$prune()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconDecoder-new"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconDecoder-new}{}}}
@@ -77,76 +73,6 @@ LexiconDecoder
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-decode_begin"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-decode_begin}{}}}
-\subsection{Method \code{decode_begin()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode_begin()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-decode_step"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-decode_step}{}}}
-\subsection{Method \code{decode_step()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode_step(emissions, T, N)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{emissions}}{a emissions}
-
-\item{\code{T}}{a T}
-
-\item{\code{N}}{a N}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-decode_end"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-decode_end}{}}}
-\subsection{Method \code{decode_end()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode_end()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-decode"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-decode}{}}}
-\subsection{Method \code{decode()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$decode(emissions, T, N)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{emissions}}{a emissions}
-
-\item{\code{T}}{a T}
-
-\item{\code{N}}{a N}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconDecoder-n_hypothesis"></a>}}
 \if{latex}{\out{\hypertarget{method-LexiconDecoder-n_hypothesis}{}}}
 \subsection{Method \code{n_hypothesis()}}{
@@ -156,68 +82,6 @@ invisible(NULL)
 
 \subsection{Returns}{
 int
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-prune"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-prune}{}}}
-\subsection{Method \code{prune()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$prune(lookBack = 0)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lookBack}}{a lookBack}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-n_decoded_frames_in_buffer"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-n_decoded_frames_in_buffer}{}}}
-\subsection{Method \code{n_decoded_frames_in_buffer()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$n_decoded_frames_in_buffer()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-int
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-get_best_hypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-get_best_hypothesis}{}}}
-\subsection{Method \code{get_best_hypothesis()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$get_best_hypothesis(lookBack = 0)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{lookBack}}{a lookBack}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-DecodeResult
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LexiconDecoder-get_all_final_hypothesis"></a>}}
-\if{latex}{\out{\hypertarget{method-LexiconDecoder-get_all_final_hypothesis}{}}}
-\subsection{Method \code{get_all_final_hypothesis()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{LexiconDecoder$get_all_final_hypothesis()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-list of DecodeResult
 }
 }
 \if{html}{\out{<hr>}}

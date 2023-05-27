@@ -25,9 +25,6 @@ decoder <- Decoder$new()
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Decoder-new}{\code{Decoder$new()}}
-\item \href{#method-Decoder-decode_begin}{\code{Decoder$decode_begin()}}
-\item \href{#method-Decoder-decode_step}{\code{Decoder$decode_step()}}
-\item \href{#method-Decoder-decode_end}{\code{Decoder$decode_end()}}
 \item \href{#method-Decoder-decode}{\code{Decoder$decode()}}
 \item \href{#method-Decoder-prune}{\code{Decoder$prune()}}
 \item \href{#method-Decoder-n_decoded_frames_in_buffer}{\code{Decoder$n_decoded_frames_in_buffer()}}
@@ -42,53 +39,6 @@ decoder <- Decoder$new()
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Decoder$new()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decode_begin"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decode_begin}{}}}
-\subsection{Method \code{decode_begin()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_begin()}\if{html}{\out{</div>}}
-}
-
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decode_step"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decode_step}{}}}
-\subsection{Method \code{decode_step()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_step(emissions, T, N)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{emissions}}{a emissions}
-
-\item{\code{T}}{a T}
-
-\item{\code{N}}{a N}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-invisible(NULL)
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Decoder-decode_end"></a>}}
-\if{latex}{\out{\hypertarget{method-Decoder-decode_end}{}}}
-\subsection{Method \code{decode_end()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decoder$decode_end()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{
@@ -146,7 +96,7 @@ invisible(NULL)
 }
 
 \subsection{Returns}{
-invisible(NULL)
+int
 }
 }
 \if{html}{\out{<hr>}}
@@ -165,7 +115,7 @@ invisible(NULL)
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-invisible(NULL)
+DecodeResult
 }
 }
 \if{html}{\out{<hr>}}
@@ -177,7 +127,7 @@ invisible(NULL)
 }
 
 \subsection{Returns}{
-invisible(NULL)
+list of DecodeResult
 }
 }
 \if{html}{\out{<hr>}}

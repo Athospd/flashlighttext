@@ -30,6 +30,10 @@ test_that("Dictionary", {
   
   expect_equal(dict$entry_size(), 6)
   expect_equal(dict$index_size(), 5)
+  
+  
+  expect_equal(dict$get_index(c("5", "6")), c(4, 5))
+  expect_equal(dict$get_index(c("6", "5")), c(5, 4))
 })
 
 test_that("Dictionary from file", {

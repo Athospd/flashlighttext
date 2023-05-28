@@ -1,7 +1,7 @@
 Type: Package
 Package: flashlighttext
-Title: Bindings to the Flashlight Text
-Version: 0.0.0.9000
+Title: Flashlight Text R Interface
+Version: 0.1.0
 Authors@R: c(
     person("Athos", "Damiani", email = "athos.damiani@gmail.com", role = c("aut", "cre", "cph")),
     person("Daniel", "Falbel", role = c("aut"))

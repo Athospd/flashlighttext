@@ -6,3 +6,5 @@
 ^flashlighttext.*\.tar\.gz$
 ^flashlighttext.*\.tgz$
 ^data-raw$
+^cran-comments\.md$
+^README\.Rmd$

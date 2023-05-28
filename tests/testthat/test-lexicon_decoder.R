@@ -11,7 +11,7 @@ tkn_to_idx <- function(spelling, token_dict, maxReps = 0) {
 test_that("lexicon_decoder", {
   # emissions ---------------------------------------------------------------
   
-  c(T, N) %<-% read_bin("TN.bin", "integer", size = 4) 
+  c(T, N) %<-% read.table(sys_file("TN.txt"))
   emissions <- read_bin("emission.bin", "numeric", size = 4) 
   transitions <- read_bin("transition.bin", "numeric", size = 4) 
   lexicon <- load_words(sys_file("words.lst")) 
@@ -42,18 +42,13 @@ test_that("lexicon_decoder", {
   # build trie
   separator_idx <- token_dict$get_index("|") 
   unk_idx <- word_dict$get_index("<unk>") 
-  trie <- Trie$new(token_dict$index_size(), separator_idx) 
-  start_state <- lm$start(FALSE)
-  for(word in names(lexicon)) {
-    spellings <- lexicon[[word]]
-    usr_idx <- word_dict$get_index(word)
-    score <- lm$score(start_state, usr_idx)[[2]]
-    for(spelling in spellings) {
-      spelling_idxs = tkn_to_idx(spelling, token_dict, 1)
-      trie$insert(spelling_idxs, usr_idx, score)
-    }
-  }
-  trie$smear(SmearingModes$MAX)
+  trie <- build_trie(
+    lm = lm,
+    token_dict = token_dict,
+    lexicon = lexicon,
+    word_dict = word_dict,
+    separator_idx = separator_idx
+  )
   
   trie_score_target <- c(-1.05971, -2.87742, -2.64553, -3.05081, -1.05971, -3.08968)
   for(i in seq_along(sentence)) {
@@ -116,4 +111,17 @@ test_that("lexicon_decoder", {
   for(i in seq_along(hyp_score_target)) {
     expect_equal(scores[i], hyp_score_target[i], tolerance = 1e-3) 
   }
+  
+  # n_hypothesis
+  expect_equal(decoder$n_hypothesis(), 16)
+  expect_equal(names(decoder$get_all_final_hypothesis()), c("score", "emittingModelScore", "lmScore", "words", "tokens"))
+  expect_equal(decoder$n_decoded_frames_in_buffer(), 237)
+  expect_no_error(best_hypo <- decoder$get_best_hypothesis())
+  expect_equal(best_hypo$score, hyp_score_target[1], tolerance = 1e-3)
+  expect_equal(length(best_hypo$words[[1]]), 237)
+  decoder$prune(1)
+  expect_equal(decoder$n_decoded_frames_in_buffer(), 4)
+  expect_no_error(best_hypo_pruned <- decoder$get_best_hypothesis())
+  expect_equal(length(best_hypo_pruned$words[[1]]), 4)
 })
+

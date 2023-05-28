@@ -10,4 +10,15 @@ test_that("kenlm", {
   
   expect_s3_class(lm, "KenLM")
   expect_equal(lm_score, -3.089679)
+  
+  word_dict2 <- create_word_dict(list(
+    "hello" = list("h", "e", "l", "l", "o", "|"),
+    "world" = list("w", "o", "r", "l", "d", "|"),
+    "<unk>" = list()
+  )) 
+  lm2 <- KenLM$new(sys_file("lm.arpa"), word_dict2) 
+  
+  expect_equal(lm2$usrTknDict$map_indices_to_entries(0), "world")
+  expect_equal(lm2$usrTknDict$map_indices_to_entries(1), "<unk>")
+  expect_equal(lm2$usrTknDict$map_indices_to_entries(2), "hello")
 })

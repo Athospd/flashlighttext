@@ -1,12 +1,6 @@
 #' Dictionary
 #' @export
 #' @rdname Dictionary
-#'
-#' @examples
-#'
-#' library(flashlighttext)
-#'
-#' dict <- Dictionary$new()
 Dictionary <- R6::R6Class(
   "Dictionary",
   public = list(
@@ -14,7 +8,18 @@ Dictionary <- R6::R6Class(
     #' @param tokens file or list containing valid tokens. If using a file, the 
     #' expected format is for tokens mapping to the same index to be on the same
     #' line
-    #' @return Dictionary
+    #' @returns Dictionary
+    #'
+    #' @examples
+    #' library(flashlighttext)
+    #'
+    #' dict <- Dictionary$new(letters)
+    #' dict$get_entry(0)
+    #' dict$get_index("b")
+    #' dict$map_indices_to_entries(1:3)
+    #' dict$entry_size()
+    #' dict$add_entry("A")
+    #' dict$contains("A")
     initialize = function(tokens = NULL) {
       if(!is.null(tokens) & length(tokens) == 1) {
         private$ptr_ <- cpp_Dictionary_constructor_string(tokens)

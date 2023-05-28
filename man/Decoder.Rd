@@ -3,16 +3,13 @@
 \name{Decoder}
 \alias{Decoder}
 \title{Decoder}
+\value{
+invisible(NULL)
+}
 \description{
 Decoder
 
 Decoder
-}
-\examples{
-
-library(flashlighttext)
-
-decoder <- Decoder$new()
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -37,13 +34,12 @@ decoder <- Decoder$new()
 \if{html}{\out{<a id="method-Decoder-new"></a>}}
 \if{latex}{\out{\hypertarget{method-Decoder-new}{}}}
 \subsection{Method \code{new()}}{
+Decoder is a base class and cannot be initialized directly. It is inherited
+by other LM classes shuch as KenLM and ZeroLM.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Decoder$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Returns}{
-invisible(NULL)
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Decoder-decode"></a>}}
@@ -56,11 +52,11 @@ invisible(NULL)
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{emissions}}{a emissions}
+\item{\code{emissions}}{the emissions. Dimension (Batch=1, Time, Ntokens)}
 
-\item{\code{T}}{a T}
+\item{\code{T}}{an integer. Number of tokens (Ntokens).}
 
-\item{\code{N}}{a N}
+\item{\code{N}}{an integer. Number of timesteps (Time).}
 }
 \if{html}{\out{</div>}}
 }
@@ -72,6 +68,7 @@ invisible(NULL)
 \if{html}{\out{<a id="method-Decoder-prune"></a>}}
 \if{latex}{\out{\hypertarget{method-Decoder-prune}{}}}
 \subsection{Method \code{prune()}}{
+Prune the hypothesis space
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Decoder$prune(lookBack = 0)}\if{html}{\out{</div>}}
 }
@@ -79,7 +76,7 @@ invisible(NULL)
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{lookBack}}{a lookBack}
+\item{\code{lookBack}}{an integer. Number of frames to look back.}
 }
 \if{html}{\out{</div>}}
 }
@@ -96,7 +93,7 @@ invisible(NULL)
 }
 
 \subsection{Returns}{
-int
+an integer
 }
 }
 \if{html}{\out{<hr>}}
@@ -110,12 +107,12 @@ int
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{lookBack}}{a lookBack}
+\item{\code{lookBack}}{an integer. Number of frames to look back.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-DecodeResult
+a DecodeResult instance
 }
 }
 \if{html}{\out{<hr>}}
@@ -127,7 +124,7 @@ DecodeResult
 }
 
 \subsection{Returns}{
-list of DecodeResult
+list of DecodeResult instances
 }
 }
 \if{html}{\out{<hr>}}

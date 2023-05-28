@@ -72,19 +72,19 @@ LexiconSeq2SeqDecoderOptions
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{beam_size}}{Maximum number of hypothesis we hold after each step}
+\item{\code{beam_size}}{an integer. Maximum number of hypothesis we hold after each step}
 
-\item{\code{beam_size_token}}{Maximum number of tokens we consider at each step}
+\item{\code{beam_size_token}}{an integer. Maximum number of tokens we consider at each step}
 
-\item{\code{beam_threshold}}{Threshold to prune hypothesis}
+\item{\code{beam_threshold}}{a numeric. Threshold to prune hypothesis}
 
-\item{\code{lm_weight}}{Weight of lm}
+\item{\code{lm_weight}}{a numeric. Weight of lm}
 
-\item{\code{word_score}}{Word insertion score}
+\item{\code{word_score}}{a numeric. Word insertion score}
 
-\item{\code{eos_score}}{Score for inserting an EOS}
+\item{\code{eos_score}}{a numeric. Score for inserting an EOS}
 
-\item{\code{log_add}}{If or not use logadd when merging hypothesis}
+\item{\code{log_add}}{a logical. If or not use logadd when merging hypothesis}
 }
 \if{html}{\out{</div>}}
 }

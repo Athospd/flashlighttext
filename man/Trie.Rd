@@ -8,13 +8,18 @@ Trie
 
 Trie
 }
+\details{
+Trie is used to store the lexicon in language model. We use it to limit
+the search space in decoder and quickly look up scores for a given token
+(completed word) or make prediction for incompleted ones based on smearing.
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
 \item{\code{rootIdx}}{the rootIdx.}
 
-\item{\code{maxChildren}}{The maximum number of childern for each node. It is
-usually the size of letters or phonmes.}
+\item{\code{maxChildren}}{The maximum number of children for each node. It is
+usually the size of letters or phonemes.}
 
 \item{\code{ptr}}{set and get the pointer to a Trie instance.}
 }
@@ -68,6 +73,7 @@ the root node pointer
 \if{html}{\out{<a id="method-Trie-insert"></a>}}
 \if{latex}{\out{\hypertarget{method-Trie-insert}{}}}
 \subsection{Method \code{insert()}}{
+Insert a token into trie with label
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trie$insert(indices, label, score)}\if{html}{\out{</div>}}
 }
@@ -91,6 +97,7 @@ a TrieNodePtr
 \if{html}{\out{<a id="method-Trie-search"></a>}}
 \if{latex}{\out{\hypertarget{method-Trie-search}{}}}
 \subsection{Method \code{search()}}{
+Get the labels for a given token
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trie$search(indices)}\if{html}{\out{</div>}}
 }
@@ -110,6 +117,12 @@ a TrieNodePtr
 \if{html}{\out{<a id="method-Trie-smear"></a>}}
 \if{latex}{\out{\hypertarget{method-Trie-smear}{}}}
 \subsection{Method \code{smear()}}{
+Smearing the trie using the valid labels inserted in the trie 
+so as to get score on each node (incompleted token).
+For example, if smear_mode is MAX, then for node "a" in path "c"->"a", we
+will select the maximum score from all its children like "c"->"a"->"t",
+"c"->"a"->"n", "c"->"a"->"r"->"e" and so on.
+This process will be carry out recursively on all the nodes.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Trie$smear(smearMode)}\if{html}{\out{</div>}}
 }

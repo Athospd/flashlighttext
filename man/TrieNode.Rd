@@ -4,9 +4,7 @@
 \alias{TrieNode}
 \title{TrieNode}
 \description{
-TrieNode
-
-TrieNode
+TrieNode is the trie node structure in Trie.
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -35,7 +33,7 @@ It returns invisible(NULL)}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{idx}}{a idx}
+\item{\code{idx}}{an integer. Node index}
 }
 \if{html}{\out{</div>}}
 }

@@ -4,9 +4,18 @@
 \alias{LexiconDecoder}
 \title{LexiconDecoder}
 \description{
-LexiconDecoder
+Decoder implements a beam seach decoder that finds the word transcription
+W maximizing:
+}
+\details{
+AM(W) + lmWeight_ * log(P_{lm}(W)) + wordScore_ * |W_known| + unkScore_ * 
+|W_unknown| + silScore_ * |{i| pi_i = <sil>}|
 
-LexiconDecoder
+where P_{lm}(W) is the language model score, pi_i is the value for the i-th
+frame in the path leading to W and AM(W) is the (unnormalized) emitting model
+score of the transcription W. Note that the lexicon is used to limit the
+search space and all candidate words are generated from it if unkScore is
+-inf, otherwise <UNK> will be generated for OOVs.
 }
 \section{Super class}{
 \code{\link[flashlighttext:Decoder]{flashlighttext::Decoder}} -> \code{LexiconDecoder}
@@ -50,19 +59,19 @@ LexiconDecoder
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{options}}{a options}
+\item{\code{options}}{a LexiconDecoderOptions instance}
 
-\item{\code{trie}}{a trie}
+\item{\code{trie}}{a Trie instance. Lexicon trie to restrict beam-search decoder}
 
-\item{\code{lm}}{a lm}
+\item{\code{lm}}{a LM instance (e.g. KenLM or ZeroLM)}
 
-\item{\code{sil_token_idx}}{a sil_token_idx}
+\item{\code{sil_token_idx}}{a character. The silence token index}
 
-\item{\code{blank_token_idx}}{a blank_token_idx}
+\item{\code{blank_token_idx}}{a character. The blank token index (for CTC)}
 
-\item{\code{unk_token_idx}}{a unk_token_idx}
+\item{\code{unk_token_idx}}{a character. The unkown token index}
 
-\item{\code{transitions}}{a transitions}
+\item{\code{transitions}}{a tensor. Matrix of transitions (for ASG criterion)}
 
 \item{\code{is_lm_token}}{a is_lm_token}
 }
@@ -81,7 +90,7 @@ LexiconDecoder
 }
 
 \subsection{Returns}{
-int
+an integer
 }
 }
 \if{html}{\out{<hr>}}

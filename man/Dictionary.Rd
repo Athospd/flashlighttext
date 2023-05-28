@@ -3,6 +3,9 @@
 \name{Dictionary}
 \alias{Dictionary}
 \title{Dictionary}
+\value{
+Dictionary
+}
 \description{
 Dictionary
 
@@ -10,9 +13,19 @@ Dictionary
 }
 \examples{
 
+## ------------------------------------------------
+## Method `Dictionary$new`
+## ------------------------------------------------
+
 library(flashlighttext)
 
-dict <- Dictionary$new()
+dict <- Dictionary$new(letters)
+dict$get_entry(0)
+dict$get_index("b")
+dict$map_indices_to_entries(1:3)
+dict$entry_size()
+dict$add_entry("A")
+dict$contains("A")
 }
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
@@ -56,9 +69,22 @@ line}
 }
 \if{html}{\out{</div>}}
 }
-\subsection{Returns}{
-Dictionary
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{library(flashlighttext)
+
+dict <- Dictionary$new(letters)
+dict$get_entry(0)
+dict$get_index("b")
+dict$map_indices_to_entries(1:3)
+dict$entry_size()
+dict$add_entry("A")
+dict$contains("A")
 }
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Dictionary-entry_size"></a>}}

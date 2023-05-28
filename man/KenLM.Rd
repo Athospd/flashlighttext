@@ -8,6 +8,24 @@ KenLM
 
 KenLM
 }
+\examples{
+
+## ------------------------------------------------
+## Method `KenLM$new`
+## ------------------------------------------------
+
+\dontrun{
+library(flashlighttext)
+sys_file <- function(file) system.file(file, package = "flashlighttext")
+read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
+
+lexicon <- load_words(sys_file("words.lst")) 
+word_dict <- create_word_dict(lexicon) 
+lm <- KenLM$new(sys_file("lm.arpa"), word_dict) 
+lm_state <- lm$start(FALSE) 
+c(lm_state, lm_score) \%<-\% lm$score(lm_state, 0) 
+}
+}
 \section{Super class}{
 \code{\link[flashlighttext:LM]{flashlighttext::LM}} -> \code{KenLM}
 }
@@ -47,15 +65,34 @@ KenLM
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{path}}{a character string representing the path to the binary file containing the language model.}
+\item{\code{path}}{a character string representing the path to the binary file 
+containing the language model.}
 
-\item{\code{usrTknDict}}{a list of user-defined tokens.}
+\item{\code{usrTknDict}}{a Dictionary instance populated with user-defined tokens.}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
 An instance of the KenLM class.
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{\dontrun{
+library(flashlighttext)
+sys_file <- function(file) system.file(file, package = "flashlighttext")
+read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
+
+lexicon <- load_words(sys_file("words.lst")) 
+word_dict <- create_word_dict(lexicon) 
+lm <- KenLM$new(sys_file("lm.arpa"), word_dict) 
+lm_state <- lm$start(FALSE) 
+c(lm_state, lm_score) \%<-\% lm$score(lm_state, 0) 
+}
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-KenLM-clone"></a>}}

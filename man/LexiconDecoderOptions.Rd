@@ -11,6 +11,25 @@ LexiconDecoderOptions
 
 LexiconDecoderOptions
 }
+\examples{
+
+## ------------------------------------------------
+## Method `LexiconDecoderOptions$new`
+## ------------------------------------------------
+
+opts <- LexiconDecoderOptions$new(
+  beam_size = 2500,
+  beam_size_token = 25000,
+  beam_threshold = 100.0,
+  lm_weight = 2.0,
+  word_score = 2.0,
+  unk_score = -Inf,
+  sil_score = -1,
+  log_add = FALSE,
+  criterion_type = CriterionTypes$ASG
+)
+
+}
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
@@ -84,6 +103,25 @@ LexiconDecoderOptions
 }
 \if{html}{\out{</div>}}
 }
+\subsection{Examples}{
+\if{html}{\out{<div class="r example copy">}}
+\preformatted{opts <- LexiconDecoderOptions$new(
+  beam_size = 2500,
+  beam_size_token = 25000,
+  beam_threshold = 100.0,
+  lm_weight = 2.0,
+  word_score = 2.0,
+  unk_score = -Inf,
+  sil_score = -1,
+  log_add = FALSE,
+  criterion_type = CriterionTypes$ASG
+)
+
+}
+\if{html}{\out{</div>}}
+
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-LexiconDecoderOptions-clone"></a>}}

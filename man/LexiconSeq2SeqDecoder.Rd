@@ -13,9 +13,6 @@ AM(W) + lmWeight_ * log(P_{lm}(W)) + eosScore_ * |W_last == EOS|
 where P_{lm}(W) is the language model score. The transcription W is 
 constrained by a lexicon. The language model may operate at word-level 
 (isLmToken = FALSE) or token-level (isLmToken = TRUE).
-
-
-TODO: Doesn't support online decoding now.
 }
 \section{Super class}{
 \code{\link[flashlighttext:Decoder]{flashlighttext::Decoder}} -> \code{LexiconSeq2SeqDecoder}
@@ -49,8 +46,8 @@ TODO: Doesn't support online decoding now.
   trie,
   lm,
   eos,
+  emitting_model_update_func,
   max_output_length,
-  transitions,
   is_lm_token
 )}\if{html}{\out{</div>}}
 }
@@ -58,21 +55,19 @@ TODO: Doesn't support online decoding now.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{options}}{a options}
+\item{\code{options}}{a LexiconSeq2SeqDecoderOptions instance.}
 
-\item{\code{trie}}{a trie}
+\item{\code{trie}}{a Trie instance}
 
-\item{\code{lm}}{a lm}
+\item{\code{lm}}{a LM instance}
 
-\item{\code{eos}}{a eos}
+\item{\code{eos}}{an integer. The index representing the EOS.}
 
-\item{\code{max_output_length}}{a maxOutputLength}
+\item{\code{emitting_model_update_func}}{an emittingModelUpdateFunc instance}
 
-\item{\code{transitions}}{a transitions}
+\item{\code{max_output_length}}{an integer. The maximum output length.}
 
 \item{\code{is_lm_token}}{a is_lm_token}
-
-\item{\code{emitting_model_update_func}}{a emittingModelUpdateFunc}
 }
 \if{html}{\out{</div>}}
 }

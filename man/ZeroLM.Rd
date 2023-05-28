@@ -4,9 +4,8 @@
 \alias{ZeroLM}
 \title{ZeroLM}
 \description{
-ZeroLM
-
-ZeroLM
+ZeroLM is a dummy language model class, which mimics the behaviour of a
+uni-gram language model but always returns 0 as score.
 }
 \section{Super class}{
 \code{\link[flashlighttext:LM]{flashlighttext::LM}} -> \code{ZeroLM}
@@ -35,15 +34,6 @@ ZeroLM
 \if{html}{\out{<div class="r">}}\preformatted{ZeroLM$new()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{path}}{a path}
-
-\item{\code{usrTknDict}}{a usrTknDict}
-}
-\if{html}{\out{</div>}}
-}
 \subsection{Returns}{
 ZeroLM
 }

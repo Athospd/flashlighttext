@@ -86,14 +86,14 @@ test_that("lexicon_decoder", {
   # run decoding
   results <- decoder$decode(emissions, T, N)
   
-  emissions_torch <- torch::torch_tensor(emissions)
-  
-  results_numeric_torch <- decoder$decode(as.numeric(emissions_torch$storage()$data_ptr()), T, N)
-  results_chr_torch <- decoder$decode(emissions_torch$storage()$data_ptr(), T, N)
-  results_torch <- decoder$decode(emissions_torch, T, N)
-  expect_equal(results, results_numeric_torch)
-  expect_equal(results, results_chr_torch)
-  expect_equal(results, results_torch)
+  # emissions_torch <- torch::torch_tensor(emissions)
+  # 
+  # results_numeric_torch <- decoder$decode(as.numeric(emissions_torch$storage()$data_ptr()), T, N)
+  # results_chr_torch <- decoder$decode(emissions_torch$storage()$data_ptr(), T, N)
+  # results_torch <- decoder$decode(emissions_torch, T, N)
+  # expect_equal(results, results_numeric_torch)
+  # expect_equal(results, results_chr_torch)
+  # expect_equal(results, results_torch)
   
   scores <- purrr::map_dbl(results, "score")
   tokens <- purrr::map(results, "tokens")

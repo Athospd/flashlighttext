@@ -4,7 +4,7 @@
 \alias{\%<-\%}
 \title{Multiple assignment operator}
 \usage{
-c(x, y, z) \%<-\% list(a, b, c)
+x \%<-\% value
 }
 \description{
 See \code{zeallot::\link[zeallot:operator]{\%<-\%}} for details.

@@ -79,18 +79,6 @@ Trie <- R6::R6Class(
   )
 )
 
-#' SmearingModes
-#'
-#' A enum (list) of semearing modes.
-#'
-#' @format ## `SmearingModes`
-#' A list with 3 items:
-#' \describe{
-#'   \item{NONE}{string "NONE"}
-#'   \item{MAX}{string "MAX"}
-#'   \item{LOGADD}{string "LOGADD"}
-#' }
-"SmearingModes"
 
 
 #' TrieNode
@@ -135,6 +123,18 @@ TrieNode <- R6::R6Class(
   )
 )
 
+#' SmearingModes
+#'
+#' A enum (list) of semearing modes.
+#'
+#' @format ## `SmearingModes`
+#' A list with 3 items:
+#' \describe{
+#'   \item{NONE}{string "NONE"}
+#'   \item{MAX}{string "MAX"}
+#'   \item{LOGADD}{string "LOGADD"}
+#' }
+"SmearingModes"
 
 #' Trie Builder
 #'

@@ -13,6 +13,7 @@ License: MIT + file LICENSE
 Imports: 
     glue,
     magrittr,
+    methods,
     R6,
     Rcpp (>= 1.0.10),
     rlang,

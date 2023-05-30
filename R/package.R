@@ -3,7 +3,7 @@
 NULL
 
 is_null_externalptr <- function(x) {
-  identical(x, new("externalptr"))
+  identical(x, methods::new("externalptr"))
 }
 
 

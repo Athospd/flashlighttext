@@ -19,7 +19,7 @@ NULL
 #' @keywords internal
 #' @export
 #' @importFrom zeallot %<-%
-#' @usage c(x, y, z) \%<-\% list(a, b, c)
+#' @usage x \%<-\% value
 NULL
 
 #' Format and interpolate a string
@@ -28,6 +28,6 @@ NULL
 #' 
 #' @examples
 #' f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
-#' 
+#' @inheritParams glue::glue
 #' @export
 f <- glue::glue

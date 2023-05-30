@@ -23,3 +23,22 @@ a populated Trie instance.
 \description{
 Helper to build a trie with a Dictionary.
 }
+\examples{
+library(flashlighttext)
+lm <- ZeroLM$new()
+lexicon <- list(
+  "hello" = list(c("h", "e", "l", "l", "o", "|")),
+  "world" = list(c("w", "o", "r", "l", "d", "|")),
+  "<unk>" = list()
+)
+word_dict <- create_word_dict(lexicon)
+token_dict <- Dictionary$new(c("h", "e", "l", "o", "|", "w", "r", "d", "<unk>")) 
+token_dict$add_entry("<1>")
+trie <- build_trie(
+  lm = lm,
+  token_dict = token_dict,
+  lexicon = lexicon, 
+  word_dict = word_dict,
+  separator_idx = token_dict$get_index("|")
+)
+}

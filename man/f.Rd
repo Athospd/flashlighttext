@@ -4,8 +4,24 @@
 \alias{f}
 \title{Format and interpolate a string}
 \usage{
-f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
+f(
+  ...,
+  .sep = "",
+  .envir = parent.frame(),
+  .open = "{",
+  .close = "}",
+  .na = "NA",
+  .null = character(),
+  .comment = "#",
+  .literal = FALSE,
+  .transformer = identity_transformer,
+  .trim = TRUE
+)
 }
 \description{
 See \code{glue::glue} for details.
+}
+\examples{
+f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
+
 }

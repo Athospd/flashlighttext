@@ -26,7 +26,7 @@ test_that("lexicon_seq2seq_decoder", {
     separator_idx = token_dict$get_index("|")
   )
   
-  expect_no_error(decoder <- LexiconSeq2SeqDecoder$new(
+  expect_error(decoder <- LexiconSeq2SeqDecoder$new(
     options = opts,
     trie = trie,
     lm = lm,

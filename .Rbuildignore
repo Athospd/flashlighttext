@@ -8,3 +8,5 @@
 ^data-raw$
 ^cran-comments\.md$
 ^README\.Rmd$
+^src/build.*$
+^src/flashlighttext/.*$

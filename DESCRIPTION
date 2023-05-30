@@ -15,9 +15,11 @@ Imports:
     magrittr,
     R6,
     Rcpp (>= 1.0.10),
+    rlang,
     zeallot
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    purrr
 LinkingTo: 
     Rcpp
 Config/testthat/edition: 3

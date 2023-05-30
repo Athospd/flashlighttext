@@ -6,13 +6,13 @@ LexiconSeq2SeqDecoderOptions <- R6::R6Class(
   "LexiconSeq2SeqDecoderOptions",
   inherit = Decoder,
   public = list(
-    #' @param beam_size Maximum number of hypothesis we hold after each step
-    #' @param beam_size_token Maximum number of tokens we consider at each step
-    #' @param beam_threshold Threshold to prune hypothesis
-    #' @param lm_weight Weight of lm
-    #' @param word_score Word insertion score
-    #' @param eos_score Score for inserting an EOS
-    #' @param log_add If or not use logadd when merging hypothesis
+    #' @param beam_size an integer. Maximum number of hypothesis we hold after each step
+    #' @param beam_size_token an integer. Maximum number of tokens we consider at each step
+    #' @param beam_threshold a numeric. Threshold to prune hypothesis
+    #' @param lm_weight a numeric. Weight of lm
+    #' @param word_score a numeric. Word insertion score
+    #' @param eos_score a numeric. Score for inserting an EOS
+    #' @param log_add a logical. If or not use logadd when merging hypothesis
     #' @returns LexiconSeq2SeqDecoderOptions
     initialize = function(
     beam_size,
@@ -36,8 +36,7 @@ LexiconSeq2SeqDecoderOptions <- R6::R6Class(
         beam_threshold,
         lm_weight,
         word_score,
-        unk_score,
-        sil_score,
+        eos_score,
         log_add
       )
     }
@@ -136,9 +135,6 @@ LexiconSeq2SeqDecoderOptions <- R6::R6Class(
 #' where P_{lm}(W) is the language model score. The transcription W is 
 #' constrained by a lexicon. The language model may operate at word-level 
 #' (isLmToken = FALSE) or token-level (isLmToken = TRUE).
-#' 
-#' @details 
-#' TODO: Doesn't support online decoding now.
 #'
 #' @export
 #' @rdname LexiconSeq2SeqDecoder
@@ -147,13 +143,12 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
   inherit = Decoder,
   public = list(
     
-    #' @param options a options 
-    #' @param trie a trie 
-    #' @param lm a lm 
-    #' @param eos a eos 
-    #' @param emitting_model_update_func a emittingModelUpdateFunc 
-    #' @param max_output_length a maxOutputLength 
-    #' @param transitions a transitions 
+    #' @param options a LexiconSeq2SeqDecoderOptions instance. 
+    #' @param trie a Trie instance 
+    #' @param lm a LM instance
+    #' @param eos an integer. The index representing the EOS.
+    #' @param emitting_model_update_func an emittingModelUpdateFunc instance
+    #' @param max_output_length an integer. The maximum output length.
     #' @param is_lm_token a is_lm_token 
     #' @return LexiconSeq2SeqDecoder
     initialize = function(
@@ -161,16 +156,15 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
     trie, 
     lm, 
     eos, 
-    # emitting_model_update_func, 
+    emitting_model_update_func,
     max_output_length, 
-    transitions, 
     is_lm_token
     ) {
       private$options_ <- options
       private$trie_ <- trie
       private$lm_ <- lm
       private$eos_ <- eos
-      # private$emitting_model_update_func_ <- emitting_model_update_func
+      private$emitting_model_update_func_ <- emitting_model_update_func
       private$max_output_length_ <- max_output_length
       private$is_lm_token_ <- is_lm_token
       private$ptr_ <- cpp_LexiconSeq2SeqDecoder_constructor(
@@ -178,7 +172,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
         trie$ptr, 
         lm$ptr, 
         eos, 
-        # emitting_model_update_func$ptr,
+        emitting_model_update_func$ptr,
         max_output_length,
         is_lm_token
       )
@@ -195,7 +189,7 @@ LexiconSeq2SeqDecoder <- R6::R6Class(
     trie_ = NULL,
     lm_ = NULL,
     eos_ = NULL,
-    # emitting_model_update_func_ = NULL,
+    emitting_model_update_func_ = NULL,
     max_output_length_ = NULL,
     is_lm_token_ = NULL
   )

@@ -14,6 +14,19 @@ LexiconDecoderOptions <- R6::R6Class(
     #' @param sil_score Silence insertion score
     #' @param log_add If or not use logadd when merging hypothesis
     #' @param criterion_type a CriterionType: "CTC" or "ASG" (see [CriterionTypes])
+    #' @examples
+    #' opts <- LexiconDecoderOptions$new(
+    #'   beam_size = 2500,
+    #'   beam_size_token = 25000,
+    #'   beam_threshold = 100.0,
+    #'   lm_weight = 2.0,
+    #'   word_score = 2.0,
+    #'   unk_score = -Inf,
+    #'   sil_score = -1,
+    #'   log_add = FALSE,
+    #'   criterion_type = CriterionTypes$ASG
+    #' )
+    #' 
     #' @returns LexiconDecoderOptions
     initialize = function(
     beam_size,
@@ -153,6 +166,18 @@ LexiconDecoderOptions <- R6::R6Class(
 )
 
 #' LexiconDecoder
+#' 
+#' Decoder implements a beam seach decoder that finds the word transcription
+#' W maximizing:
+#' 
+#' AM(W) + lmWeight_ * log(P_{lm}(W)) + wordScore_ * |W_known| + unkScore_ * 
+#' |W_unknown| + silScore_ * |{i| pi_i = <sil>}|
+#' 
+#' where P_{lm}(W) is the language model score, pi_i is the value for the i-th
+#' frame in the path leading to W and AM(W) is the (unnormalized) emitting model
+#' score of the transcription W. Note that the lexicon is used to limit the
+#' search space and all candidate words are generated from it if unkScore is
+#' -inf, otherwise <UNK> will be generated for OOVs.
 #'
 #' @export
 #' @rdname LexiconDecoder
@@ -161,13 +186,13 @@ LexiconDecoder <- R6::R6Class(
   inherit = Decoder,
   public = list(
     
-    #' @param options a options 
-    #' @param trie a trie 
-    #' @param lm a lm 
-    #' @param sil_token_idx a sil_token_idx 
-    #' @param blank_token_idx a blank_token_idx 
-    #' @param unk_token_idx a unk_token_idx 
-    #' @param transitions a transitions 
+    #' @param options a LexiconDecoderOptions instance 
+    #' @param trie a Trie instance. Lexicon trie to restrict beam-search decoder
+    #' @param lm a LM instance (e.g. KenLM or ZeroLM) 
+    #' @param sil_token_idx a character. The silence token index 
+    #' @param blank_token_idx a character. The blank token index (for CTC)
+    #' @param unk_token_idx a character. The unkown token index 
+    #' @param transitions a tensor. Matrix of transitions (for ASG criterion)
     #' @param is_lm_token a is_lm_token 
     #' @return LexiconDecoder
     initialize = function(
@@ -200,7 +225,7 @@ LexiconDecoder <- R6::R6Class(
       )
     },
     
-    #' @return int
+    #' @return an integer
     n_hypothesis = function() {
       cpp_LexiconDecoder_nHypothesis(self$ptr)
     }

@@ -150,6 +150,23 @@ TrieNode <- R6::R6Class(
 #' @export
 #'
 #' @examples
+#' library(flashlighttext)
+#' lm <- ZeroLM$new()
+#' lexicon <- list(
+#'   "hello" = list(c("h", "e", "l", "l", "o", "|")),
+#'   "world" = list(c("w", "o", "r", "l", "d", "|")),
+#'   "<unk>" = list()
+#' )
+#' word_dict <- create_word_dict(lexicon)
+#' token_dict <- Dictionary$new(c("h", "e", "l", "o", "|", "w", "r", "d", "<unk>")) 
+#' token_dict$add_entry("<1>")
+#' trie <- build_trie(
+#'   lm = lm,
+#'   token_dict = token_dict,
+#'   lexicon = lexicon, 
+#'   word_dict = word_dict,
+#'   separator_idx = token_dict$get_index("|")
+#' )
 build_trie <- function(lm, token_dict, lexicon, word_dict, separator_idx) {
   trie <- Trie$new(token_dict$index_size(), separator_idx)
   start_state <- lm$start(FALSE)

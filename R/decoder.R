@@ -2,23 +2,21 @@
 #' 
 #' @export
 #' @rdname Decoder
-#' 
-#' @examples
-#' 
-#' library(flashlighttext)
-#' 
-#' decoder <- Decoder$new()
 Decoder <- R6::R6Class(
   "Decoder",
   public = list(
-    #' @return invisible(NULL)
+    
+    #' @description
+    #' Decoder is a base class and cannot be initialized directly. It is inherited
+    #' by other LM classes shuch as KenLM and ZeroLM.
+    #' @returns invisible(NULL)
     initialize = function() {
       stop("Decoder is a base class and cannot be initialized.")
     },
     
-    #' @param emissions a emissions
-    #' @param T a T
-    #' @param N a N
+    #' @param emissions the emissions. Dimension (Batch=1, Time, Ntokens)
+    #' @param T an integer. Number of tokens (Ntokens).
+    #' @param N an integer. Number of timesteps (Time).
     #' @return invisible(NULL)
     decode = function(emissions, T, N) {
       if(inherits(emissions, "torch_tensor")) {
@@ -40,24 +38,26 @@ Decoder <- R6::R6Class(
       return(purrr::transpose(result))
     },
     
-    #' @param lookBack a lookBack
+    #' @description
+    #' Prune the hypothesis space
+    #' @param lookBack an integer. Number of frames to look back.
     #' @return invisible(NULL)
     prune = function(lookBack = 0) {
       cpp_Decoder_prune(self$ptr, lookBack)
     },
     
-    #' @return int
+    #' @return an integer
     n_decoded_frames_in_buffer = function() {
       cpp_Decoder_nDecodedFramesInBuffer(self$ptr)
     },
     
-    #' @param lookBack a lookBack
-    #' @return DecodeResult
+    #' @param lookBack an integer. Number of frames to look back.
+    #' @return a DecodeResult instance
     get_best_hypothesis = function(lookBack = 0) {
       cpp_Decoder_getBestHypothesis(self$ptr, lookBack)
     },
     
-    #' @return list of DecodeResult
+    #' @return list of DecodeResult instances
     get_all_final_hypothesis = function() {
       cpp_Decoder_getAllFinalHypothesis(self$ptr)
     }

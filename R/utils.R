@@ -26,6 +26,8 @@ NULL
 #' 
 #' See \code{glue::glue} for details.
 #' 
-#' @usage f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
+#' @examples
+#' f("iris dataset has {nrow(iris)} rows and {ncol(iris)} columns.")
+#' 
 #' @export
 f <- glue::glue

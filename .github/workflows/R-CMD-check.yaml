@@ -48,7 +48,7 @@ jobs:
       - name: install boost
         run: |
           sudo apt-get -y update
-          sudo apt-get -y install libboost-dev
+          sudo apt-get -y install libboost-dev libboost-program-options-dev
           
       # - uses: MarkusJx/install-boost@v2.4.1
       #   id: install-boost

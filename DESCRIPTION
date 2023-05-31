@@ -29,4 +29,4 @@ RoxygenNote: 7.2.3
 Depends: 
     R (>= 2.10)
 LazyData: true
-SystemRequirements: C++17
+SystemRequirements: C++17, GNU make, CMake (>= 3.16), Flashlight Text (https://github.com/flashlight/text/), KenLM Text (https://github.com/kpu/kenlm/)

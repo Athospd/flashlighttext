@@ -45,15 +45,20 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
           
-      - uses: MarkusJx/install-boost@v2.4.1
-        id: install-boost
-        with:
-          boost_version: 1.73.0
+      - name: install boost
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install libboost-dev
+          
+      # - uses: MarkusJx/install-boost@v2.4.1
+      #   id: install-boost
+      #   with:
+      #     boost_version: 1.73.0
 
-      - name: Set Boost dir
-        env:
-          Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-        run: echo test $Boost_INCLUDE_DIR 
+      # - name: Set Boost dir
+      #   env:
+      #     Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+      #   run: echo test $Boost_INCLUDE_DIR 
           
       - uses: r-lib/actions/check-r-package@v2
         env:

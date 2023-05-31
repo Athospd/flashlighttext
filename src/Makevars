@@ -25,7 +25,8 @@ flashlight:
     cmake --build . --config Release; \
     find ./src/ -name 'Makefile' -delete; \
     find ./src/ -name '.git' -delete; \
-    find ./src/ -name 'CITATION' -delete;)
+    find ./src/ -name 'CITATION' -delete; \
+    find ./src/ -name 'CMakeLists.txt' -delete)
 
 	
 	

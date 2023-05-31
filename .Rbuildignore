@@ -10,4 +10,4 @@
 ^README\.Rmd$
 ^src/build.*$
 ^src/flashlighttext/.*$
-^flashlighttext/boost/.*$
+^boost/.*$

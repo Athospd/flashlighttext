@@ -66,4 +66,4 @@ jobs:
         with:
           upload-snapshots: true
       
-      - run: echo /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log
+      - run: cat /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log

@@ -45,15 +45,15 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
           
+      - uses: MarkusJx/install-boost@v2.4.1
+        with:
+          boost_version: 1.73.0
+
       - name: Set Boost dir
         run: echo $BOOST_ROOT 
         env:
           BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
           
-      - uses: MarkusJx/install-boost@v2.4.1
-        with:
-          boost_version: 1.73.0
-
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true

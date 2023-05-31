@@ -50,9 +50,9 @@ jobs:
           boost_version: 1.73.0
 
       - name: Set Boost dir
-        run: echo $BOOST_ROOT 
         env:
-          BOOST_ROOT: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+          Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
+        run: echo $Boost_INCLUDE_DIR 
           
       - uses: r-lib/actions/check-r-package@v2
         with:

@@ -65,3 +65,5 @@ jobs:
           Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
         with:
           upload-snapshots: true
+      
+      - run: echo /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log

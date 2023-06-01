@@ -22,7 +22,8 @@ flashlight:
     CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
-    cmake --build . --config Release; )
+    cmake --build . --config Release; \
+    find .. -name '.git' -delete)
 
 	
 	

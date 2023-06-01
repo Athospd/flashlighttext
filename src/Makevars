@@ -26,7 +26,7 @@ flashlight:
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
     find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
-    find .. -depth -path '*CMakeLists.txt' | xargs rm -rf {}; \
+    find .. -depth -path '*/CMakeLists.txt*' | xargs rm -rf {}; \
     find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \
     find ../.. -depth -path '*src/flashlighttext/include/gtest/internal*' | xargs rm -rf {}; )
 

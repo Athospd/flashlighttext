@@ -9,6 +9,6 @@
 * This package is bindings for a C++ lib (https://github.com/flashlight/text)
 * It depends on C++17
 * It depends on Boost Lib
-* I've successfully checked on macos-latest and ubuntu-latest
+* I've successfully checked on macos-latest and ubuntu-latest (https://github.com/Athospd/flashlighttext/actions/runs/5147944857/jobs/9268986935)
 
 

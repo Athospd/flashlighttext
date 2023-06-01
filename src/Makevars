@@ -7,7 +7,7 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libkenlm_builder.a \
            #flashlighttext/lib/libkenlm_interpolate.a 
 
-all: flashlight cleaning $(SHLIB)
+all: flashlight $(SHLIB)
 $(SHLIB): flashlight
 
 
@@ -24,6 +24,5 @@ flashlight:
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release;)
 
-cleaning:
-	find ../src -depth -path '*.git/*' | xargs rm -rf '{}' \;
+clean:
 	

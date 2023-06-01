@@ -7,7 +7,9 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libkenlm_builder.a \
            #flashlighttext/lib/libkenlm_interpolate.a 
 
-all: flashlight $(SHLIB)
+.PHONY: all flashlight
+
+all: clean flashlight $(SHLIB)
 $(SHLIB): flashlight
 
 

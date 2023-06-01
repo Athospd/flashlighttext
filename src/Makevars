@@ -25,7 +25,7 @@ flashlight:
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
-    rm -rf *.git)
+    find . -depth -path '*abc.txt' | xargs rm -rf {};)
 
 clean:
-	rm -rf *.git;
+	find . -depth -path '*abc.txt' | xargs rm -rf {};

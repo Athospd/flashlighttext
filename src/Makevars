@@ -23,7 +23,7 @@ flashlight:
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
-    find ./src/ -name '.git' -delete;)
+    find ./src/ -name 'Makefile' -delete; )
 
 	
 	

@@ -23,7 +23,9 @@ flashlight:
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
-    find .. -name '.git' -exec rm -rv {} +; \)
+    find .. -path '*/.git*' -delete; \
+    find .. -name 'Makefile' -delete; \
+    find .. -name 'CITATION' -delete; \)
 
 	
 	

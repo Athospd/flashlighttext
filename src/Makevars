@@ -4,10 +4,7 @@ PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
            flashlighttext/lib/libkenlm.a \
            flashlighttext/lib/libkenlm_util.a \
            flashlighttext/lib/libkenlm_filter.a \
-           flashlighttext/lib/libkenlm_builder.a \
-           #flashlighttext/lib/libkenlm_interpolate.a 
-
-.PHONY: all flashlight
+           flashlighttext/lib/libkenlm_builder.a 
 
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight
@@ -25,8 +22,8 @@ flashlight:
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
+    find ../../.. -depth -path '*CMakeLists.txt' | xargs rm -rf {}; \
     find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
-    find .. -depth -path '*/CMakeLists.txt*' | xargs rm -rf {}; \
     find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \
     find ../.. -depth -path '*src/flashlighttext/include/gtest/internal*' | xargs rm -rf {}; )
 

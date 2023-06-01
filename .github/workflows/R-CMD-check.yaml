@@ -74,9 +74,4 @@ jobs:
           path: |
             check/flashlighttext.Rcheck/00check.log
             check/flashlighttext.Rcheck/00install.out
-            
-      - name: log
-        run: cat /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log
-      
-      - name: log2
-        run: cat ${PKG_NAME}.Rcheck/00install.out
+

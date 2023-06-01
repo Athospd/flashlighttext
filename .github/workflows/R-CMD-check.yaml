@@ -65,7 +65,16 @@ jobs:
           Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
         with:
           upload-snapshots: true
-      
+          
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ matrix.config.os }}-r${{ matrix.config.r }}-results
+          path: |
+            check/mlpack.Rcheck/00check.log
+            check/mlpack.Rcheck/00install.out
+            
       - name: log
         run: cat /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log
       

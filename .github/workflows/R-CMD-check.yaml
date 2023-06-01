@@ -72,8 +72,8 @@ jobs:
         with:
           name: ${{ matrix.config.os }}-r${{ matrix.config.r }}-results
           path: |
-            check/mlpack.Rcheck/00check.log
-            check/mlpack.Rcheck/00install.out
+            check/flashlighttext.Rcheck/00check.log
+            check/flashlighttext.Rcheck/00install.out
             
       - name: log
         run: cat /home/runner/work/flashlighttext/flashlighttext/check/flashlighttext.Rcheck/00check.log

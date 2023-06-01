@@ -45,20 +45,16 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
           
-      - name: install boost
+      - name: install boost on Linux
+        if: startsWith(runner.os, 'Linux')
         run: |
           sudo apt-get -y update
           sudo apt-get -y install libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev libboost-test-dev
           
-      # - uses: MarkusJx/install-boost@v2.4.1
-      #   id: install-boost
-      #   with:
-      #     boost_version: 1.73.0
-
-      # - name: Set Boost dir
-      #   env:
-      #     Boost_INCLUDE_DIR: ${{ steps.install-boost.outputs.BOOST_ROOT }}
-      #   run: echo test $Boost_INCLUDE_DIR 
+      - name: install boost on macOS
+        if: startsWith(runner.os, 'macOS')
+        run: |
+            brew install boost
           
       - uses: r-lib/actions/check-r-package@v2
         env:

@@ -22,7 +22,7 @@ ExternalProject_Add(flashlighttext-project
 )
 
 ExternalProject_Add(kenlm-project
-    GIT_REPOSITORY https://github.com/kpu/kenlm/
+    GIT_REPOSITORY https://github.com/athospd/kenlm/
     GIT_TAG master
     PREFIX "${CMAKE_CURRENT_BINARY_DIR}/kenlm"
     CMAKE_ARGS ${COMMON_CMAKE_ARGS}

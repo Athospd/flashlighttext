@@ -25,6 +25,7 @@ flashlight:
     cmake .. \
     -DCMAKE_BUILD_TYPE=Release; \
     cmake --build . --config Release; \
+    ls -a;
     find .. -depth -path '*/src/build*' | xargs rm -rf {}; \
     find .. -depth -path '*CMakeLists.txt' | xargs rm -rf {}; )
 

@@ -25,5 +25,5 @@ flashlight:
     cmake --build . --config Release;)
 
 cleaning:
-	find . -depth -name '.git*' -exec rm -rf '{}' \;
+	find . -depth -name '*/.git*' | xargs rm -rf '{}' \;
 	

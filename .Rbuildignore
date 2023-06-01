@@ -11,3 +11,4 @@
 ^src/build.*$
 ^src/flashlighttext/.*$
 ^boost/.*$
+^CRAN-SUBMISSION$

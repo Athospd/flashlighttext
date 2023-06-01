@@ -11,21 +11,6 @@ using namespace Rcpp;
 
 using namespace fl::lib::text;
 
-namespace {
-
-void Dictionary_addEntry_0(
-    Dictionary& dict,
-    const std::string& entry,
-    int idx) {
-  dict.addEntry(entry, idx);
-}
-
-void Dictionary_addEntry_1(Dictionary& dict, const std::string& entry) {
-  dict.addEntry(entry);
-}
-
-} // namespace
-
 // constructors ------------------------------
 // [[Rcpp::export]]
 XPtr<Dictionary> cpp_Dictionary_constructor_empty() {

@@ -12,18 +12,20 @@ $(SHLIB): flashlight
 
 flashlight:
 	@echo "Building"
-	@echo CXX is ${CXX}
 	mkdir build || true
 	(export CXX=/usr/bin/g++; \
-	echo CXX is --- ${CXX}; \
 	 cd build; \
-    CC="$(CC)" CFLAGS="$(CFLAGS)" \
-    CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
-    cmake .. \
-    -DCMAKE_BUILD_TYPE=Release; \
-    cmake --build . --config Release; \
-    find ../../.. -depth -path '*CMakeLists.txt' | xargs rm -rf {}; \
-    find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
-    find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \
-    find ../.. -depth -path '*src/flashlighttext/include/gtest/internal*' | xargs rm -rf {}; )
+   CC="$(CC)" CFLAGS="$(CFLAGS)" \
+   CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
+   cmake ../../inst \
+   -DCMAKE_BUILD_TYPE=Release; \
+   cmake --build . --config Release; \
+   find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/include/g*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/lib/cmake*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/lib/libg*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/lib/pkgconfig*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/bin*' | xargs rm -rf {}; \
+   find ../.. -depth -path '*src/flashlighttext/share*' | xargs rm -rf {}; )
 

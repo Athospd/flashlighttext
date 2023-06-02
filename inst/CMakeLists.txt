@@ -3,7 +3,7 @@ include(FetchContent)
 include(ExternalProject)
 
 set(CMAKE_CXX_COMPILER ${CXX})
-set(CMAKE_C_COMPILER /usr/bin/gcc)
+set(CMAKE_C_COMPILER ${CC})
 
 project(flashlighttext)
 

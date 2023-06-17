@@ -21,7 +21,7 @@ flashlight:
 	set CFLAGS=$(CFLAGS);\
 	set CPPFLAGS=$(CPPFLAGS);\
 	set LDFLAGS=$(LDFLAGS);\
-	cmake ../../inst -DCMAKE_BUILD_TYPE=Release;\
+	cmake ../../inst -DCMAKE_BUILD_TYPE=Release;
   cmake --build . --config Release; \
   find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
   find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \

@@ -1,4 +1,8 @@
 
+#include <zlib.h>
+#include <bzlib.h>
+#include <lzma.h>
+
 #include <flashlight/lib/text/dictionary/Utils.h>
 #include <flashlight/lib/text/dictionary/Dictionary.h>
 #include <flashlight/lib/text/decoder/lm/LM.h>

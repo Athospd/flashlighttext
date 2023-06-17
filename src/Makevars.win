@@ -1,11 +1,10 @@
 PKG_CPPFLAGS = -Iflashlighttext/include -Iflashlighttext/include/kenlm
-PKG_LIBS = flashlighttext/lib/libflashlight-text.a \
-flashlighttext/lib/libflashlight-text-kenlm.a \
+PKG_LIBS = flashlighttext/lib/libflashlight-text-kenlm.a \
 flashlighttext/lib/libkenlm.a \
 flashlighttext/lib/libkenlm_util.a \
 flashlighttext/lib/libkenlm_filter.a \
-flashlighttext/lib/libkenlm_builder.a
-
+flashlighttext/lib/libkenlm_builder.a \
+flashlighttext/lib/libflashlight-text.a 
 
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight
@@ -20,6 +19,6 @@ flashlight:
 	set CPPFLAGS=$(CPPFLAGS);\
 	set LDFLAGS=$(LDFLAGS);\
 	cmake ../../inst -DCMAKE_BUILD_TYPE=Release;\
-	cmake --build . --config Release;)
+	make -j 4;)
 
 

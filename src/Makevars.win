@@ -4,7 +4,10 @@ flashlighttext/lib/libkenlm.a \
 flashlighttext/lib/libkenlm_util.a \
 flashlighttext/lib/libkenlm_filter.a \
 flashlighttext/lib/libkenlm_builder.a \
-flashlighttext/lib/libflashlight-text.a 
+flashlighttext/lib/libflashlight-text.a \
+-l:libbz2.a \
+-llzma \
+-lz
 
 all: flashlight $(SHLIB)
 $(SHLIB): flashlight

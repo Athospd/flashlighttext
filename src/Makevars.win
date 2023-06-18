@@ -22,14 +22,15 @@ flashlight:
 	set CPPFLAGS=$(CPPFLAGS);\
 	set LDFLAGS=$(LDFLAGS);\
 	cmake ../../inst -DCMAKE_BUILD_TYPE=Release;\
-  cmake --build . --config Release; \
-  Rscript -e 'invisible(file.remove(grep("build/", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/include/kenlm/lm", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/include/g", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/lib/cmake", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/lib/libg", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/lib/pkgconfig", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/bin", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))'\
-  Rscript -e 'invisible(file.remove(grep("flashlighttext/share", list.files("src", recursive = TRUE, full.names = TRUE), value = TRUE)))')
+  cmake --build . --config Release;\
+  cd ../../src;\
+  rm -rf build;\
+  rm -rf flashlighttext/include/kenlm/lm;\
+  rm -rf flashlighttext/bin;\
+  rm -rf flashlighttext/share;)
+  
+  
 
+  
+  
 

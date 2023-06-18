@@ -27,7 +27,8 @@ flashlight:
   rm -rf build;\
   rm -rf flashlighttext/include/kenlm/lm;\
   rm -rf flashlighttext/bin;\
-  rm -rf flashlighttext/share;)
+  rm -rf flashlighttext/share;\
+  Rscript -e 'f <- function(x) writeChar(gsub("\r\n", "\n", readChar(x, 999999), fixed = TRUE), x);f("flashlighttext/include/kenlm/util/double-conversion/utils.h")')
   
   
 

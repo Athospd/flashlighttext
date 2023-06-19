@@ -14,7 +14,6 @@ KenLM
 ## Method `KenLM$new`
 ## ------------------------------------------------
 
-\dontrun{
 library(flashlighttext)
 sys_file <- function(file) system.file(file, package = "flashlighttext")
 read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
@@ -24,7 +23,6 @@ word_dict <- create_word_dict(lexicon)
 lm <- KenLM$new(sys_file("lm.arpa"), word_dict) 
 lm_state <- lm$start(FALSE) 
 c(lm_state, lm_score) \%<-\% lm$score(lm_state, 0) 
-}
 }
 \section{Super class}{
 \code{\link[flashlighttext:LM]{flashlighttext::LM}} -> \code{KenLM}
@@ -77,8 +75,7 @@ An instance of the KenLM class.
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{\dontrun{
-library(flashlighttext)
+\preformatted{library(flashlighttext)
 sys_file <- function(file) system.file(file, package = "flashlighttext")
 read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
 
@@ -87,7 +84,6 @@ word_dict <- create_word_dict(lexicon)
 lm <- KenLM$new(sys_file("lm.arpa"), word_dict) 
 lm_state <- lm$start(FALSE) 
 c(lm_state, lm_score) \%<-\% lm$score(lm_state, 0) 
-}
 }
 \if{html}{\out{</div>}}
 

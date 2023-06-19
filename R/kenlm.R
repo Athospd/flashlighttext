@@ -11,7 +11,6 @@ KenLM <- R6::R6Class(
     #' @param usrTknDict a Dictionary instance populated with user-defined tokens.
     #' @return An instance of the KenLM class.
     #' @examples
-    #' \dontrun{
     #' library(flashlighttext)
     #' sys_file <- function(file) system.file(file, package = "flashlighttext")
     #' read_bin <- function(file, type, size) readBin(sys_file(file), size = size, type, n = 10000)
@@ -21,7 +20,6 @@ KenLM <- R6::R6Class(
     #' lm <- KenLM$new(sys_file("lm.arpa"), word_dict) 
     #' lm_state <- lm$start(FALSE) 
     #' c(lm_state, lm_score) %<-% lm$score(lm_state, 0) 
-    #' }
     initialize = function(path = NULL, usrTknDict = NULL) {
       private$path_ <- path
       private$usrTknDict_ <- usrTknDict

@@ -4,7 +4,23 @@ Title: Flashlight Text R Interface
 Version: 0.1.0
 Authors@R: c(
     person("Athos", "Damiani", email = "athos.damiani@gmail.com", role = c("aut", "cre", "cph")),
-    person("Daniel", "Falbel", role = c("aut"))
+    person("Daniel", "Falbel", role = c("aut")),
+    person("Facebook Inc.", role = c("cph"), comment="Flashlight Text C++ source code"),
+    person("Jacob", "Kahn", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Vineel", "Pratap", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Tatiana", "Likhomanenko", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Qiantong", "Xu", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Awni", "Hannun", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Jeff", "Cai", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Paden", "Tomasello", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Ann", "Lee", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Edouard", "Grave", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Gilad", "Avidov", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Benoit", "Steiner", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Vitaliy", "Liptchinsky", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Gabriel", "Synnaeve", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Ronan", "Collobert", role = c("cph", "aut"), comment="Flashlight Text C++ source code"),
+    person("Kenneth", "Heafield", role = c("cph", "aut"), comment="KenLM C++ source code")    
     )
 Description: Provides bindings to part of the Flashlight's Text toolkit.
     The Flashlight Text R package contains beam search decoder, KenLM api, and

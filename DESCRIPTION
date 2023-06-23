@@ -9,8 +9,8 @@ Authors@R: c(
 Description: Provides bindings to part of the Flashlight's Text toolkit.
     The Flashlight Text R package contains beam search decoder, KenLM api, and
     Dictionary components.
-    Jacob Kahn et al. (2022) <arXiv:2201.12465> "Flashlight: Enabling Innovation in Tools for Machine Learning"
-    Kenneth Heafield (2011) <https://aclanthology.org/W11-2123.pdf> "KenLM: Faster and Smaller Language Model Queries"
+    Jacob Kahn et al. (2022) <arXiv:2201.12465> "Flashlight: Enabling Innovation in Tools for Machine Learning".
+    Kenneth Heafield (2011) <https://aclanthology.org/W11-2123.pdf> "KenLM: Faster and Smaller Language Model Queries".
 License: MIT + file LICENSE
 Imports: 
     glue,

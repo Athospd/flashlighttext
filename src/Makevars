@@ -6,11 +6,18 @@ flashlighttext/lib/libkenlm_util.a \
 flashlighttext/lib/libkenlm_filter.a \
 flashlighttext/lib/libkenlm_builder.a 
 
-all: flashlight $(SHLIB)
+SOURCES = $(wildcard *.cpp)
+OBJECTS = $(SOURCES:.cpp=.o)
+
+.PHONY: all flashlight
+
+all: $(SHLIB)
+
+$(OBJECTS): flashlight
 $(SHLIB): flashlight
 
 flashlight:
-	@echo "Building"
+	@echo "*** Building"
 	mkdir build || true
 	(export CXX=/usr/bin/g++; \
 	 cd build; \
@@ -27,3 +34,5 @@ flashlight:
    find ../.. -depth -path '*src/flashlighttext/lib/pkgconfig*' | xargs rm -rf {}; \
    find ../.. -depth -path '*src/flashlighttext/bin*' | xargs rm -rf {}; \
    find ../.. -depth -path '*src/flashlighttext/share*' | xargs rm -rf {}; )
+ 
+ 

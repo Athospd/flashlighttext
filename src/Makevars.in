@@ -8,6 +8,7 @@ flashlighttext/lib/libkenlm_builder.a
 
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
+CMAKE = @CMAKE@
 
 .PHONY: all flashlight
 
@@ -23,9 +24,9 @@ flashlight:
 	 cd build; \
    CC="$(CC)" CFLAGS="$(CFLAGS)" \
    CPPFLAGS="$(CPPFLAGS)" LDFLAGS="$(LDFLAGS)" \
-   cmake ../../inst \
+   $(CMAKE) ../../inst \
    -DCMAKE_BUILD_TYPE=Release; \
-   cmake --build . --config Release; \
+   $(CMAKE) --build . --config Release; \
    find ../.. -depth -path '*src/build*' | xargs rm -rf {}; \
    find ../.. -depth -path '*src/flashlighttext/include/kenlm/lm*' | xargs rm -rf {}; \
    find ../.. -depth -path '*src/flashlighttext/include/g*' | xargs rm -rf {}; \

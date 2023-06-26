@@ -2,3 +2,4 @@ flashlighttext/
 build/
 *.so
 *.o
+Makevars

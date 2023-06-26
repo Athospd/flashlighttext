@@ -12,3 +12,4 @@
 ^src/flashlighttext/.*$
 ^boost/.*$
 ^CRAN-SUBMISSION$
+^src/Makevars$

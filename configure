@@ -1,0 +1,15 @@
+if ! test -z $DEVTOOLS_LOAD; then
+  # with DEVTOOLS load we don't try to find cmake from the path because
+  # configure uses the shell path which is often not the same as the terminal
+  # path.
+  CMAKE=cmake
+elif [ `uname` = "Darwin" ]; then
+  if test -z "$CMAKE"; then CMAKE="`which cmake`"; fi
+  if test -z "$CMAKE"; then CMAKE=/Applications/CMake.app/Contents/bin/cmake; fi
+else
+  # in other OS's cmake is expected to be on the PATH
+  CMAKE=cmake
+fi
+
+cd src
+sed -e "s|@CMAKE@|$CMAKE|" Makevars.in > Makevars
